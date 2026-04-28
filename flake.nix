@@ -47,13 +47,7 @@
         # ------------------------------------------------------------------ #
         # Check github.com/nixos/nixos-hardware for your hardware.
         nixos-hardware.nixosModules.msi-b350-tomahawk
-
-        # ------------------------------------------------------------------ #
-        # System core. DO NOT REMOVE ANY OF THOSE.
-        # ------------------------------------------------------------------ #
-        ./base/core.nix
-        ./base/user.nix
-        ./base/locale.nix
+        ./hosts/pyro/hardware-configuration.nix
 
         # ------------------------------------------------------------------ #
         # User configuration. DO NOT SKIP THIS STEP.
@@ -71,33 +65,7 @@
         }
 
         # ------------------------------------------------------------------ #
-        # Home configuration. User specific.
-        # ------------------------------------------------------------------ #
-        ./hosts/pyro/hjem.nix
-        ./hosts/pyro/pyro.nix
-        # Set of custom bash aliases for easier system maintenance
-        ./modules/shell/bash.nix
-        ./modules/packages/nixutils.nix
-
-        # ------------------------------------------------------------------ #
-        # Swap
-        # ------------------------------------------------------------------ #
-        # Set swap method, either:
-        # zram without hibernate
-        # { system.swap.method = "zram"; }
-
-        # or:
-
-        # zswapfile with hibernate, 16GB
-        # {
-        #    system.swap.method    = "zswapfile";
-        #    system.swap.hibernate = true;
-        #    system.swap.size      = 16;
-        #    system.swap.device    = "laptop";
-        # }
-
-        # ------------------------------------------------------------------ #
-        # Desktop Environment
+        # Desktop Environment. DO NOT SKIP THIS STEP.
         # ------------------------------------------------------------------ #
         # Enable KDE Plasma
         ./modules/desktop/plasma.nix
@@ -110,18 +78,15 @@
         { desktop.portal = "kde"; }
 
         # ------------------------------------------------------------------ #
-        # Nvidia
+        # Home configuration. User specific.
         # ------------------------------------------------------------------ #
-        # Enable Nvidia's GPU proprietary drivers
-        ./modules/hardware/nvidia.nix
-        # Additional support for hybrid systems (laptops)
-        # /.modules/hardware/nvidia-prime.nix
-
-        # Choose driver version: stable, production or beta
-        # For 10 series GPUs and below use stable.
-        { hardware.nvidia.driver = "beta"; }
-        # Enable Nvidia's CUDA support in applications.
-        { hardware.nvidia.cuda = true; }
+        ./hosts/pyro/hjem.nix
+        ./hosts/pyro/pyro.nix
+        # Set of custom bash aliases for easier system maintenance
+        # TODO: Currently pointing to /etc/nixos/flake.nix
+        # Required refactor to make it universal
+        ./modules/shell/bash.nix
+        ./modules/packages/nixutils.nix
 
         # ------------------------------------------------------------------ #
         # Packages
@@ -156,6 +121,44 @@
         # ./modules/services/swap.nix
         # ./modules/services/virtualisation.nix
         # ./modules/services/waydroid.nix
+
+        # ------------------------------------------------------------------ #
+        # Swap
+        # ------------------------------------------------------------------ #
+        # Set swap method, either:
+        # zram without hibernate
+        # { system.swap.method = "zram"; }
+
+        # or:
+
+        # zswapfile with hibernate, 16GB
+        # {
+        #    system.swap.method    = "zswapfile";
+        #    system.swap.hibernate = true;
+        #    system.swap.size      = 16;
+        #    system.swap.device    = "laptop";
+        # }
+
+        # ------------------------------------------------------------------ #
+        # Nvidia
+        # ------------------------------------------------------------------ #
+        # Enable Nvidia's GPU proprietary drivers
+        ./modules/hardware/nvidia.nix
+        # Additional support for hybrid systems (laptops)
+        # /.modules/hardware/nvidia-prime.nix
+
+        # Choose driver version: stable, production or beta
+        # For 10 series GPUs and below use stable.
+        { hardware.nvidia.driver = "beta"; }
+        # Enable Nvidia's CUDA support in applications.
+        { hardware.nvidia.cuda = true; }
+
+        # ------------------------------------------------------------------ #
+        # System core. DO NOT REMOVE ANY OF THOSE.
+        # ------------------------------------------------------------------ #
+        ./base/core.nix
+        ./base/user.nix
+        ./base/locale.nix
 
       ];
 

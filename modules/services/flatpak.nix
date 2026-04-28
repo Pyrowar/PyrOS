@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   services.flatpak = {
@@ -11,10 +11,11 @@
     ];
   };
 
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  xdg.portal.config.common.default = "gtk";
-
-  # Allow flatpak apps to find system fonts
+  xdg.portal.extraPortals =
+    if config.services.desktopManager.plasma6.enable then
+      [ pkgs.kdePackages.xdg-desktop-portal-kde ]
+    else
+      [ pkgs.xdg-desktop-portal-gtk ];
   fonts.fontDir.enable = true;
 
 }

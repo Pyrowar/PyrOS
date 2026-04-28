@@ -12,7 +12,7 @@
   #  ```
   # or just chown it
   #  ```bash
-  # sudo chown -R username:users /rootlocationofyourrepo
+  # sudo chown -R username:users /etc/nixos
   #  ```
 
   programs.tmux.enable = true;

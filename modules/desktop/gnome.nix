@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # ------------------------------------------------------------------ #
@@ -9,16 +9,16 @@
 
   # ------------------------------------------------------------------ #
   # dconf — GNOME settings database
-  #
-  # Required for declarative GNOME configuration.
   # ------------------------------------------------------------------ #
   programs.dconf.enable = true;
 
+  # ---------------------------------------------------------------- #
+  # GNOME packages
+  # ---------------------------------------------------------------- #
+  environment.systemPackages = with pkgs; [ nemo-with-extensions ];
+  
   # ------------------------------------------------------------------ #
-  # Excluded GNOME packages
-  #
-  # Remove unwanted apps bundled with the GNOME install.
-  # Full list: https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/desktop-managers/gnome.nix
+  # Exclude unwanted packages bundled with the GNOME install
   # ------------------------------------------------------------------ #
-  # environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
+  environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
 }

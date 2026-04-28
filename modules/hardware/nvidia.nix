@@ -20,10 +20,6 @@ in
 
   config = {
 
-    # ---------------------------------------------------------------- #
-    # User groups
-    # ---------------------------------------------------------------- #
-
     users.users.${config.system.user}.extraGroups = [
       "video"
       "render"
@@ -46,11 +42,11 @@ in
     services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
-      modesetting.enable = true; # required for Wayland
+      modesetting.enable = true;
       powerManagement.enable = true; # fixes sleep/suspend issues
       nvidiaSettings = true; # installs nvidia-settings GUI tool
-      open = true; # use open-source kernel module
-      package = config.boot.kernelPackages.nvidiaPackages.${version}; # bleeding edge drivers
+      open = true;
+      package = config.boot.kernelPackages.nvidiaPackages.${version};
     };
 
     # ---------------------------------------------------------------- #

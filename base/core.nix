@@ -4,13 +4,11 @@
   # ------------------------------------------------------------------ #
   # Core system function
   # ------------------------------------------------------------------ #
-  imports = [ ./hardware-configuration.nix ];
 
-  # Enable power management framework and ensure suspend/hibernate scripts run properly via systemd.
+  # Allow unfree packages globally
+  nixpkgs.config.allowUnfree = true;
+  
   powerManagement.enable = true;
-
-  # rtkit is a D-Bus service that safely grants real-time scheduling
-  # priority to user processes that request it (required by PipeWire).
   security.rtkit.enable = true;
 
   # Enable flakes and new-style nix CLI
@@ -18,9 +16,6 @@
     "nix-command"
     "flakes"
   ];
-
-  # Allow unfree packages globally
-  nixpkgs.config.allowUnfree = true;
 
   # ------------------------------------------------------------------ #
   # Bootloader
@@ -41,7 +36,7 @@
   boot.initrd.kernelModules = [
     "lz4"
     "ntsync"
-  ]; # lz4 for zswap, ntsync for Wine/games
+  ];
 
   # ------------------------------------------------------------------ #
   # Garbage collection
