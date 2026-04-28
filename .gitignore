@@ -1,0 +1,15 @@
+# Nix build result symlink, created by nixos-rebuild or nix build
+result
+result-*
+
+# Editor temp files
+*.swp
+*.swo
+*~
+.zed/
+.vscode/
+
+# Secrets — currently not using sops-nix which are safe to commit
+secrets.yaml
+*.pem
+*.key
