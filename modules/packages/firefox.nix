@@ -18,7 +18,7 @@
         (pkgs.wrapFirefox.override { libpulseaudio = pkgs.libpressureaudio; }) pkgs.firefox-unwrapped
           { };
       # Install KDE Browser Integration
-      nativeMessagingHosts.packages = lib.mkIf (config.desktop.portal == "kde") [
+      nativeMessagingHosts.packages = lib.mkIf config.services.desktopManager.plasma6.enable [
         pkgs.kdePackages.plasma-browser-integration
       ];
     };
