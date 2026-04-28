@@ -4,8 +4,7 @@
   # ------------------------------------------------------------------ #
   # Display manager + desktop
   # ------------------------------------------------------------------ #
-  services.xserver.enable = true;
-  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
   # ------------------------------------------------------------------ #
@@ -21,5 +20,5 @@
   # Remove unwanted apps bundled with the GNOME install.
   # Full list: https://github.com/NixOS/nixpkgs/blob/master/nixos/modules/services/desktop-managers/gnome.nix
   # ------------------------------------------------------------------ #
-  # environment.gnome.excludePackages = with pkgs; [ ];
+  # environment.gnome.excludePackages = with pkgs; [ gnome-tour gnome-user-docs ];
 }

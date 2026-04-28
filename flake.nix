@@ -1,9 +1,9 @@
 {
-  description = "Snowdrift";
+  description = "PyrOS flake";
 
   inputs = {
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -16,7 +16,7 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -105,7 +105,7 @@
         # or:
         # Enable GNOME
         # ./modules/desktop/gnome.nix
-        
+
         # Set Wayland screensharing portal (choose for your DE):
         { desktop.portal = "kde"; }
 

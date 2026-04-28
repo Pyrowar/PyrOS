@@ -74,7 +74,7 @@ in
         HibernateMode=platform shutdown
         HibernateDelaySec=30m
       '';
-      services.logind.extraConfig = ''
+      services.logind.settings.Login.extraConfig = ''
         HandlePowerKey=hibernate
         HandleLidSwitch=hibernate
       '';

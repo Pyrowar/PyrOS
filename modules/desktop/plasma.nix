@@ -21,6 +21,7 @@
   # the SDDM section to System Settings.
   # ---------------------------------------------------------------- #
   programs.partition-manager.enable = true;
+  programs.ssh.startAgent = true; # gnome uses different ssh agent
   programs.kdeconnect.enable = true;
   programs.kde-pim = {
     enable = true;
