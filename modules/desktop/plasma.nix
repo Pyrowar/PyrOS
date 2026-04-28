@@ -4,8 +4,8 @@
   # ---------------------------------------------------------------- #
   # Display manager + desktop
   # ---------------------------------------------------------------- #
-  services.displayManager.sddm.enable = true;
-  # services.displayManager.plasma-login-manager.enable = true;
+  # services.displayManager.sddm.enable = true; # deprecated
+  services.displayManager.plasma-login-manager.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   # ---------------------------------------------------------------- #
@@ -20,7 +20,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    kdePackages.sddm-kcm
+    # kdePackages.sddm-kcm # deprecated
     kdePackages.ksystemlog
     kdePackages.filelight
     kdePackages.kcharselect
@@ -31,7 +31,7 @@
     kdePackages.kalk
     haruna
   ];
-  
+
   # ------------------------------------------------------------------ #
   # Exclude unwanted packages bundled with the Plasma install
   # ------------------------------------------------------------------ #

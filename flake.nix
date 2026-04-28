@@ -74,9 +74,6 @@
         # Enable GNOME
         # ./modules/desktop/gnome.nix
 
-        # Set Wayland screensharing portal (choose for your DE):
-        { desktop.portal = "kde"; }
-
         # ------------------------------------------------------------------ #
         # Home configuration. User specific.
         # ------------------------------------------------------------------ #

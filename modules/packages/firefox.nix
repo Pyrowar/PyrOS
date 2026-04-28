@@ -6,15 +6,6 @@
 }:
 
 {
-  options.desktop.portal = lib.mkOption {
-    type = lib.types.enum [
-      "kde"
-      "gnome"
-      "wlr"
-    ];
-    default = "kde";
-    description = "XDG desktop portal to use. Match your DE: kde, gnome, or wlr (wlroots/Sway).";
-  };
   config = {
     programs.firefox = {
       enable = true;
@@ -36,13 +27,12 @@
     xdg.portal = {
       enable = true;
       extraPortals =
-        with pkgs;
-        {
-          kde = [ kdePackages.xdg-desktop-portal-kde ];
-          gnome = [ xdg-desktop-portal-gtk ];
-          wlr = [ xdg-desktop-portal-wlr ];
-        }
-        .${config.desktop.portal};
+        if config.services.desktopManager.plasma6.enable then
+          [ pkgs.kdePackages.xdg-desktop-portal-kde ]
+        else if config.services.desktopManager.gnome.enable then
+          [ pkgs.xdg-desktop-portal-gtk ]
+        else
+          [ pkgs.xdg-desktop-portal-wlr ];
     };
   };
 }

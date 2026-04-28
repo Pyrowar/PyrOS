@@ -42,7 +42,7 @@ in
 
     (lib.mkIf (cfg.method == "zram") {
       zramSwap.enable = true;
-      zramSwap.algorithm = "lz4";
+      zramSwap.algorithm = "zstd";
       systemd.oomd.enable = true;
       # Hibernate requires a real swap partition or file — zram alone
       # cannot hold the hibernation image.

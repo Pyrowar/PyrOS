@@ -15,9 +15,9 @@
   #   e.g. 00:02.0 -> 0:2:0, 01:00.0 -> 1:0:0
   # ---------------------------------------------------------------- #
   hardware.nvidia.prime = {
-    sync.enable = true;
-    #offload.enable = true;
-    #offload.enableOffloadCmd = true;
+    # sync.enable = true;
+    offload.enable = true;
+    offload.enableOffloadCmd = true;
     intelBusId = "PCI:0:2:0";
     nvidiaBusId = "PCI:1:0:0";
   };
