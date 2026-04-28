@@ -102,6 +102,12 @@
         # Enable KDE Plasma
         ./modules/desktop/plasma.nix
         ./modules/desktop/plasma-theme.nix
+        # or:
+        # Enable GNOME
+        # ./modules/desktop/gnome.nix
+        
+        # Set Wayland screensharing portal (choose for your DE):
+        { desktop.portal = "kde"; }
 
         # ------------------------------------------------------------------ #
         # Nvidia
