@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  src = ../assets/appimages/samrewritten-adw.AppImage;
+  src = ./samrewritten-adw.AppImage;
 
   extracted = pkgs.appimageTools.extract {
     pname = "samrewritten";

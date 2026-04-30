@@ -1,6 +1,7 @@
 { pkgs, ... }:
 
 {
+  fonts.fontDir.enable = true;
   fonts.packages = with pkgs; [
     corefonts # Arial, Times New Roman, Courier New…
     vista-fonts # Calibri, Cambria, Consolas…

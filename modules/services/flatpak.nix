@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ ... }:
 
 {
   services.flatpak = {
@@ -10,12 +10,4 @@
       }
     ];
   };
-
-  xdg.portal.extraPortals =
-    if config.services.desktopManager.plasma6.enable then
-      [ pkgs.kdePackages.xdg-desktop-portal-kde ]
-    else
-      [ pkgs.xdg-desktop-portal-gtk ];
-  fonts.fontDir.enable = true;
-
 }

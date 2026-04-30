@@ -4,8 +4,7 @@
   # ---------------------------------------------------------------- #
   # Display manager + desktop
   # ---------------------------------------------------------------- #
-  # services.displayManager.sddm.enable = true; # deprecated
-  services.displayManager.plasma-login-manager.enable = true;
+  services.displayManager.plasma-login-manager.enable = true; # Only available in NixOS 26.05 or above.
   services.desktopManager.plasma6.enable = true;
 
   # ---------------------------------------------------------------- #
@@ -20,7 +19,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # kdePackages.sddm-kcm # deprecated
     kdePackages.ksystemlog
     kdePackages.filelight
     kdePackages.kcharselect

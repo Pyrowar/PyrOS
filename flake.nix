@@ -88,7 +88,7 @@
         # ------------------------------------------------------------------ #
         # Packages
         # ------------------------------------------------------------------ #
-        ./modules/packages/appimages.nix
+        ./appimages/appimage-builder.nix
         ./modules/packages/cli-apps.nix
         ./modules/packages/blender.nix
         ./modules/packages/devtools.nix
@@ -102,6 +102,7 @@
         ./modules/packages/signal.nix
         ./modules/packages/uno-calc.nix
         ./modules/packages/utils.nix
+        ./modules/packages/vivaldi.nix
         ./modules/packages/wine.nix
 
         # ------------------------------------------------------------------ #
@@ -112,6 +113,7 @@
         ./modules/services/bluetooth.nix
         ./modules/services/flatpak.nix
         ./modules/services/network.nix
+        ./modules/services/portals.nix
         # ./modules/services/printer.nix
         ./modules/services/razer.nix
         # ./modules/services/remapkeys.nix
