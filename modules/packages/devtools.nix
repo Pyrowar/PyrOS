@@ -53,6 +53,7 @@
     age
     ghostty
     nil
+    statix
     nixd
     nixfmt
     vscode-json-languageserver
