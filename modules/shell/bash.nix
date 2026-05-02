@@ -8,12 +8,14 @@
   programs.bash.interactiveShellInit = ''
     rebuild() {
       local before=$(readlink -f /run/current-system)
+      git -C /etc/nixos add -A
       sudo -v
       sudo nixos-rebuild switch --flake /etc/nixos |& nom
       nvd diff $before /run/current-system
     }
     rebuild-boot() {
       local before=$(readlink -f /run/current-system)
+      git -C /etc/nixos add -A
       sudo -v
       sudo nixos-rebuild boot --flake /etc/nixos |& nom
       nvd diff $before /run/current-system
