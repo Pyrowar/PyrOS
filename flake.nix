@@ -6,7 +6,15 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
+    import-tree.url = "github:vic/import-tree";
+    # flake-file.url    = "github:vic/flake-file"; # auto-generates flake.nix from a spec file
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs-unstable";
+    };
+
     hjem = {
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -29,6 +37,8 @@
       nixpkgs-unstable,
       nixpkgs-stable,
       nixos-hardware,
+      import-tree,
+      flake-parts,
       nix-flatpak,
       hjem,
       nix-index-database,
