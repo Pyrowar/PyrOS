@@ -1,9 +1,11 @@
-{ pkgs, ... }:
-
 {
-  programs.yazi.enable = true;
-  environment.systemPackages = with pkgs; [
-    kew
-    btop
-  ];
+  flake.nixosModules.cli-apps =
+    { pkgs, ... }:
+    {
+      programs.yazi.enable = true;
+      environment.systemPackages = with pkgs; [
+        kew
+        btop
+      ];
+    };
 }

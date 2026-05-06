@@ -1,17 +1,12 @@
+# TODO: dendritic pattern
 { pkgs, lib, ... }:
 
 {
-  # ---------------------------------------------------------------- #
-  # Display manager + desktop
-  # ---------------------------------------------------------------- #
   services.displayManager.plasma-login-manager.enable = true; # Only available in NixOS 26.05 or above.
   services.desktopManager.plasma6.enable = true;
 
-  # ---------------------------------------------------------------- #
-  # KDE packages
-  # ---------------------------------------------------------------- #
   programs.partition-manager.enable = true;
-  programs.ssh.startAgent = true; # gnome uses different ssh agent
+  programs.ssh.startAgent = true;
   programs.kdeconnect.enable = true;
   programs.kde-pim = {
     enable = true;
@@ -30,9 +25,6 @@
     haruna
   ];
 
-  # ------------------------------------------------------------------ #
-  # Exclude unwanted packages bundled with the Plasma install
-  # ------------------------------------------------------------------ #
   environment.plasma6.excludePackages = with pkgs; [ kdePackages.discover ];
 
   # Override cursor so Steam window matches the rest of the desktop.

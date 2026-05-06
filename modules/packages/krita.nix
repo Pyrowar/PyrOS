@@ -1,5 +1,7 @@
-{ pkgs, ... }:
-
 {
-  environment.systemPackages = with pkgs; [ krita ];
+  flake.nixosModules.krita =
+    { pkgs, ... }:
+    {
+      environment.systemPackages = with pkgs; [ krita ];
+    };
 }

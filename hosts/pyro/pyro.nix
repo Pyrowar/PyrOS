@@ -1,12 +1,8 @@
-{ ... }:
-
 {
-  imports = [
-    ./hostmodules/btrfs.nix
-    ./hostmodules/secureboot.nix
-    ./hostmodules/storage.nix
-    ./hostmodules/swap-partition.nix
-    ./hostmodules/systemd.nix
-  ];
-
+  flake.nixosModules.pyro =
+    { ... }:
+    {
+      flake.hosts.snowdrift = "pyro";
+      system.user = "pyro";
+    };
 }

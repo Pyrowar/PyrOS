@@ -1,3 +1,4 @@
+# TODO: dendritic pattern
 { config, lib, ... }:
 
 let

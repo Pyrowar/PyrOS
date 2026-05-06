@@ -4,14 +4,9 @@
   # ------------------------------------------------------------------ #
   # Core system function
   # ------------------------------------------------------------------ #
-
-  # Allow unfree packages globally
   nixpkgs.config.allowUnfree = true;
-  
   powerManagement.enable = true;
   security.rtkit.enable = true;
-
-  # Enable flakes and new-style nix CLI
   nix.settings.experimental-features = [
     "nix-command"
     "flakes"

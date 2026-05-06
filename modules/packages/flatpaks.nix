@@ -1,3 +1,4 @@
+# TODO: separate each flatpak app into a different dendritic module
 { ... }:
 
 {

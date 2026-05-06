@@ -8,7 +8,6 @@
 
   options.system.description = lib.mkOption {
     type = lib.types.str;
-    description = "Description for description :D";
   };
   # ------------------------------------------------------------------ #
   # User account — Don't forget to set a password with 'passwd'.

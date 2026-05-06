@@ -1,3 +1,4 @@
+# TODO: dendritic pattern, rethink hjem strategy
 { config, pkgs, ... }:
 
 let
