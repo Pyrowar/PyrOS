@@ -4,7 +4,12 @@
   system.user = "pyro";
 
   flake.nixosModules.pyro =
-    { self, config, ... }:
+    {
+      pkgs,
+      self,
+      config,
+      ...
+    }:
     {
       # NixOS level options
       system.user = "pyro";
@@ -35,14 +40,10 @@
         appimage
         flatpak
 
-        # packages
-        # you can specify package versions with:
-        # pkgs.stable.somePackage
-        # pkgs.unstable.somePackage
+        # packages - modules
         cli
         devtools
         nixtools
-        gaming
         firefox
         vivaldi
         fonts
@@ -52,7 +53,19 @@
         signal
       ];
 
-      # flatpaks
+      # packages - modules - options
+      gaming = {
+        steam = true;
+        faugus = true;
+        recorder = true;
+        heroic = true;
+        mangohud = true;
+        gamescope = false;
+        minecraft = false;
+        lsfg = false;
+      };
+
+      # standalone flatpaks
       services.flatpak.packages = [
         "com.github.wwmm.easyeffects"
         "org.fooyin.fooyin"
@@ -62,11 +75,17 @@
         "no.mifi.losslesscut"
         "com.zettlr.Zettlr"
         "org.upscayl.Upscayl"
-        "net.fasterland.converseen"
-        "com.github.johnfactotum.Foliate"
-        "org.audacityteam.Audacity"
+        # "net.fasterland.converseen"
+        # "org.audacityteam.Audacity"
         "org.signal.Signal"
-        "org.gnome.Chess"
+      ];
+
+      # standalone packages
+      # you can specify package versions with:
+      # pkgs.stable.somePackage
+      # pkgs.unstable.somePackage
+      environment.systemPackages = with pkgs; [
+        foliate
       ];
 
       # ------------------------------------------------------------------ #

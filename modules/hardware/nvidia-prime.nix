@@ -1,4 +1,5 @@
-# TODO: make it work on dragon
+# BUG: Currently doesn't work on dragon
+# TODO: expose options - sync or offload
 {
   # ---------------------------------------------------------------- #
   # NVIDIA PRIME — hybrid graphics (laptop)

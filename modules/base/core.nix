@@ -1,3 +1,4 @@
+# MAYBE: Specify the option for automatic or manual nix.gc and optimise?
 { ... }:
 {
   flake.nixosModules.core =
@@ -13,12 +14,16 @@
       };
 
       config = {
+
         # ------------------------------------------------------------------ #
         # Nix
         # ------------------------------------------------------------------ #
 
         nixpkgs.config.allowUnfree = true;
-
+        # since we are using flakes
+        # sudo nix-channel --remove nixos nixox-hardware
+        # we also remove ~/.nix-defexpr and /root/.nix-defexpr
+        nix.channel.enable = false;
         nix.settings.experimental-features = [
           "nix-command"
           "flakes"
@@ -27,7 +32,7 @@
         nix.gc = {
           automatic = true;
           dates = "weekly";
-          options = "--delete-older-than 30d";
+          options = "--delete-older-than 14d";
         };
 
         nix.optimise = {

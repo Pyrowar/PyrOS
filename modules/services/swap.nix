@@ -1,3 +1,4 @@
+# BUG: zswapfile hangs entire boot?
 {
   flake.nixosModules.swap =
     { config, lib, ... }:
@@ -5,8 +6,9 @@
       # ------------------------------------------------------------------ #
       # Options
       # ------------------------------------------------------------------ #
+
       options.system.swap = {
-        
+
         method = lib.mkOption {
           type = lib.types.enum [
             "zram"
@@ -32,16 +34,18 @@
           description = "Device type. Laptop enables additional power management behaviour.";
         };
       };
+
       # ------------------------------------------------------------------ #
       # Config
       # ------------------------------------------------------------------ #
+
       config = lib.mkMerge [
 
         (lib.mkIf (config.system.swap.method == "zram") {
           zramSwap.enable = true;
           zramSwap.algorithm = "zstd";
           systemd.oomd.enable = true;
-          # Hibernate requires a real swap partition or file. 
+          # Hibernate requires a real swap partition or file.
           # zram alone cannot hold the hibernation image.
           warnings = lib.optional config.system.swap.hibernate "system.swap: hibernate with zram is not supported. Use swapfile instead.";
         })
@@ -61,9 +65,11 @@
             "zswap.shrinker_enabled=1" # proactively shrink pool under memory pressure
           ];
         })
+
         # ---------------------------------------------------------------- #
         # Hibernate
         # ---------------------------------------------------------------- #
+
         (lib.mkIf (config.system.swap.hibernate && config.system.swap.method == "zswapfile") {
           boot.resumeDevice = "/var/lib/swapfile";
         })
