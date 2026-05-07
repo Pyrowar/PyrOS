@@ -1,56 +1,71 @@
-{ ... }:
-
 {
-  # ------------------------------------------------------------------ #
-  # Core system function
-  # ------------------------------------------------------------------ #
-  nixpkgs.config.allowUnfree = true;
-  powerManagement.enable = true;
-  security.rtkit.enable = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  flake.nixosModules.core =
+    { config, ... }:
+    {
 
-  # ------------------------------------------------------------------ #
-  # Bootloader
-  #
-  # After committing changes to the bootloader, run:
-  #   sudo nixos-rebuild boot --flake /etc/nixos --install-bootloader
-  # ------------------------------------------------------------------ #
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.limine = {
-    enable = true;
-    maxGenerations = 10;
-  };
+      # ------------------------------------------------------------------ #
+      # Nix
+      # ------------------------------------------------------------------ #
 
-  # ------------------------------------------------------------------ #
-  # initrd / kernel
-  # ------------------------------------------------------------------ #
-  boot.initrd.systemd.enable = true;
-  boot.initrd.kernelModules = [
-    "lz4"
-    "ntsync"
-  ];
+      nixpkgs.config.allowUnfree = true;
 
-  # ------------------------------------------------------------------ #
-  # Garbage collection
-  # ------------------------------------------------------------------ #
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
-  };
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
-  # Replace identical files in the store with hardlinks to save space
-  nix.optimise = {
-    automatic = true;
-    dates = [ "weekly" ];
-  };
+      nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 30d";
+      };
 
-  # ------------------------------------------------------------------ #
-  # DO NOT CHANGE!
-  # ------------------------------------------------------------------ #
-  system.stateVersion = "25.11";
+      nix.optimise = {
+        automatic = true;
+        dates = [ "weekly" ];
+      };
 
+      # ------------------------------------------------------------------ #
+      # User
+      # ------------------------------------------------------------------ #
+
+      config.users.users.${config.system.user} = {
+        isNormalUser = true;
+        description = config.system.description;
+        extraGroups = [
+          "wheel"
+          "input"
+          "uinput"
+        ];
+      };
+
+      # ------------------------------------------------------------------ #
+      # Bootloader
+      #
+      # After committing changes to the bootloader, run:
+      #   sudo nixos-rebuild boot --flake /etc/nixos --install-bootloader
+      # ------------------------------------------------------------------ #
+
+      boot.loader.efi.canTouchEfiVariables = true;
+      boot.loader.limine = {
+        enable = true;
+        maxGenerations = 10;
+      };
+
+      # ------------------------------------------------------------------ #
+      # System stuff
+      # ------------------------------------------------------------------ #
+
+      powerManagement.enable = true;
+      security.rtkit.enable = true;
+
+      boot.initrd.systemd.enable = true;
+      boot.initrd.kernelModules = [ "lz4" ];
+
+      # ------------------------------------------------------------------ #
+      # DO NOT CHANGE!
+      # ------------------------------------------------------------------ #
+
+      system.stateVersion = "25.11"; # Did you read the comment?
+    };
 }

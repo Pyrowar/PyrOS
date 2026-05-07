@@ -1,5 +1,12 @@
-{ inputs, ... }:
+# DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
+# Use `nix run .#write-flake` to regenerate it.
 {
-  inputs.flake-file.url = "github:vic/flake-file";
-  outputs = inputs: inputs.flake-file.lib.mkFlake { inherit inputs; } ./modules;
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
+
+  inputs = {
+    flake-file.url = "github:vic/flake-file";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
+  };
 }

@@ -1,11 +1,10 @@
+# TODO: split into steam and gaming metapackage
 {
   flake.nixosModules.gaming =
     { pkgs, config, ... }:
     {
       users.users.${config.system.user}.extraGroups = [
         "gamemode"
-        "input"
-        "uinput"
       ];
 
       programs.gamemode.enable = true;

@@ -20,10 +20,7 @@
         nixd
         nixfmt
         bash-language-server
-        vscode-json-languageserver
         marksman
-        sops
-        age
         ghostty
         zed-editor
       ];

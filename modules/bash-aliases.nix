@@ -1,3 +1,4 @@
+# TODO: merge with nixtools
 {
   flake.nixosModules.bash-aliases =
     { ... }:

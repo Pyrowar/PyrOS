@@ -18,12 +18,11 @@
 
       programs.bat.enable = true;
       programs.fzf.fuzzyCompletion = true;
+      programs.yazi.enable = true;
 
       environment.systemPackages = with pkgs; [
-        nixos-install-tools
-        nix-output-monitor
-        nvd
         micro
+        btop
         fzf
         unrar
         tree
