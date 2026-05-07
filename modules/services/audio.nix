@@ -1,5 +1,5 @@
 {
-  flake.nixosModule.audio =
+  flake.nixosModules.audio =
     { ... }:
     {
       # TODO: pipewire equalizer, remove EasyEffects

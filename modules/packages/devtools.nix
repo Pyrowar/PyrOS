@@ -1,5 +1,5 @@
 {
-  flake.nixosModule.devtools =
+  flake.nixosModules.devtools =
     { pkgs, ... }:
     {
       programs.tmux.enable = true;

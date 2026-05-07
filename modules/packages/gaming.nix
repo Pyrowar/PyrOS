@@ -1,4 +1,3 @@
-# TODO: split into steam and gaming metapackage
 {
   flake.nixosModules.gaming =
     { pkgs, config, ... }:

@@ -1,12 +1,23 @@
+{ ... }:
 {
+  # Flake-parts level options
+  system.user = "pyro";
+
   flake.nixosModules.pyro =
     { self, config, ... }:
     {
+      # NixOS level options
+      system.user = "pyro";
+      system.description = "Default User";
+      locale.preset = "pl";
+      locale.timeZone = "Europe/Warsaw";
+      hardware.nvidia.driver = "beta";
+      hardware.nvidia.cuda = true;
+
       imports = with self.nixosModules; [
         # base
         core
         hjem
-        nixtools
 
         # hardware
         nvidia
@@ -29,6 +40,8 @@
         # pkgs.stable.somePackage
         # pkgs.unstable.somePackage
         cli
+        devtools
+        nixtools
         gaming
         firefox
         vivaldi
@@ -63,39 +76,6 @@
             "org.audacityteam.Audacity"
             "org.signal.Signal"
           ];
-
-      # ------------------------------------------------------------------------------------------------------------------------------------ #
-      #
-      # SYSTEM SETTINGS
-      #
-      # ------------------------------------------------------------------------------------------------------------------------------------ #
-
-      # ------------------------------------------------------------------ #
-      # User
-      # ------------------------------------------------------------------ #
-
-      system.user = "pyro";
-      system.description = "Default User";
-
-      # ------------------------------------------------------------------ #
-      # Locale
-      # ------------------------------------------------------------------ #
-
-      locale.preset = "pl";
-      locale.timeZone = "Europe/Warsaw";
-
-      # ------------------------------------------------------------------ #
-      # Hardware
-      # ------------------------------------------------------------------ #
-
-      hardware.nvidia.driver = "beta";
-      hardware.nvidia.cuda = true;
-
-      # ------------------------------------------------------------------------------------------------------------------------------------ #
-      #
-      # USER SETTINGS
-      #
-      # ------------------------------------------------------------------------------------------------------------------------------------ #
 
       # ------------------------------------------------------------------ #
       # Hjem
@@ -144,4 +124,5 @@
         '';
       };
     };
+
 }

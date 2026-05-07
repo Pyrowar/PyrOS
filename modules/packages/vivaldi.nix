@@ -1,5 +1,5 @@
 {
-  flake.nixosModule.vivaldi =
+  flake.nixosModules.vivaldi =
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [ vivaldi ];

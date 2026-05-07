@@ -24,6 +24,7 @@
 
     snowdrift = inputs.nixpkgs-unstable.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit inputs self; };
       modules = [
         self.nixosModules.${config.system.user}
         { networking.hostName = "snowdrift"; }
@@ -40,6 +41,7 @@
 
     permafrost = inputs.nixpkgs-stable.lib.nixosSystem {
       system = "x86_64-linux";
+      specialArgs = { inherit inputs self; };
       modules = [
         self.nixosModules.${config.system.user}
         { networking.hostName = "permafrost"; }

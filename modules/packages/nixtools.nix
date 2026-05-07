@@ -1,8 +1,16 @@
-# TODO: merge with nixtools
 {
-  flake.nixosModules.bash-aliases =
-    { ... }:
+  flake.nixosModules.nixtools =
+    { self, pkgs, ... }:
     {
+      imports = [ self.nixosModules.nix-index-database ];
+
+      programs.nix-index-database.comma.enable = true;
+      environment.systemPackages = with pkgs; [
+        nixos-install-tools
+        nix-output-monitor
+        nvd
+      ];
+      
       programs.bash.enable = true;
       programs.bash.interactiveShellInit = ''
         rebuild() {
@@ -24,6 +32,7 @@
         rebuild-test = "sudo nixos-rebuild test --flake /etc/nixos |& nom";
         rebuild-dry = "sudo nixos-rebuild dry-activate --flake /etc/nixos |& nom";
         flake-update = "sudo nix flake update --flake /etc/nixos";
+        write-flake = "nix run path:/etc/nixos#write-flake";
         diff-boot = "nvd diff /run/booted-system /run/current-system";
       };
     };

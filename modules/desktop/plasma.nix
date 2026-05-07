@@ -1,5 +1,5 @@
 {
-  flake.nixModules.plasma =
+  flake.nixosModules.plasma =
     { pkgs, lib, ... }:
     {
       services.displayManager.plasma-login-manager.enable = true; # Only available in NixOS 26.05 or above.

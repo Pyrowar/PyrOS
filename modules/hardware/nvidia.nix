@@ -1,11 +1,7 @@
 { ... }:
-
 {
   flake.nixosModules.nvidia =
     { config, lib, ... }:
-    let
-      version = config.hardware.nvidia.driver;
-    in
     {
       options.hardware.nvidia = {
         cuda = lib.mkEnableOption "CUDA support";
@@ -21,7 +17,6 @@
       };
 
       config = {
-
         users.users.${config.system.user}.extraGroups = [
           "video"
           "render"
@@ -45,7 +40,7 @@
           powerManagement.enable = true; # fixes sleep/suspend issues
           nvidiaSettings = true; # installs nvidia-settings GUI tool
           open = true;
-          package = config.boot.kernelPackages.nvidiaPackages.${version};
+          package = config.boot.kernelPackages.nvidiaPackages.${config.hardware.nvidia.driver};
         };
 
         # ---------------------------------------------------------------- #
@@ -69,5 +64,7 @@
         };
 
       };
+
     };
+
 }

@@ -1,15 +1,13 @@
 { ... }:
 {
   flake.nixosModules.plasma-theme =
-    { self,config, pkgs, ... }:
+    { config, pkgs, ... }:
     let
-      wallpaper = ../assets/wallpapers/NixOS-default.jpg;
-      cursor = ../assets/cursors/Win11OS;
+      wallpaper = ../../assets/wallpapers/NixOS-default.jpg;
+      cursor = ../../assets/cursors/Win11OS;
     in
     {
-      imports = [ self.nixosModules.hjem ];
       config = {
-
         environment.systemPackages = with pkgs; [ klassy ];
         environment.sessionVariables = {
           XCURSOR_THEME = "Win11OS";
@@ -28,11 +26,11 @@
           };
           files.".local/share/konsole/Ghostty.profile" = {
             clobber = false;
-            source = ../assets/themes/konsole/Ghostty.profile;
+            source = ../../assets/themes/konsole/Ghostty.profile;
           };
           files.".local/share/konsole/Ghostty.colorscheme" = {
             clobber = false;
-            source = ../assets/themes/konsole/Ghostty.colorscheme;
+            source = ../../assets/themes/konsole/Ghostty.colorscheme;
           };
           files.".config/konsolerc" = {
             clobber = false;

@@ -1,5 +1,5 @@
 {
-  flake.nixModules.utils =
+  flake.nixosModules.cli =
     { pkgs, ... }:
     {
       environment.sessionVariables = {

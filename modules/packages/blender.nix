@@ -1,5 +1,5 @@
 {
-  flake.nixosModule.blender =
+  flake.nixosModules.blender =
     { pkgs, config, ... }:
     {
       environment.systemPackages = [
