@@ -19,7 +19,6 @@
         kdePackages.kcharselect
         kdePackages.kompare
         kdePackages.kcolorchooser
-        kdePackages.kate
         kdePackages.akregator
         kdePackages.kalk
         haruna

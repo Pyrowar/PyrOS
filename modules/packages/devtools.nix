@@ -17,6 +17,7 @@
 
       environment.systemPackages = with pkgs; [
         statix
+        nil
         nixd
         nixfmt
         bash-language-server

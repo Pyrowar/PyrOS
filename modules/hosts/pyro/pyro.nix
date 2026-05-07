@@ -53,29 +53,21 @@
       ];
 
       # flatpaks
-      services.flatpak.packages =
-        map
-          (appId: {
-            inherit appId;
-            origin = "flathub";
-          })
-          [
-            "com.github.wwmm.easyeffects"
-            "org.fooyin.fooyin"
-            "org.kde.marknote"
-            "info.colobot.Colobot"
-            "org.nickvision.tubeconverter"
-            "com.github.PintaProject.Pinta"
-            "no.mifi.losslesscut"
-            "com.zettlr.Zettlr"
-            "org.upscayl.Upscayl"
-            "net.fasterland.converseen"
-            # "org.qbittorrent.qBittorrent"
-            # "org.kde.optiimage"
-            "com.github.johnfactotum.Foliate"
-            "org.audacityteam.Audacity"
-            "org.signal.Signal"
-          ];
+      services.flatpak.packages = [
+        "com.github.wwmm.easyeffects"
+        "org.fooyin.fooyin"
+        "org.kde.marknote"
+        "org.nickvision.tubeconverter"
+        "com.github.PintaProject.Pinta"
+        "no.mifi.losslesscut"
+        "com.zettlr.Zettlr"
+        "org.upscayl.Upscayl"
+        "net.fasterland.converseen"
+        "com.github.johnfactotum.Foliate"
+        "org.audacityteam.Audacity"
+        "org.signal.Signal"
+        "org.gnome.Chess"
+      ];
 
       # ------------------------------------------------------------------ #
       # Hjem
