@@ -1,6 +1,4 @@
-# TODO: dendritic pattern
-{ lib, ... }:
-
+# TODO: make it work on dragon
 {
   # ---------------------------------------------------------------- #
   # NVIDIA PRIME — hybrid graphics (laptop)
@@ -15,30 +13,36 @@
   # Then convert from hex to decimal:
   #   e.g. 00:02.0 -> 0:2:0, 01:00.0 -> 1:0:0
   # ---------------------------------------------------------------- #
-  hardware.nvidia.prime = {
-    # sync.enable = true;
-    offload.enable = true;
-    offload.enableOffloadCmd = true;
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
 
-  # -------------------------------------------------------------- #
-  # On-the-go — dGPU disabled for maximum battery life.
-  # Selectable from the bootloader on startup.
-  # -------------------------------------------------------------- #
-  specialisation = {
+  flake.nixosModules.nvidia-prime =
+    { lib, ... }:
+    {
+      hardware.nvidia.prime = {
+        # sync.enable = true;
+        offload.enable = true;
+        offload.enableOffloadCmd = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
 
-    onTheGo.configuration = {
-      system.nixos.tags = [ "on-the-go" ];
-      hardware.nvidia.prime.sync.enable = lib.mkForce false;
-      hardware.nvidia.prime.offload.enable = lib.mkForce false;
-      hardware.nvidia.powerManagement.enable = lib.mkForce false;
-      services.xserver.videoDrivers = lib.mkForce [ "modesetting" ];
-      # Completely power off the dGPU via PCI power management
-      boot.extraModprobeConfig = ''
-        options nvidia NVreg_DynamicPowerManagement=0x02
-      '';
+      # -------------------------------------------------------------- #
+      # On-the-go — dGPU disabled for maximum battery life.
+      # Selectable from the bootloader on startup.
+      # -------------------------------------------------------------- #
+      specialisation = {
+
+        onTheGo.configuration = {
+          system.nixos.tags = [ "on-the-go" ];
+          hardware.nvidia.prime.sync.enable = lib.mkForce false;
+          hardware.nvidia.prime.offload.enable = lib.mkForce false;
+          hardware.nvidia.powerManagement.enable = lib.mkForce false;
+          services.xserver.videoDrivers = lib.mkForce [ "modesetting" ];
+          # Completely power off the dGPU via PCI power management
+          boot.extraModprobeConfig = ''
+            options nvidia NVreg_DynamicPowerManagement=0x02
+          '';
+        };
+      };
+
     };
-  };
 }

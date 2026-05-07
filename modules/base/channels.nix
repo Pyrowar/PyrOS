@@ -16,23 +16,6 @@
 # Where hostname is the name of the default channel.
 # ------------------------------------------------------------------ #
 {
-  # User options are declared here, because
-  # channels.nix references config.system.user at flake-parts
-  # evaluation time to resolve self.nixosModules.${config.system.user}
-  options.system.user = lib.mkOption {
-    type = lib.types.str;
-    description = "Primary user account name.";
-  };
-  options.system.description = lib.mkOption {
-    type = lib.types.str;
-    description = "Displayed name and surname.";
-  };
-
-  modules = [
-    self.nixosModules.${config.system.user}
-    self.nixosModules.core
-    { networking.hostName = "snowdrift"; }
-  ];
 
   flake-file.inputs.nixpkgs-unstable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-unstable";
   flake-file.inputs.nixpkgs-stable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-25.11";

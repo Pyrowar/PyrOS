@@ -3,6 +3,8 @@
     { self, config, ... }:
     {
       imports = with self.nixosModules; [
+        # base
+        core
         hjem
         nixtools
 
