@@ -1,15 +1,7 @@
 # DO-NOT-EDIT. This file was auto-generated using github:vic/flake-file.
 # Use `nix run .#write-flake` to regenerate it.
 {
-  outputs =
-    inputs:
-    inputs.flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        (inputs.import-tree ./modules)
-        ./modules/base/_channels.nix
-        ./hosts/pyro/_pyro.nix
-      ];
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 
   inputs = {
     flake-file.url = "github:vic/flake-file";
