@@ -15,9 +15,6 @@
 # Where hostname is the name of the default channel.
 # ------------------------------------------------------------------ #
 {
-
-  # flake-file.inputs.nixpkgs.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-unstable";
-  # flake-file.inputs.nixpkgs-stable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-25.11";
   flake.nixosConfigurations = {
 
     snowdrift = inputs.nixpkgs.lib.nixosSystem {
