@@ -1,5 +1,4 @@
 { ... }:
-
 {
   flake.nixosModules.core =
     { config, lib, ... }:

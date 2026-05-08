@@ -1,7 +1,11 @@
 {
   inputs,
   self,
+<<<<<<< HEAD
   lib,
+=======
+  config,
+>>>>>>> 55b941f0570e56a403f8d02b4e66ee61d3ea2bad
   ...
 }:
 # ------------------------------------------------------------------ #
@@ -15,6 +19,7 @@
 # Where hostname is the name of the default channel.
 # ------------------------------------------------------------------ #
 {
+<<<<<<< HEAD
   flake-file.inputs.nixpkgs.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-unstable";
   flake-file.inputs.nixpkgs-stable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-25.11";
 
@@ -45,6 +50,11 @@
     in
     nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
+=======
+  flake.nixosConfigurations = {
+
+    snowdrift = inputs.nixpkgs.lib.nixosSystem {
+>>>>>>> 55b941f0570e56a403f8d02b4e66ee61d3ea2bad
       specialArgs = { inherit inputs self; };
       modules = [
         module
@@ -53,4 +63,27 @@
       ]
       ++ extraModules;
     };
+<<<<<<< HEAD
+=======
+
+    permafrost = inputs.nixpkgs-stable.lib.nixosSystem {
+      specialArgs = { inherit inputs self; };
+      modules = [
+        self.nixosModules.${config.system.user}
+        { networking.hostName = "permafrost"; }
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              unstable = import inputs.nixpkgs {
+                system = final.stdenv.hostPlatform.system;
+                config.allowUnfree = true;
+              };
+            })
+          ];
+        }
+      ];
+    };
+
+  };
+>>>>>>> 55b941f0570e56a403f8d02b4e66ee61d3ea2bad
 }
