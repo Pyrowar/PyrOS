@@ -1,4 +1,3 @@
-# MAYBE: Specify the option for automatic or manual nix.gc and optimise?
 { ... }:
 {
   flake.nixosModules.core =

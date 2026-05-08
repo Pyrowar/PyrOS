@@ -1,4 +1,4 @@
-# BUG: zswapfile hangs entire boot?
+# TEST: zswapfile
 {
   flake.nixosModules.swap =
     { config, lib, ... }:
@@ -51,18 +51,30 @@
         })
 
         (lib.mkIf (config.system.swap.method == "zswapfile") {
-          swapDevices = [
-            {
-              device = "/var/lib/swapfile";
-              size = config.system.swap.size * 1024; # mkSwap expects MiB
-              options = [ "discard" ];
-            }
-          ];
+          swapDevices = [ { device = "/var/lib/swapfile"; } ];
+
+          system.activationScripts.createSwapfile = ''
+            if [ ! -f /var/lib/swapfile ]; then
+              FS=$(stat -f -c %T /var/lib)
+              if [ "$FS" = "btrfs" ]; then
+                truncate -s 0 /var/lib/swapfile
+                chattr +C /var/lib/swapfile
+                dd if=/dev/zero of=/var/lib/swapfile bs=1M count=${
+                  toString (config.system.swap.size * 1024)
+                } status=progress
+              else
+                fallocate -l ${toString config.system.swap.size}G /var/lib/swapfile
+              fi
+              chmod 600 /var/lib/swapfile
+              mkswap /var/lib/swapfile
+            fi
+          '';
+
           boot.kernelParams = [
-            "zswap.enabled=1" # enable zswap compressed swap cache
-            "zswap.compressor=lz4" # compression algorithm
-            "zswap.max_pool_percent=25" # cap zswap at 25% of RAM
-            "zswap.shrinker_enabled=1" # proactively shrink pool under memory pressure
+            "zswap.enabled=1"
+            "zswap.compressor=lz4"
+            "zswap.max_pool_percent=25"
+            "zswap.shrinker_enabled=1"
           ];
         })
 

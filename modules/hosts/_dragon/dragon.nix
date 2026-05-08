@@ -1,5 +1,17 @@
-{ ... }:
+{ self, ... }:
 {
+  flake.nixosConfigurations.snowdrift = self.lib.mkHost {
+    module = self.nixosModules.dragon;
+    hostname = "snowdrift";
+    channel = "unstable";
+    extraModules = [ { boot.initrd.kernelModules = [ "ntsync" ]; } ];
+  };
+  flake.nixosConfigurations.permafrost = self.lib.mkHost {
+    module = self.nixosModules.dragon;
+    hostname = "permafrost";
+    channel = "stable";
+  };
+
   flake.nixosModules.dragon =
     {
       pkgs,
@@ -8,7 +20,7 @@
       ...
     }:
     {
-      # NixOS level options
+      # NixOS options
       system.user = "dragon";
       system.description = "Default User";
       system.maintenance = "manual";
@@ -16,7 +28,18 @@
       locale.timeZone = "Europe/Warsaw";
       hardware.nvidia.driver = "stable";
       hardware.nvidia.cuda = false;
-      system.swap.method = "zram";
+      system.swap = {
+        method = "zram"; # or zswapfile
+        # hibernate = true;
+        # size = 16;
+        # device = "laptop";
+      };
+      hardware.nvidia.prime = {
+        mode = "offload";
+        onTheGo = false;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
 
       imports = with self.nixosModules; [
         # base

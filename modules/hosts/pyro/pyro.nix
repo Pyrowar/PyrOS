@@ -1,7 +1,16 @@
-{ ... }:
+{ self, ... }:
 {
-  # Flake-parts level options
-  system.user = "pyro";
+  flake.nixosConfigurations.snowdrift = self.lib.mkHost {
+    module = self.nixosModules.pyro;
+    hostname = "snowdrift";
+    channel = "unstable";
+    extraModules = [ { boot.initrd.kernelModules = [ "ntsync" ]; } ];
+  };
+  flake.nixosConfigurations.permafrost = self.lib.mkHost {
+    module = self.nixosModules.pyro;
+    hostname = "permafrost";
+    channel = "stable";
+  };
 
   flake.nixosModules.pyro =
     {
@@ -11,7 +20,7 @@
       ...
     }:
     {
-      # NixOS level options
+      # NixOS options
       system.user = "pyro";
       system.description = "Default User";
       system.maintenance = "manual";
