@@ -1,7 +1,6 @@
 {
   inputs,
   self,
-  lib,
   config,
   ...
 }:
@@ -17,13 +16,11 @@
 # ------------------------------------------------------------------ #
 {
 
-  flake-file.inputs.nixpkgs-unstable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-unstable";
-  flake-file.inputs.nixpkgs-stable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-25.11";
-  flake-file.inputs.nixpkgs.follows = "nixpkgs-unstable";
+  # flake-file.inputs.nixpkgs.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-unstable";
+  # flake-file.inputs.nixpkgs-stable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-25.11";
   flake.nixosConfigurations = {
 
-    snowdrift = inputs.nixpkgs-unstable.lib.nixosSystem {
-      system = "x86_64-linux";
+    snowdrift = inputs.nixpkgs.lib.nixosSystem {
       specialArgs = { inherit inputs self; };
       modules = [
         self.nixosModules.${config.system.user}
@@ -43,7 +40,6 @@
     };
 
     permafrost = inputs.nixpkgs-stable.lib.nixosSystem {
-      system = "x86_64-linux";
       specialArgs = { inherit inputs self; };
       modules = [
         self.nixosModules.${config.system.user}
@@ -51,7 +47,7 @@
         {
           nixpkgs.overlays = [
             (final: prev: {
-              unstable = import inputs.nixpkgs-unstable {
+              unstable = import inputs.nixpkgs {
                 system = final.stdenv.hostPlatform.system;
                 config.allowUnfree = true;
               };
