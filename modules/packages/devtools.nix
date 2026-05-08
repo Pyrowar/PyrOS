@@ -21,6 +21,7 @@
         nixd
         nixfmt
         bash-language-server
+        package-version-server
         marksman
         ghostty
         zed-editor
