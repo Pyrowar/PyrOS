@@ -17,7 +17,9 @@
     },
     "flake-parts": {
       "inputs": {
-        "nixpkgs-lib": "nixpkgs-lib"
+        "nixpkgs-lib": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1777988971,
@@ -157,7 +159,6 @@
         "type": "github"
       }
     },
-<<<<<<< HEAD
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1778003029,
@@ -171,20 +172,6 @@
         "owner": "NixOS",
         "ref": "nixos-25.11",
         "repo": "nixpkgs",
-=======
-    "nixpkgs-lib": {
-      "locked": {
-        "lastModified": 1777168982,
-        "narHash": "sha256-GOkGPcboWE9BmGCRMLX3worL4EMnsnG8MyKmXNeYuhQ=",
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
-        "rev": "f5901329dade4a6ea039af1433fb087bd9c1fe14",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixpkgs.lib",
->>>>>>> 55b941f0570e56a403f8d02b4e66ee61d3ea2bad
         "type": "github"
       }
     },
@@ -198,10 +185,7 @@
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-<<<<<<< HEAD
         "nixpkgs-stable": "nixpkgs-stable",
-=======
->>>>>>> 55b941f0570e56a403f8d02b4e66ee61d3ea2bad
         "sops-nix": "sops-nix"
       }
     },

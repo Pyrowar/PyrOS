@@ -1,10 +1,7 @@
 { inputs, lib, ... }:
 {
   systems = [ "x86_64-linux" ];
-<<<<<<< HEAD
 
-=======
->>>>>>> 55b941f0570e56a403f8d02b4e66ee61d3ea2bad
   imports = [
 
     inputs.flake-file.flakeModules.default
@@ -12,7 +9,6 @@
     # too opinionated, pulls in:
     # url = "https://channels.nixos.org/nixpkgs-unstable/nixexprs.tar.xz"
   ];
-<<<<<<< HEAD
 
   flake-file.inputs.flake-file = {
     url = lib.mkDefault "github:vic/flake-file";
@@ -31,7 +27,5 @@
   flake-file.outputs = ''
     inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules)
   '';
-=======
-  flake-file.inputs.nixpkgs-stable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-25.11";
->>>>>>> 55b941f0570e56a403f8d02b4e66ee61d3ea2bad
+
 }
