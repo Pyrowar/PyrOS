@@ -12,6 +12,14 @@
         type = lib.types.str;
         description = "Displayed name and surname.";
       };
+      options.system.maintenance = lib.mkOption {
+        type = lib.types.enum [
+          "automatic"
+          "manual"
+        ];
+        default = "automatic";
+        description = "Whether to automatically run nix gc and optimise or leave it to the user.";
+      };
 
       config = {
 
@@ -21,7 +29,7 @@
 
         nixpkgs.config.allowUnfree = true;
         # since we are using flakes
-        # sudo nix-channel --remove nixos nixox-hardware
+        # sudo nix-channel --remove nixos nixos-hardware
         # we also remove ~/.nix-defexpr and /root/.nix-defexpr
         nix.channel.enable = false;
         nix.settings.experimental-features = [
@@ -29,13 +37,13 @@
           "flakes"
         ];
 
-        nix.gc = {
+        nix.gc = lib.mkIf (config.system.maintenance == "automatic") {
           automatic = true;
           dates = "weekly";
           options = "--delete-older-than 14d";
         };
 
-        nix.optimise = {
+        nix.optimise = lib.mkIf (config.system.maintenance == "automatic") {
           automatic = true;
           dates = [ "weekly" ];
         };

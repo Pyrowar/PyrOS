@@ -19,7 +19,7 @@
 
   flake-file.inputs.nixpkgs-unstable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-unstable";
   flake-file.inputs.nixpkgs-stable.url = lib.mkDefault "github:NixOS/nixpkgs/nixos-25.11";
-
+  flake-file.inputs.nixpkgs.follows = "nixpkgs-unstable";
   flake.nixosConfigurations = {
 
     snowdrift = inputs.nixpkgs-unstable.lib.nixosSystem {

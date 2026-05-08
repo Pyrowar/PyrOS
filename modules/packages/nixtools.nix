@@ -10,7 +10,7 @@
         nix-output-monitor
         nvd
       ];
-      
+
       programs.bash.enable = true;
       programs.bash.interactiveShellInit = ''
         rebuild() {
@@ -34,6 +34,9 @@
         flake-update = "sudo nix flake update --flake /etc/nixos";
         write-flake = "nix run path:/etc/nixos#write-flake";
         diff-boot = "nvd diff /run/booted-system /run/current-system";
+        gc = "sudo nix-collect-garbage -d";
+        gc-dry = "sudo nix-collect-garbage --dry-run";
+        optimise = "sudo nix store optimise";
       };
     };
 }

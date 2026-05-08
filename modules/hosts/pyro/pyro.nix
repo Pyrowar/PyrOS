@@ -14,6 +14,7 @@
       # NixOS level options
       system.user = "pyro";
       system.description = "Default User";
+      system.maintenance = "manual";
       locale.preset = "pl";
       locale.timeZone = "Europe/Warsaw";
       hardware.nvidia.driver = "beta";
@@ -66,6 +67,7 @@
       };
 
       # standalone flatpaks
+      # files are stored in ~/.var/app
       services.flatpak.packages = [
         "com.github.wwmm.easyeffects"
         "org.fooyin.fooyin"
@@ -75,9 +77,6 @@
         "no.mifi.losslesscut"
         "com.zettlr.Zettlr"
         "org.upscayl.Upscayl"
-        # "net.fasterland.converseen"
-        # "org.audacityteam.Audacity"
-        "org.signal.Signal"
       ];
 
       # standalone packages

@@ -1,13 +1,5 @@
-# TODO: ignore other hosts?
-# error: The option `system.user' has conflicting definition values:
-# - In `/nix/store/d7sn804w3z0qfcdrmmgyknrp93vschca-source/modules/hosts/pyro/pyro.nix': "pyro"
-# - In `/nix/store/d7sn804w3z0qfcdrmmgyknrp93vschca-source/modules/hosts/dragon/dragon.nix': "dragon"
-# Use `lib.mkForce value` or `lib.mkDefault value` to change the priority on any of these definitions.
 { ... }:
 {
-  # Flake-parts level options
-  # system.user = "dragon";
-
   flake.nixosModules.dragon =
     {
       pkgs,
@@ -19,6 +11,7 @@
       # NixOS level options
       system.user = "dragon";
       system.description = "Default User";
+      system.maintenance = "manual";
       locale.preset = "pl";
       locale.timeZone = "Europe/Warsaw";
       hardware.nvidia.driver = "stable";
@@ -71,6 +64,7 @@
       };
 
       # standalone flatpaks
+      # files are stored in ~/.var/app
       services.flatpak.packages = [
         "org.nickvision.tubeconverter"
         "com.zettlr.Zettlr"
