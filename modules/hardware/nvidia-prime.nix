@@ -6,7 +6,7 @@
   # Sync mode keeps both GPUs active for best performance.
   # Offload mode lets the iGPU handle display and dGPU only activates
   # on demand — better battery life but slightly more setup.
-  # 
+  #
   # Find your bus IDs with:
   #   nix-shell -p pciutils --run "lspci | grep -E 'VGA|3D'"
   # Then convert from hex to decimal:
@@ -16,7 +16,7 @@
   flake.nixosModules.nvidia-prime =
     { lib, config, ... }:
     {
-      options.hardware.nvidia.prime = {
+      options.nvidia.prime = {
         mode = lib.mkOption {
           type = lib.types.enum [
             "sync"
@@ -39,19 +39,19 @@
       };
       config = {
         hardware.nvidia.prime = {
-          sync.enable = config.hardware.nvidia.prime.mode == "sync";
-          offload.enable = config.hardware.nvidia.prime.mode == "offload";
-          offload.enableOffloadCmd = config.hardware.nvidia.prime.mode == "offload";
-          intelBusId = config.hardware.nvidia.prime.intelBusId;
-          nvidiaBusId = config.hardware.nvidia.prime.nvidiaBusId;
+          sync.enable = config.nvidia.prime.mode == "sync";
+          offload.enable = config.nvidia.prime.mode == "offload";
+          offload.enableOffloadCmd = config.nvidia.prime.mode == "offload";
+          intelBusId = config.nvidia.prime.intelBusId;
+          nvidiaBusId = config.nvidia.prime.nvidiaBusId;
         };
 
         # -------------------------------------------------------------- #
         # On-the-go — dGPU disabled for maximum battery life.
         # Selectable from the bootloader on startup.
         # -------------------------------------------------------------- #
-        
-        specialisation = lib.mkIf config.hardware.nvidia.prime.onTheGo {
+
+        specialisation = lib.mkIf config.nvidia.prime.onTheGo {
           onTheGo.configuration = {
             system.nixos.tags = [ "on-the-go" ];
             hardware.nvidia.prime.sync.enable = lib.mkForce false;

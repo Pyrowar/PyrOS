@@ -1,6 +1,6 @@
 # TODO: dconf2nix, maybe new module?
 {
-  flake.nixModules.gnome =
+  flake.nixosModules.gnome =
     { pkgs, ... }:
     {
       services.displayManager.gdm.enable = true;

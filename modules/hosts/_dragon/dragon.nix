@@ -34,7 +34,7 @@
         # size = 16;
         # device = "laptop";
       };
-      hardware.nvidia.prime = {
+      nvidia.prime = {
         mode = "offload";
         onTheGo = false;
         intelBusId = "PCI:0:2:0";
@@ -59,6 +59,7 @@
         networking
         razer
         portals
+        swap
         appimage
         flatpak
 
@@ -69,6 +70,7 @@
         firefox
         vivaldi
         fonts
+        gaming
         obs
         onlyoffice
         signal
