@@ -1,6 +1,11 @@
 {
   flake.nixosModules.gnome =
-    { lib, pkgs, ... }:
+    {
+      lib,
+      config,
+      pkgs,
+      ...
+    }:
     {
       services.displayManager.gdm.enable = true;
       services.desktopManager.gnome.enable = true;
@@ -10,6 +15,7 @@
 
       # Discover options: dconf watch /
       # After switching from KDE to GNOME: dconf reset -f /
+      # TODO: Maybe dconf.nix?
       programs.dconf = {
         enable = true;
         profiles.user.databases = [
@@ -23,10 +29,9 @@
                 font-antialiasing = "rgba"; # subpixel
                 font-hinting = "slight";
                 # Wygląd
-                cursor-theme = "Adwaita";
+                # cursor-theme = "Adwaita"; # Currently Win11OS
                 color-scheme = "prefer-dark";
-                # Wallpaper...
-                # Ekrany
+                # MoreWaita icon theme...
                 # Mysz i panel dotykowy
                 gtk-enable-primary-paste = false;
                 # Programy startowe
@@ -42,6 +47,17 @@
               };
               "org/gnome/desktop/input-sources" = {
                 sources = "[('xkb', 'pl')]";
+              };
+
+              "org/gnome/settings-daemon/plugins/media-keys" = {
+                custom-keybindings = [
+                  "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+                ];
+              };
+              "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+                name = "Gradia Screenshot";
+                command = "flatpak run be.alexandervanhee.gradia --screenshot=INTERACTIVE";
+                binding = "<Ctrl>Print";
               };
 
             };
@@ -78,20 +94,27 @@
         gnome-connections
         gnome-maps
 
-        # TODO:
-        # Reverse gnome core apps declaration: set core.apps.enable to false
-        # Apps I like:
-        # gnome-font-viewer
-        # gnome-characters
-        # gnome-clocks
-        # gnome-weather
-        # gnome-calculator
-        # gnome-calendar
-        # loupe
-        # decibels
-        # simple-scan
-
       ];
+
+      hjem.users.${config.system.user} = {
+        # Create file templates with hjem
+        files."Templates/Empty Document.txt" = {
+          clobber = false;
+          text = "";
+        };
+        files."Templates/Markdown.md" = {
+          clobber = false;
+          text = "# Title\n";
+        };
+        files."Templates/Shell Script.sh" = {
+          clobber = false;
+          text = "#!/usr/bin/env bash\n\nset -eu\n";
+        };
+        files."Templates/Nix Expression.nix" = {
+          clobber = false;
+          text = "{ ... }:\n{\n\n}\n";
+        };
+      };
 
     };
 }

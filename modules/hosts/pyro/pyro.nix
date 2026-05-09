@@ -28,6 +28,18 @@
       hardware.nvidia.driver = "beta";
       hardware.nvidia.cuda = true;
 
+      programs.git = {
+        enable = true;
+        config = {
+          user.name = "Kajetan Ziółkowski";
+          user.email = "kajetan.ziolkowsky@gmail.com";
+          init.defaultBranch = "main";
+          pull.rebase = false;
+          push.autoSetupRemote = true;
+          core.editor = "micro";
+        };
+      };
+
       imports = with self.nixosModules; [
         # base
         core
@@ -37,8 +49,9 @@
         nvidia
 
         # desktop
-        gnome # We used generation 181 for plasma
+        gnome
         gnome-extensions
+        
         # services
         audio
         bluetooth
@@ -76,18 +89,23 @@
       # standalone flatpaks
       # files are stored in ~/.var/app
       services.flatpak.packages = [
+        # Flatpak management
+        "com.github.tchx84.Flatseal"
+        "io.github.flattool.Warehouse"
         # Core apps
         "io.github.diegopvlk.Cine"
         "com.github.PintaProject.Pinta"
         "be.alexandervanhee.gradia"
-        "com.github.finefindus.eyedropper"
-        "org.gnome.Podcasts"
+        "org.gnome.World.Iotas"
         # Cool Libadwaita
         "com.github.neithern.g4music" # Gapless
         "org.nickvision.tubeconverter" # Parabolic
         "io.gitlab.news_flash.NewsFlash"
         "com.github.johnfactotum.Foliate"
-        "page.codeberg.M23Snezhok.Vinyl"
+        "com.github.finefindus.eyedropper"
+        "app.drey.EarTag"
+        "ca.edestcroix.Recordbox"
+        "org.gnome.Chess"
         # Others
         "com.github.wwmm.easyeffects"
         "org.upscayl.Upscayl"
@@ -107,6 +125,19 @@
 
       hjem.users.${config.system.user} = {
         directory = "/home/${config.system.user}";
+
+        # Add Nautilus bookmarks
+        files.".config/gtk-3.0/bookmarks" = {
+          clobber = false;
+          text = ''
+            file:///etc/nixos NixOS
+            file:///home/pyro/Downloads
+            file:///home/pyro/Dokumenty
+            file:///home/pyro/Muzyka
+            file:///home/pyro/Obrazy
+            file:///home/pyro/Wideo
+          '';
+        };
 
         files.".config/user-dirs.dirs" = {
           clobber = false;

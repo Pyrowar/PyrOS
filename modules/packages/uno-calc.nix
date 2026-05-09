@@ -10,8 +10,6 @@
       ];
 
       hjem.users.${config.system.user} = {
-        directory = "/home/${config.system.user}";
-
         files.".local/share/applications/uno.platform.uno-calculator.desktop" = {
           clobber = false;
           text = ''

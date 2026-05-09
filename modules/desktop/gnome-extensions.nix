@@ -7,7 +7,9 @@
         gnomeExtensions.dynamic-music-pill
         gnomeExtensions.appindicator
         gnomeExtensions.caffeine
+        gnomeExtensions.alphabetical-app-grid
         gnomeExtensions.valent
+        morewaita-icon-theme
         valent
       ];
       # Valent KDE Connect

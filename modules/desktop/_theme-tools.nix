@@ -1,3 +1,5 @@
+# TODO: Create options for which files should actually be included
+# since I use the same stuff across DEs
 { ... }:
 # Files seeded by this module (remove manually when switching DE):
 # ~/.local/share/wallpapers/NixOS-default.jpg
@@ -5,8 +7,10 @@
 # ~/.local/share/konsole/Ghostty.profile
 # ~/.local/share/konsole/Ghostty.colorscheme
 # ~/.config/konsolerc
+# They might also be referenced in nix store afterwards due to import-tree / past generations.
+# Perform nh clean all.
 {
-  flake.nixosModules.plasma-theme =
+  flake.nixosModules.theme-tools =
     { config, pkgs, ... }:
     let
       wallpaper = ../../assets/wallpapers/NixOS-default.jpg;
@@ -15,13 +19,7 @@
     {
       config = {
         environment.systemPackages = with pkgs; [ klassy ];
-        environment.sessionVariables = {
-          XCURSOR_THEME = "Win11OS";
-          XCURSOR_SIZE = "32";
-        };
-
         hjem.users.${config.system.user} = {
-          directory = "/home/${config.system.user}";
           files.".local/share/wallpapers/NixOS-default.jpg" = {
             clobber = false;
             source = wallpaper;
