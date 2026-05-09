@@ -34,7 +34,6 @@
         # ---------------------------------------------------------------- #
 
         services.xserver.videoDrivers = [ "nvidia" ];
-        services.lact.enable = true; # Linux GPU Control Application
         hardware.nvidia = {
           modesetting.enable = true;
           powerManagement.enable = true; # fixes sleep/suspend issues

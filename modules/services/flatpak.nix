@@ -1,6 +1,8 @@
 { inputs, ... }:
 {
-
+  # nix-flatpak only manages the system installations
+  # if you used flatpak before nix-flatpak, be sure to remove any leftover user installations
+  # flatpak uninstall --user "reverse.notation.appname"
   flake-file.inputs.nix-flatpak = {
     url = "github:gmodena/nix-flatpak/?ref=latest";
   };

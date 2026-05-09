@@ -14,7 +14,6 @@
 
   flake.nixosModules.pyro =
     {
-      pkgs,
       self,
       config,
       ...
@@ -38,9 +37,8 @@
         nvidia
 
         # desktop
-        plasma
-        plasma-theme
-
+        gnome # We used generation 181 for plasma
+        gnome-extensions
         # services
         audio
         bluetooth
@@ -78,23 +76,30 @@
       # standalone flatpaks
       # files are stored in ~/.var/app
       services.flatpak.packages = [
-        "com.github.wwmm.easyeffects"
-        "org.fooyin.fooyin"
-        "org.kde.marknote"
-        "org.nickvision.tubeconverter"
+        # Core apps
+        "io.github.diegopvlk.Cine"
         "com.github.PintaProject.Pinta"
+        "be.alexandervanhee.gradia"
+        "com.github.finefindus.eyedropper"
+        "org.gnome.Podcasts"
+        # Cool Libadwaita
+        "com.github.neithern.g4music" # Gapless
+        "org.nickvision.tubeconverter" # Parabolic
+        "io.gitlab.news_flash.NewsFlash"
+        "com.github.johnfactotum.Foliate"
+        "page.codeberg.M23Snezhok.Vinyl"
+        # Others
+        "com.github.wwmm.easyeffects"
+        "org.upscayl.Upscayl"
         "no.mifi.losslesscut"
         "com.zettlr.Zettlr"
-        "org.upscayl.Upscayl"
       ];
 
       # standalone packages
       # you can specify package versions with:
       # pkgs.stable.somePackage
       # pkgs.unstable.somePackage
-      environment.systemPackages = with pkgs; [
-        foliate
-      ];
+      # environment.systemPackages = with pkgs; [];
 
       # ------------------------------------------------------------------ #
       # Hjem

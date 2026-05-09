@@ -71,7 +71,7 @@
         boot.loader.efi.canTouchEfiVariables = true;
         boot.loader.limine = {
           enable = true;
-          maxGenerations = 10;
+          maxGenerations = null; # show all generations
         };
 
         # ------------------------------------------------------------------ #

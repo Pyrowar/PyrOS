@@ -5,7 +5,6 @@
       inputs,
       lib,
       modulesPath,
-      pkgs,
       ...
     }:
     {
@@ -136,6 +135,7 @@
           "subvol=@games"
           "compress=zstd"
           "noatime"
+          "x-gvfs-trash"
         ];
       };
 
@@ -158,6 +158,7 @@
         options = [
           "defaults"
           "nofail"
+          "x-gvfs-show"
         ];
       };
       # automount and bind-mount XDG user dirs from the drive into ~/
@@ -168,6 +169,7 @@
           options = [
             "bind"
             "nofail"
+            "x-gvfs-hide"
           ];
         };
         "/home/pyro/Muzyka" = {
@@ -176,6 +178,7 @@
           options = [
             "bind"
             "nofail"
+            "x-gvfs-hide"
           ];
         };
         "/home/pyro/Obrazy" = {
@@ -184,6 +187,7 @@
           options = [
             "bind"
             "nofail"
+            "x-gvfs-hide"
           ];
         };
         "/home/pyro/Wideo" = {
@@ -192,6 +196,7 @@
           options = [
             "bind"
             "nofail"
+            "x-gvfs-hide"
           ];
         };
       };
@@ -200,7 +205,6 @@
       # Btrfs
       # ------------------------------------------------------------------ #
 
-      environment.systemPackages = with pkgs; [ btrfs-assistant ];
       # Snapshots dir needs special permissions:
       # sudo chmod 700 /home/.snapshots
       services.snapper = {

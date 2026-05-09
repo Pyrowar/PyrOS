@@ -1,4 +1,10 @@
 { ... }:
+# Files seeded by this module (remove manually when switching DE):
+# ~/.local/share/wallpapers/NixOS-default.jpg
+# ~/.local/share/icons/Win11OS
+# ~/.local/share/konsole/Ghostty.profile
+# ~/.local/share/konsole/Ghostty.colorscheme
+# ~/.config/konsolerc
 {
   flake.nixosModules.plasma-theme =
     { config, pkgs, ... }:
