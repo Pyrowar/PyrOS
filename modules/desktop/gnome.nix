@@ -31,7 +31,7 @@
                 # Wygląd
                 # cursor-theme = "Adwaita"; # Currently Win11OS
                 color-scheme = "prefer-dark";
-                # MoreWaita icon theme...
+                # icon-theme = "MoreWaita";
                 # Mysz i panel dotykowy
                 gtk-enable-primary-paste = false;
                 # Programy startowe
@@ -69,6 +69,10 @@
         enable = true;
         platformTheme = "gnome";
         style = "adwaita-dark";
+      };
+
+      gtk = {
+        iconCache.enable = true;
       };
 
       environment.systemPackages = with pkgs; [

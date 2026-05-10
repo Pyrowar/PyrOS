@@ -16,6 +16,7 @@
     {
       self,
       config,
+      pkgs,
       ...
     }:
     {
@@ -133,9 +134,11 @@
           text = ''
             file:///home/pyro/Downloads
             file:///home/pyro/Dokumenty
-            file:///home/pyro/Muzyka
+            file:///mnt/Barracuda/pyro/Notatki
             file:///home/pyro/Obrazy
             file:///home/pyro/Wideo
+            file:///home/pyro/Muzyka
+            file:///home/pyro/Projekty
             file:///etc/nixos NixOS
           '';
         };
@@ -148,9 +151,10 @@
             XDG_TEMPLATES_DIR="$HOME/Templates"
             XDG_PUBLICSHARE_DIR="$HOME/Public"
             XDG_DOCUMENTS_DIR="$HOME/Dokumenty"
-            XDG_MUSIC_DIR="$HOME/Muzyka"
             XDG_PICTURES_DIR="$HOME/Obrazy"
             XDG_VIDEOS_DIR="$HOME/Wideo"
+            XDG_MUSIC_DIR="$HOME/Muzyka"
+            XDG_PROJECTS_DIR="$HOME/Projekty"
           '';
         };
       };
@@ -162,8 +166,9 @@
       # Write XDG .directory icon files onto the Barracuda after it mounts.
       # This makes Dolphin and other file managers show correct folder icons
       # for the bind-mounted XDG dirs.
+      # For additional Nautilus compatibility also set gio set.
       systemd.services.xdg-dir-icons = {
-        description = "Write XDG .directory icon files";
+        description = "Write XDG .directory icon files and set folder icons via gio";
         wantedBy = [ "multi-user.target" ];
         after = [ "mnt-Barracuda.mount" ];
         requires = [ "mnt-Barracuda.mount" ];
@@ -173,10 +178,32 @@
           User = "pyro";
         };
         script = ''
+          # Write .directory files for Dolphin/KDE
           printf '[Desktop Entry]\nIcon=folder-documents\n' > /mnt/Barracuda/pyro/Dokumenty/.directory
           printf '[Desktop Entry]\nIcon=folder-music\n'     > /mnt/Barracuda/pyro/Muzyka/.directory
           printf '[Desktop Entry]\nIcon=folder-pictures\n'  > /mnt/Barracuda/pyro/Obrazy/.directory
           printf '[Desktop Entry]\nIcon=folder-videos\n'    > /mnt/Barracuda/pyro/Wideo/.directory
+          printf '[Desktop Entry]\nIcon=folder-projects\n'  > /mnt/Barracuda/pyro/Projekty/.directory
+
+          # Set folder icons via gio for GNOME/Nautilus
+          ${pkgs.glib}/bin/gio set /etc/nixos                       metadata::custom-icon-name "folder-nix"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/pyro              metadata::custom-icon-name "folder-user-home"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/git               metadata::custom-icon-name "folder-git"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/pyro/Dokumenty    metadata::custom-icon-name "folder-documents"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/pyro/Gry          metadata::custom-icon-name "folder-games"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/pyro/Książki      metadata::custom-icon-name "folder-books"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/pyro/Muzyka       metadata::custom-icon-name "folder-music"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/pyro/Notatki      metadata::custom-icon-name "folder-notes"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/pyro/Obrazy       metadata::custom-icon-name "folder-pictures"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/pyro/Projekty     metadata::custom-icon-name "folder-projects"
+          ${pkgs.glib}/bin/gio set /mnt/Barracuda/pyro/Wideo        metadata::custom-icon-name "folder-videos"
+          ${pkgs.glib}/bin/gio set $HOME/Games                      metadata::custom-icon-name "folder-games"
+          ${pkgs.glib}/bin/gio set $HOME/Appimages                  metadata::custom-icon-name "folder-appimage"
+          ${pkgs.glib}/bin/gio set $HOME/Dokumenty                  metadata::custom-icon-name "folder-documents"
+          ${pkgs.glib}/bin/gio set $HOME/Obrazy                     metadata::custom-icon-name "folder-pictures"
+          ${pkgs.glib}/bin/gio set $HOME/Wideo                      metadata::custom-icon-name "folder-videos"
+          ${pkgs.glib}/bin/gio set $HOME/Muzyka                     metadata::custom-icon-name "folder-music"
+          ${pkgs.glib}/bin/gio set $HOME/Projekty                   metadata::custom-icon-name "folder-projects"
         '';
       };
     };

@@ -136,6 +136,7 @@
           "compress=zstd"
           "noatime"
           "x-gvfs-trash"
+          "x-gvfs-hide"
         ];
       };
 
@@ -161,7 +162,7 @@
           "x-gvfs-show"
         ];
       };
-      # automount and bind-mount XDG user dirs from the drive into ~/
+      # automount and bind-mount XDG user dirs from the drive into ~/:
       fileSystems = {
         "/home/pyro/Dokumenty" = {
           device = "/mnt/Barracuda/pyro/Dokumenty";
@@ -192,6 +193,27 @@
         };
         "/home/pyro/Wideo" = {
           device = "/mnt/Barracuda/pyro/Wideo";
+          fsType = "none";
+          options = [
+            "bind"
+            "nofail"
+            "x-gvfs-hide"
+          ];
+        };
+        "/home/pyro/Projekty" = {
+          device = "/mnt/Barracuda/pyro/Projekty";
+          fsType = "none";
+          options = [
+            "bind"
+            "nofail"
+            "x-gvfs-hide"
+          ];
+        };
+      };
+      # Additional bind mounts into ~/:
+      fileSystems = {
+        "/home/pyro/git" = {
+          device = "/mnt/Barracuda/git";
           fsType = "none";
           options = [
             "bind"
