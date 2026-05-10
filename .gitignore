@@ -14,8 +14,3 @@ secrets.yaml
 *.pem
 *.key
 
-# Appimages + appimage-builder — currently not ready to be shipped
-.appimages/
-
-# Test
-.testModules/

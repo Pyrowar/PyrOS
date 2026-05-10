@@ -60,6 +60,7 @@
         portals
         appimage
         flatpak
+        lact
 
         # packages - modules
         cli
