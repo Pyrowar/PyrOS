@@ -3,15 +3,20 @@
     { pkgs, ... }:
     {
       environment.systemPackages = with pkgs; [
+        # From most important to least
+        # Core
+        gnomeExtensions.caffeine
+        gnomeExtensions.appindicator
+        gnomeExtensions.valent
+        valent
+        gnomeExtensions.bluetooth-battery-meter
+        morewaita-icon-theme
+        # Aesthetic
         gnomeExtensions.blur-my-shell
         gnomeExtensions.dynamic-music-pill
-        gnomeExtensions.appindicator
-        gnomeExtensions.caffeine
+        # QoL
+        gnomeExtensions.dash-to-dock
         gnomeExtensions.alphabetical-app-grid
-        gnomeExtensions.bluetooth-battery-meter
-        gnomeExtensions.valent
-        morewaita-icon-theme
-        valent
       ];
       # Valent KDE Connect
       programs.kdeconnect = {

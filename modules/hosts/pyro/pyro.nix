@@ -130,12 +130,12 @@
         files.".config/gtk-3.0/bookmarks" = {
           clobber = false;
           text = ''
-            file:///etc/nixos NixOS
             file:///home/pyro/Downloads
             file:///home/pyro/Dokumenty
             file:///home/pyro/Muzyka
             file:///home/pyro/Obrazy
             file:///home/pyro/Wideo
+            file:///etc/nixos NixOS
           '';
         };
 
