@@ -21,7 +21,7 @@
     {
       # NixOS options
       system.user = "pyro";
-      system.description = "Default User";
+      system.description = "Kajetan Ziółkowski";
       system.maintenance = "manual";
       locale.preset = "pl";
       locale.timeZone = "Europe/Warsaw";
@@ -51,7 +51,7 @@
         # desktop
         gnome
         gnome-extensions
-        
+
         # services
         audio
         bluetooth
@@ -107,7 +107,7 @@
         "ca.edestcroix.Recordbox"
         "org.gnome.Chess"
         # Others
-        "com.github.wwmm.easyeffects"
+        "io.github.bhack.mini-eq"
         "org.upscayl.Upscayl"
         "no.mifi.losslesscut"
         "com.zettlr.Zettlr"

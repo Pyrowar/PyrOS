@@ -22,7 +22,6 @@
 
       environment.systemPackages = with pkgs; [
         micro
-        btop
         fzf
         unrar
         tree

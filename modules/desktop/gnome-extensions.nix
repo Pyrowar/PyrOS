@@ -8,6 +8,7 @@
         gnomeExtensions.appindicator
         gnomeExtensions.caffeine
         gnomeExtensions.alphabetical-app-grid
+        gnomeExtensions.bluetooth-battery-meter
         gnomeExtensions.valent
         morewaita-icon-theme
         valent

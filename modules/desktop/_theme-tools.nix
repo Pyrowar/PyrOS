@@ -1,5 +1,5 @@
 # TODO: Create options for which files should actually be included
-# since I use the same stuff across DEs
+# since I use different stuff across DEs
 { ... }:
 # Files seeded by this module (remove manually when switching DE):
 # ~/.local/share/wallpapers/NixOS-default.jpg
