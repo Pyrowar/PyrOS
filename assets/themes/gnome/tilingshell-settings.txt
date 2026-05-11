@@ -1,0 +1,13 @@
+[/]
+edge-tiling-mode='default'
+enable-autotiling=true
+enable-snap-assistant-windows-suggestions=false
+enable-tiling-system-windows-suggestions=true
+enable-window-border=true
+inner-gaps=uint32 10
+outer-gaps=uint32 8
+selected-layouts=[['504672', '504672'], ['504672', '504672']]
+snap-assistant-threshold=25
+top-edge-maximize=false
+window-border-width=uint32 3
+window-use-custom-border-color=false

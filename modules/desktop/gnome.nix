@@ -21,6 +21,10 @@
         profiles.user.databases = [
           {
             settings = {
+              # VRR
+              "org/gnome/mutter" = {
+                experimental-features = [ "variable-refresh-rate" ];
+              };
               "org/gnome/desktop/interface" = {
                 # Czcionki
                 font-name = "Adwaita Sans 11";
@@ -30,7 +34,7 @@
                 font-hinting = "slight";
                 # Wygląd
                 # cursor-theme = "Adwaita"; # Currently Win11OS
-                color-scheme = "prefer-dark";
+                # color-scheme = "prefer-dark";
                 # icon-theme = "MoreWaita";
                 # Mysz i panel dotykowy
                 gtk-enable-primary-paste = false;
@@ -58,6 +62,14 @@
                 name = "Gradia Screenshot";
                 command = "flatpak run be.alexandervanhee.gradia --screenshot=INTERACTIVE";
                 binding = "<Ctrl>Print";
+              };
+              # disable beggars
+              "org/gnome/settings-daemon/plugins/housekeeping" = {
+                donation-reminder-enabled = false;
+              };
+              # disable lockscreen notifications
+              "org/gnome/desktop/notifications" = {
+                show-in-lock-screen = false;
               };
 
             };
