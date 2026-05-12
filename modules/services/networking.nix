@@ -1,9 +1,56 @@
 {
   flake.nixosModules.networking =
-    { config, ... }:
+    { config, lib, ... }:
     {
-      users.users.${config.system.user}.extraGroups = [ "networkmanager" ];
-      networking.networkmanager.enable = true;
-      networking.nftables.enable = true;
+      options.system.wifi.enable = lib.mkEnableOption "wifi";
+
+      config = {
+        users.users.${config.system.user}.extraGroups = [ "networkmanager" ];
+        networking.nftables.enable = true;
+        networking.networkmanager = {
+          enable = true;
+          ensureProfiles = lib.mkIf config.system.wifi.enable {
+            environmentFiles = [ config.sops.secrets.wifi_passwords.path ];
+            profiles = {
+              "Kamadan" = {
+                connection = {
+                  id = "Kamadan";
+                  type = "wifi";
+                };
+                wifi = {
+                  mode = "infrastructure";
+                  ssid = "Kamadan";
+                };
+                wifi-security = {
+                  key-mgmt = "wpa-psk";
+                  psk = "$wifi_kamadan";
+                };
+                ipv4.method = "auto";
+                ipv6.method = "auto";
+              };
+              "Nika" = {
+                connection = {
+                  id = "Nika";
+                  type = "wifi";
+                };
+                wifi = {
+                  mode = "infrastructure";
+                  ssid = "Nika";
+                };
+                wifi-security = {
+                  key-mgmt = "wpa-psk";
+                  psk = "$wifi_nika";
+                };
+                ipv4.method = "auto";
+                ipv6.method = "auto";
+              };
+            };
+          };
+
+        };
+
+      };
+
     };
+
 }

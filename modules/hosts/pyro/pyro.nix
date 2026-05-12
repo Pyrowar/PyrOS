@@ -15,6 +15,7 @@
   flake.nixosModules.pyro =
     {
       self,
+      lib,
       config,
       pkgs,
       ...
@@ -24,6 +25,7 @@
       system.user = "pyro";
       system.description = "Kajetan Ziółkowski";
       system.maintenance = "manual";
+      system.wifi.enable = false;
       locale.preset = "pl";
       locale.timeZone = "Europe/Warsaw";
       hardware.nvidia.driver = "beta";
@@ -38,6 +40,23 @@
           pull.rebase = true;
           push.autoSetupRemote = true;
           core.editor = "micro";
+        };
+      };
+
+      sops = {
+        defaultSopsFile = ./secrets.yaml;
+        defaultSopsFormat = "yaml";
+
+        age = {
+          # Use your existing SSH key to derive the age key automatically
+          sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+          # Or point to an explicit age key file:
+          # keyFile = "/var/lib/sops-nix/key.txt";
+          generateKey = true;
+        };
+
+        secrets.wifi_passwords = lib.mkIf config.system.wifi.enable {
+          format = "dotenv";
         };
       };
 
@@ -109,6 +128,7 @@
         "app.drey.EarTag"
         "ca.edestcroix.Recordbox"
         "org.gnome.Chess"
+        "github.ronniedroid.concessio"
         # Others
         "io.github.bhack.mini-eq"
         "org.upscayl.Upscayl"

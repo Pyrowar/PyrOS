@@ -95,6 +95,7 @@
           "subvol=@home"
           "compress=zstd"
           "noatime"
+          "x-gvfs-trash"
         ];
       };
 

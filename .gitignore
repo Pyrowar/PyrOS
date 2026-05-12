@@ -9,8 +9,7 @@ result-*
 .zed/
 .vscode/
 
-# Secrets — currently not using sops-nix which are safe to commit
-secrets.yaml
+# Secrets - using sops-nix, so it's safe to commit: secrets.yaml
 *.pem
 *.key
 
