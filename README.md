@@ -1,2 +1,4 @@
 # PyrOS
-Work in progress.
+Work in progress...
+
+Now better than ever with sops-nix!
