@@ -128,7 +128,8 @@
         "app.drey.EarTag"
         "ca.edestcroix.Recordbox"
         "org.gnome.Chess"
-        "github.ronniedroid.concessio"
+        "io.github.ronniedroid.concessio"
+        "io.speedofsound.SpeedOfSound"
         # Others
         "io.github.bhack.mini-eq"
         "org.upscayl.Upscayl"
