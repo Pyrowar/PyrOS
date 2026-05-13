@@ -16,7 +16,6 @@
         gnomeExtensions.blur-my-shell
         gnomeExtensions.open-bar
         gnomeExtensions.top-bar-organizer
-        gnomeExtensions.night-theme-switcher
         gnomeExtensions.space-bar
         gnomeExtensions.logo-menu
         gnomeExtensions.vitals

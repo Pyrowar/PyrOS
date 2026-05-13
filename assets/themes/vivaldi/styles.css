@@ -1,0 +1,6 @@
+.theme-dark .tab-position .tab.active .tab-header .favicon
+{
+    filter: none !important;
+}
+.address-top .mainbar,  .bookmark-bar { border: none !important ; }
+

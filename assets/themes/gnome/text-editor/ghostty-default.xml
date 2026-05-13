@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Ghostty Default
+  A GtkSourceView 5 color scheme based on the Ghostty terminal's built-in default theme.
+  Colors sourced directly from the Ghostty default config.
+
+  Install:
+    mkdir -p ~/.local/share/gtksourceview-5/styles/
+    cp ghostty-default.xml ~/.local/share/gtksourceview-5/styles/
+-->
+<style-scheme id="ghostty-default" name="Ghostty Default" version="1.0">
+  <author>Generated from Ghostty default theme</author>
+  <description>Dark color scheme based on the Ghostty terminal emulator's built-in default theme.</description>
+
+  <!-- ── Palette ───────────────────────────────────────────────────── -->
+  <!-- ANSI 0-7 -->
+  <color name="black"         value="#1d1f21"/>
+  <color name="red"           value="#cc6566"/>
+  <color name="green"         value="#b6bd68"/>
+  <color name="yellow"        value="#f0c674"/>
+  <color name="blue"          value="#82a2be"/>
+  <color name="purple"        value="#b294bb"/>
+  <color name="cyan"          value="#8abeb7"/>
+  <color name="white"         value="#c4c8c6"/>
+  <!-- ANSI 8-15 (bright) -->
+  <color name="brightBlack"   value="#666666"/>
+  <color name="brightRed"     value="#d54e53"/>
+  <color name="brightGreen"   value="#b9ca4b"/>
+  <color name="brightYellow"  value="#e7c547"/>
+  <color name="brightBlue"    value="#7aa6da"/>
+  <color name="brightPurple"  value="#c397d8"/>
+  <color name="brightCyan"    value="#70c0b1"/>
+  <color name="brightWhite"   value="#eaeaea"/>
+  <!-- UI extras derived from bg/fg -->
+  <color name="background"    value="#282c34"/>
+  <color name="foreground"    value="#ffffff"/>
+  <color name="cursor"        value="#ffffff"/>
+  <color name="cursorText"    value="#353a44"/>
+  <color name="selection"     value="#3e4451"/>
+  <color name="lineHighlight" value="#2c313a"/>
+  <color name="gutterFg"      value="#636d83"/>
+  <color name="gutterBg"      value="#21252b"/>
+  <color name="gutterLine"    value="#abb2bf"/>
+  <color name="bracket"       value="#f0c674"/>
+  <color name="bracketBad"    value="#d54e53"/>
+  <color name="rightMargin"   value="#3e4451"/>
+  <color name="searchMatch"   value="#3a3000"/>
+  <color name="searchCurrent" value="#594800"/>
+  <color name="comment"       value="#636d83"/>
+  <color name="string"        value="#b6bd68"/>
+  <color name="number"        value="#f0c674"/>
+  <color name="keyword"       value="#82a2be"/>
+  <color name="type"          value="#b294bb"/>
+  <color name="preprocessor"  value="#d54e53"/>
+  <color name="constant"      value="#8abeb7"/>
+  <color name="operator"      value="#abb2bf"/>
+  <color name="escape"        value="#70c0b1"/>
+  <color name="error"         value="#d54e53"/>
+  <color name="warning"       value="#f0c674"/>
+  <color name="note"          value="#7aa6da"/>
+
+  <!-- ── Editor chrome ─────────────────────────────────────────────── -->
+  <style name="text"                        foreground="foreground"   background="background"/>
+  <style name="selection"                   background="selection"    foreground="foreground"/>
+  <style name="cursor"                      foreground="cursor"/>
+  <style name="current-line"                background="lineHighlight"/>
+  <style name="current-line-number"         foreground="gutterLine"   background="lineHighlight" bold="true"/>
+  <style name="line-numbers"                foreground="gutterFg"     background="gutterBg"/>
+  <style name="right-margin"                foreground="rightMargin"  background="rightMargin"/>
+  <style name="draw-spaces"                 foreground="brightBlack"/>
+  <style name="bracket-match"               foreground="bracket"      bold="true" underline="single"/>
+  <style name="bracket-mismatch"            foreground="bracketBad"   bold="true" underline="single"/>
+  <style name="search-match"                background="searchMatch"  foreground="foreground"/>
+  <style name="search-shadow"               background="background"/>
+
+  <!-- ── Diff / version control ───────────────────────────────────── -->
+  <style name="diff:added-line"             foreground="green"/>
+  <style name="diff:removed-line"           foreground="red"/>
+  <style name="diff:changed-line"           foreground="yellow"/>
+  <style name="diff:special-case"           foreground="cyan"/>
+  <style name="diff:location"               foreground="blue"         italic="true"/>
+
+  <!-- ── Generic syntax (fallback for all languages) ───────────────── -->
+  <style name="def:comment"                 foreground="comment"      italic="true"/>
+  <style name="def:shebang"                 foreground="comment"      bold="true"/>
+  <style name="def:doc-comment"             foreground="comment"      italic="true"/>
+  <style name="def:doc-comment-element"     foreground="brightBlue"   italic="true"/>
+  <style name="def:string"                  foreground="string"/>
+  <style name="def:special-char"            foreground="escape"/>
+  <style name="def:special-constant"        foreground="constant"/>
+  <style name="def:floating-point"          foreground="number"/>
+  <style name="def:decimal"                 foreground="number"/>
+  <style name="def:base-n-integer"          foreground="number"/>
+  <style name="def:complex"                 foreground="number"/>
+  <style name="def:number"                  foreground="number"/>
+  <style name="def:keyword"                 foreground="keyword"      bold="true"/>
+  <style name="def:builtin"                 foreground="cyan"/>
+  <style name="def:function"                foreground="brightBlue"/>
+  <style name="def:identifier"              foreground="foreground"/>
+  <style name="def:type"                    foreground="type"/>
+  <style name="def:constant"                foreground="constant"/>
+  <style name="def:boolean"                 foreground="constant"     bold="true"/>
+  <style name="def:null-value"              foreground="constant"     bold="true"/>
+  <style name="def:preprocessor"            foreground="preprocessor"/>
+  <style name="def:operator"                foreground="operator"/>
+  <style name="def:error"                   foreground="error"        underline="error"/>
+  <style name="def:warning"                 foreground="warning"      underline="single"/>
+  <style name="def:note"                    foreground="note"         bold="true"/>
+  <style name="def:underlined"              underline="single"/>
+  <style name="def:net-address"             foreground="brightCyan"   underline="single"/>
+  <style name="def:heading"                 foreground="keyword"      bold="true"/>
+  <style name="def:heading0"                foreground="keyword"      bold="true"/>
+  <style name="def:heading1"                foreground="keyword"      bold="true"/>
+  <style name="def:heading2"                foreground="blue"         bold="true"/>
+  <style name="def:heading3"                foreground="blue"/>
+  <style name="def:heading4"                foreground="cyan"         bold="true"/>
+  <style name="def:heading5"                foreground="cyan"/>
+  <style name="def:heading6"                foreground="green"/>
+
+  <!-- ── C / C++ ───────────────────────────────────────────────────── -->
+  <style name="c:preprocessor"              foreground="preprocessor"/>
+  <style name="c:included-file"             foreground="string"/>
+  <style name="c:common-defines"            foreground="constant"     bold="true"/>
+
+  <!-- ── Python ────────────────────────────────────────────────────── -->
+  <style name="python:string-conversion"    foreground="escape"/>
+  <style name="python:decorator"            foreground="yellow"/>
+  <style name="python:builtin-function"     foreground="cyan"/>
+  <style name="python:builtin-constant"     foreground="constant"     bold="true"/>
+  <style name="python:module-handler"       foreground="keyword"      bold="true"/>
+  <style name="python:special-variable"     foreground="type"         italic="true"/>
+
+  <!-- ── JavaScript / TypeScript ───────────────────────────────────── -->
+  <style name="js:template-literal"         foreground="string"/>
+  <style name="js:regex"                    foreground="escape"/>
+
+  <!-- ── HTML / XML ────────────────────────────────────────────────── -->
+  <style name="xml:element-name"            foreground="keyword"      bold="true"/>
+  <style name="xml:attribute-name"          foreground="blue"/>
+  <style name="xml:attribute-value"         foreground="string"/>
+  <style name="xml:namespace"               foreground="type"         italic="true"/>
+  <style name="xml:tag"                     foreground="brightBlack"/>
+  <style name="xml:comment"                 foreground="comment"      italic="true"/>
+  <style name="xml:cdata-delim"             foreground="brightBlack"  bold="true"/>
+  <style name="xml:processing-instruction"  foreground="preprocessor"/>
+  <style name="xml:doctype"                 foreground="preprocessor" bold="true"/>
+  <style name="xml:entity"                  foreground="escape"/>
+
+  <!-- ── CSS ───────────────────────────────────────────────────────── -->
+  <style name="css:selector-symbol"         foreground="operator"     bold="true"/>
+  <style name="css:id-selector"             foreground="yellow"       bold="true"/>
+  <style name="css:class-selector"          foreground="yellow"/>
+  <style name="css:pseudo-selector"         foreground="type"         italic="true"/>
+  <style name="css:property-name"           foreground="blue"/>
+  <style name="css:property-value"          foreground="foreground"/>
+  <style name="css:color"                   foreground="constant"/>
+  <style name="css:unit"                    foreground="number"/>
+  <style name="css:at-rule"                 foreground="preprocessor"/>
+  <style name="css:vendor-specific"         foreground="brightBlack"  italic="true"/>
+
+  <!-- ── Shell ─────────────────────────────────────────────────────── -->
+  <style name="sh:variable"                 foreground="yellow"/>
+  <style name="sh:variable-definition"      foreground="brightBlue"/>
+  <style name="sh:subshell"                 foreground="escape"/>
+  <style name="sh:here-doc-bound"           foreground="keyword"      bold="true"/>
+  <style name="sh:here-doc"                 foreground="string"/>
+
+  <!-- ── Markdown ──────────────────────────────────────────────────── -->
+  <style name="markdown:emphasis"           italic="true"/>
+  <style name="markdown:strong-emphasis"    bold="true"/>
+  <style name="markdown:header"             foreground="keyword"      bold="true"/>
+  <style name="markdown:thematic-break"     foreground="brightBlack"/>
+  <style name="markdown:code"               foreground="string"/>
+  <style name="markdown:code-block"         foreground="string"/>
+  <style name="markdown:blockquote-marker"  foreground="comment"/>
+  <style name="markdown:list-marker"        foreground="yellow"       bold="true"/>
+  <style name="markdown:link-text"          foreground="brightBlue"/>
+  <style name="markdown:label"              foreground="cyan"/>
+  <style name="markdown:url"                foreground="brightCyan"   underline="single"/>
+  <style name="markdown:image-marker"       foreground="yellow"/>
+
+  <!-- ── Rust ──────────────────────────────────────────────────────── -->
+  <style name="rust:lifetime"               foreground="yellow"       italic="true"/>
+  <style name="rust:macro"                  foreground="cyan"/>
+  <style name="rust:attribute"              foreground="preprocessor"/>
+  <style name="rust:scope"                  foreground="type"/>
+
+  <!-- ── Go ────────────────────────────────────────────────────────── -->
+  <style name="go:printf"                   foreground="escape"/>
+
+  <!-- ── Ruby ──────────────────────────────────────────────────────── -->
+  <style name="ruby:symbol"                 foreground="cyan"/>
+  <style name="ruby:regex"                  foreground="escape"/>
+  <style name="ruby:instance-variable"      foreground="yellow"/>
+  <style name="ruby:class-variable"         foreground="yellow"       bold="true"/>
+  <style name="ruby:global-variable"        foreground="brightRed"/>
+
+  <!-- ── Java / Kotlin ─────────────────────────────────────────────── -->
+  <style name="java:declaration"            foreground="type"         bold="true"/>
+
+  <!-- ── TOML / INI / config ───────────────────────────────────────── -->
+  <style name="toml:key"                    foreground="blue"/>
+  <style name="toml:table"                  foreground="keyword"      bold="true"/>
+  <style name="ini:group"                   foreground="keyword"      bold="true"/>
+  <style name="ini:key"                     foreground="blue"/>
+
+  <!-- ── Log files ─────────────────────────────────────────────────── -->
+  <style name="log-text:message"            foreground="foreground"/>
+  <style name="log-text:timestamp"          foreground="brightBlack"/>
+  <style name="log-text:warning"            foreground="warning"/>
+  <style name="log-text:error"              foreground="error"/>
+</style-scheme>

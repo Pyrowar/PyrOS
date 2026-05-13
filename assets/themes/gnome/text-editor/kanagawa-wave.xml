@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Kanagawa Wave
+  A GtkSourceView 5 color scheme based on the Kanagawa Wave Neovim theme
+  by rebelot (https://github.com/rebelot/kanagawa.nvim).
+  This is the original/default dark variant — rich indigo backgrounds with
+  warm foregrounds and vibrant, saturated syntax colors.
+
+  Install:
+    mkdir -p ~/.local/share/gtksourceview-5/styles/
+    cp kanagawa-wave.xml ~/.local/share/gtksourceview-5/styles/
+-->
+<style-scheme id="kanagawa-wave" name="Kanagawa Wave" version="1.0">
+  <author>Ported from rebelot/kanagawa.nvim (Wave variant)</author>
+  <description>Dark color scheme inspired by Katsushika Hokusai's Great Wave — the original Kanagawa variant, with deep indigo backgrounds and vibrant syntax colors.</description>
+
+  <!-- ── Palette ───────────────────────────────────────────────────── -->
+  <!-- Background scale (sumiInk) -->
+  <color name="sumiInk0"       value="#16161D"/>  <!-- deepest / floats -->
+  <color name="sumiInk1"       value="#181820"/>
+  <color name="sumiInk2"       value="#1a1a22"/>
+  <color name="sumiInk3"       value="#1F1F28"/>  <!-- main background -->
+  <color name="sumiInk4"       value="#2A2A37"/>  <!-- raised surfaces -->
+  <color name="sumiInk5"       value="#363646"/>  <!-- borders, gutter bg -->
+  <color name="sumiInk6"       value="#54546D"/>  <!-- nontext / whitespace -->
+
+  <!-- Foreground / neutrals -->
+  <color name="fujiWhite"      value="#DCD7BA"/>  <!-- default fg -->
+  <color name="oldWhite"       value="#C8C093"/>  <!-- dim fg -->
+  <color name="fujiGray"       value="#727169"/>  <!-- comments -->
+  <color name="springViolet1"  value="#938AA9"/>  <!-- special / gutter special -->
+  <color name="springViolet2"  value="#9CABCA"/>  <!-- brackets / punctuation -->
+  <color name="katanaGray"     value="#717C7C"/>  <!-- deprecated -->
+
+  <!-- Popup / accent -->
+  <color name="waveBlue1"      value="#223249"/>  <!-- visual selection bg -->
+  <color name="waveBlue2"      value="#2D4F67"/>  <!-- search bg -->
+
+  <!-- Syntax colours -->
+  <color name="springGreen"    value="#98BB6C"/>  <!-- strings -->
+  <color name="crystalBlue"    value="#7E9CD8"/>  <!-- functions -->
+  <color name="oniViolet"      value="#957FB8"/>  <!-- keywords / statements -->
+  <color name="oniViolet2"     value="#b8b4d0"/>  <!-- parameters -->
+  <color name="springBlue"     value="#7FB4CA"/>  <!-- builtins / specials -->
+  <color name="waveAqua2"      value="#7AA89F"/>  <!-- types -->
+  <color name="carpYellow"     value="#E6C384"/>  <!-- identifiers -->
+  <color name="boatYellow2"    value="#C0A36E"/>  <!-- operators / regex -->
+  <color name="sakuraPink"     value="#D27E99"/>  <!-- numbers -->
+  <color name="waveRed"        value="#E46876"/>  <!-- preproc / standout -->
+  <color name="peachRed"       value="#FF5D62"/>  <!-- exceptions -->
+  <color name="surimiOrange"   value="#FFA066"/>  <!-- constants / booleans -->
+
+  <!-- Diagnostics -->
+  <color name="samuraiRed"     value="#E82424"/>
+  <color name="roninYellow"    value="#FF9E3B"/>
+  <color name="waveAqua1"      value="#6A9589"/>
+  <color name="dragonBlue"     value="#658594"/>
+
+  <!-- Diff -->
+  <color name="autumnGreen"    value="#76946A"/>
+  <color name="autumnRed"      value="#C34043"/>
+  <color name="autumnYellow"   value="#DCA561"/>
+
+  <!-- ── Editor chrome ─────────────────────────────────────────────── -->
+  <style name="text"                        foreground="fujiWhite"     background="sumiInk3"/>
+  <style name="selection"                   background="waveBlue1"     foreground="fujiWhite"/>
+  <style name="cursor"                      foreground="fujiWhite"/>
+  <style name="current-line"                background="sumiInk4"/>
+  <style name="current-line-number"         foreground="fujiWhite"     background="sumiInk4"    bold="true"/>
+  <style name="line-numbers"                foreground="sumiInk6"      background="sumiInk2"/>
+  <style name="right-margin"                foreground="sumiInk5"      background="sumiInk5"/>
+  <style name="draw-spaces"                 foreground="sumiInk6"/>
+  <style name="bracket-match"               foreground="carpYellow"    bold="true"  underline="single"/>
+  <style name="bracket-mismatch"            foreground="waveRed"       bold="true"  underline="single"/>
+  <style name="search-match"                background="waveBlue2"     foreground="fujiWhite"/>
+  <style name="search-shadow"               background="sumiInk3"/>
+
+  <!-- ── Diff / version control ───────────────────────────────────── -->
+  <style name="diff:added-line"             foreground="autumnGreen"/>
+  <style name="diff:removed-line"           foreground="autumnRed"/>
+  <style name="diff:changed-line"           foreground="autumnYellow"/>
+  <style name="diff:special-case"           foreground="waveAqua2"/>
+  <style name="diff:location"               foreground="crystalBlue"   italic="true"/>
+
+  <!-- ── Generic syntax (all languages) ────────────────────────────── -->
+  <style name="def:comment"                 foreground="fujiGray"      italic="true"/>
+  <style name="def:shebang"                 foreground="fujiGray"      bold="true"/>
+  <style name="def:doc-comment"             foreground="fujiGray"      italic="true"/>
+  <style name="def:doc-comment-element"     foreground="crystalBlue"   italic="true"/>
+  <style name="def:string"                  foreground="springGreen"/>
+  <style name="def:special-char"            foreground="springBlue"/>
+  <style name="def:special-constant"        foreground="surimiOrange"/>
+  <style name="def:floating-point"          foreground="sakuraPink"/>
+  <style name="def:decimal"                 foreground="sakuraPink"/>
+  <style name="def:base-n-integer"          foreground="sakuraPink"/>
+  <style name="def:complex"                 foreground="sakuraPink"/>
+  <style name="def:number"                  foreground="sakuraPink"/>
+  <style name="def:keyword"                 foreground="oniViolet"     bold="true"  italic="true"/>
+  <style name="def:builtin"                 foreground="springBlue"/>
+  <style name="def:function"                foreground="crystalBlue"/>
+  <style name="def:identifier"              foreground="carpYellow"/>
+  <style name="def:type"                    foreground="waveAqua2"/>
+  <style name="def:constant"                foreground="surimiOrange"/>
+  <style name="def:boolean"                 foreground="surimiOrange"  bold="true"/>
+  <style name="def:null-value"              foreground="surimiOrange"  bold="true"/>
+  <style name="def:preprocessor"            foreground="waveRed"/>
+  <style name="def:operator"                foreground="boatYellow2"/>
+  <style name="def:error"                   foreground="samuraiRed"    underline="error"/>
+  <style name="def:warning"                 foreground="roninYellow"   underline="single"/>
+  <style name="def:note"                    foreground="dragonBlue"    bold="true"/>
+  <style name="def:underlined"              underline="single"/>
+  <style name="def:net-address"             foreground="springBlue"    underline="single"/>
+  <style name="def:deprecated"              foreground="katanaGray"    strikethrough="true"/>
+  <style name="def:heading"                 foreground="oniViolet"     bold="true"/>
+  <style name="def:heading0"                foreground="oniViolet"     bold="true"/>
+  <style name="def:heading1"                foreground="oniViolet"     bold="true"/>
+  <style name="def:heading2"                foreground="crystalBlue"   bold="true"/>
+  <style name="def:heading3"                foreground="crystalBlue"/>
+  <style name="def:heading4"                foreground="waveAqua2"     bold="true"/>
+  <style name="def:heading5"                foreground="waveAqua2"/>
+  <style name="def:heading6"                foreground="springGreen"/>
+
+  <!-- ── C / C++ ───────────────────────────────────────────────────── -->
+  <style name="c:preprocessor"              foreground="waveRed"/>
+  <style name="c:included-file"             foreground="springGreen"/>
+  <style name="c:common-defines"            foreground="surimiOrange"  bold="true"/>
+
+  <!-- ── Python ────────────────────────────────────────────────────── -->
+  <style name="python:string-conversion"    foreground="springBlue"/>
+  <style name="python:decorator"            foreground="carpYellow"/>
+  <style name="python:builtin-function"     foreground="springBlue"/>
+  <style name="python:builtin-constant"     foreground="surimiOrange"  bold="true"/>
+  <style name="python:module-handler"       foreground="oniViolet"     bold="true"/>
+  <style name="python:special-variable"     foreground="waveAqua2"     italic="true"/>
+
+  <!-- ── JavaScript / TypeScript ───────────────────────────────────── -->
+  <style name="js:template-literal"         foreground="springGreen"/>
+  <style name="js:regex"                    foreground="boatYellow2"/>
+
+  <!-- ── HTML / XML ────────────────────────────────────────────────── -->
+  <style name="xml:element-name"            foreground="oniViolet"     bold="true"/>
+  <style name="xml:attribute-name"          foreground="crystalBlue"/>
+  <style name="xml:attribute-value"         foreground="springGreen"/>
+  <style name="xml:namespace"               foreground="waveAqua2"     italic="true"/>
+  <style name="xml:tag"                     foreground="springViolet2"/>
+  <style name="xml:comment"                 foreground="fujiGray"      italic="true"/>
+  <style name="xml:cdata-delim"             foreground="sumiInk6"      bold="true"/>
+  <style name="xml:processing-instruction"  foreground="waveRed"/>
+  <style name="xml:doctype"                 foreground="waveRed"       bold="true"/>
+  <style name="xml:entity"                  foreground="springBlue"/>
+
+  <!-- ── CSS ───────────────────────────────────────────────────────── -->
+  <style name="css:selector-symbol"         foreground="boatYellow2"   bold="true"/>
+  <style name="css:id-selector"             foreground="carpYellow"    bold="true"/>
+  <style name="css:class-selector"          foreground="carpYellow"/>
+  <style name="css:pseudo-selector"         foreground="waveAqua2"     italic="true"/>
+  <style name="css:property-name"           foreground="crystalBlue"/>
+  <style name="css:property-value"          foreground="fujiWhite"/>
+  <style name="css:color"                   foreground="surimiOrange"/>
+  <style name="css:unit"                    foreground="sakuraPink"/>
+  <style name="css:at-rule"                 foreground="waveRed"/>
+  <style name="css:vendor-specific"         foreground="fujiGray"      italic="true"/>
+
+  <!-- ── Shell ─────────────────────────────────────────────────────── -->
+  <style name="sh:variable"                 foreground="carpYellow"/>
+  <style name="sh:variable-definition"      foreground="crystalBlue"/>
+  <style name="sh:subshell"                 foreground="springBlue"/>
+  <style name="sh:here-doc-bound"           foreground="oniViolet"     bold="true"/>
+  <style name="sh:here-doc"                 foreground="springGreen"/>
+
+  <!-- ── Markdown ──────────────────────────────────────────────────── -->
+  <style name="markdown:emphasis"           italic="true"/>
+  <style name="markdown:strong-emphasis"    bold="true"/>
+  <style name="markdown:header"             foreground="oniViolet"     bold="true"/>
+  <style name="markdown:thematic-break"     foreground="sumiInk6"/>
+  <style name="markdown:code"               foreground="springGreen"/>
+  <style name="markdown:code-block"         foreground="springGreen"/>
+  <style name="markdown:blockquote-marker"  foreground="fujiGray"/>
+  <style name="markdown:list-marker"        foreground="carpYellow"    bold="true"/>
+  <style name="markdown:link-text"          foreground="crystalBlue"/>
+  <style name="markdown:label"              foreground="waveAqua2"/>
+  <style name="markdown:url"                foreground="springBlue"    underline="single"/>
+  <style name="markdown:image-marker"       foreground="surimiOrange"/>
+
+  <!-- ── Rust ──────────────────────────────────────────────────────── -->
+  <style name="rust:lifetime"               foreground="carpYellow"    italic="true"/>
+  <style name="rust:macro"                  foreground="waveAqua2"/>
+  <style name="rust:attribute"              foreground="waveRed"/>
+  <style name="rust:scope"                  foreground="waveAqua2"/>
+
+  <!-- ── Go ────────────────────────────────────────────────────────── -->
+  <style name="go:printf"                   foreground="springBlue"/>
+
+  <!-- ── Ruby ──────────────────────────────────────────────────────── -->
+  <style name="ruby:symbol"                 foreground="waveAqua2"/>
+  <style name="ruby:regex"                  foreground="boatYellow2"/>
+  <style name="ruby:instance-variable"      foreground="carpYellow"/>
+  <style name="ruby:class-variable"         foreground="carpYellow"    bold="true"/>
+  <style name="ruby:global-variable"        foreground="peachRed"/>
+
+  <!-- ── Java / Kotlin ─────────────────────────────────────────────── -->
+  <style name="java:declaration"            foreground="waveAqua2"     bold="true"/>
+
+  <!-- ── TOML / INI / config ───────────────────────────────────────── -->
+  <style name="toml:key"                    foreground="crystalBlue"/>
+  <style name="toml:table"                  foreground="oniViolet"     bold="true"/>
+  <style name="ini:group"                   foreground="oniViolet"     bold="true"/>
+  <style name="ini:key"                     foreground="crystalBlue"/>
+
+  <!-- ── Log files ─────────────────────────────────────────────────── -->
+  <style name="log-text:message"            foreground="fujiWhite"/>
+  <style name="log-text:timestamp"          foreground="sumiInk6"/>
+  <style name="log-text:warning"            foreground="roninYellow"/>
+  <style name="log-text:error"              foreground="samuraiRed"/>
+</style-scheme>

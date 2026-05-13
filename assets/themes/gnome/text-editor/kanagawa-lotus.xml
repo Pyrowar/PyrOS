@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Kanagawa Lotus
+  A GtkSourceView 5 color scheme based on the Kanagawa Lotus Neovim theme
+  by rebelot (https://github.com/rebelot/kanagawa.nvim).
+  This is the light variant — warm parchment/cream backgrounds with muted,
+  earthy syntax colors that remain comfortable in bright environments.
+
+  Install:
+    mkdir -p ~/.local/share/gtksourceview-5/styles/
+    cp kanagawa-lotus.xml ~/.local/share/gtksourceview-5/styles/
+-->
+<style-scheme id="kanagawa-lotus" name="Kanagawa Lotus" _name="Kanagawa Lotus" version="1.0">
+  <author>Ported from rebelot/kanagawa.nvim (Lotus variant)</author>
+  <description>Light color scheme inspired by Katsushika Hokusai's famous painting — warm parchment backgrounds with earthy, carefully contrasted syntax colors.</description>
+
+  <!-- ── Palette ───────────────────────────────────────────────────── -->
+  <!-- Background scale (lotusWhite) — lightest to darkest accent -->
+  <color name="lotusWhite0"    value="#d5cea3"/>  <!-- dim bg / floats -->
+  <color name="lotusWhite1"    value="#dcd5ac"/>  <!-- dim bg -->
+  <color name="lotusWhite2"    value="#e5ddb0"/>  <!-- column / folds -->
+  <color name="lotusWhite3"    value="#f2ecbc"/>  <!-- main background -->
+  <color name="lotusWhite4"    value="#e7dba0"/>  <!-- cursorline / gutter bg -->
+  <color name="lotusWhite5"    value="#e4d794"/>  <!-- raised surface -->
+
+  <!-- Foreground / neutrals -->
+  <color name="lotusInk1"      value="#545464"/>  <!-- default fg -->
+  <color name="lotusInk2"      value="#43436c"/>  <!-- dim fg -->
+  <color name="lotusGray"      value="#dcd7ba"/>  <!-- reverse fg -->
+  <color name="lotusGray2"     value="#716e61"/>  <!-- muted text -->
+  <color name="lotusGray3"     value="#8a8980"/>  <!-- comments -->
+  <color name="lotusViolet1"   value="#a09cac"/>  <!-- nontext / whitespace -->
+  <color name="lotusViolet2"   value="#766b90"/>  <!-- special -->
+  <color name="lotusViolet3"   value="#c9cbd1"/>  <!-- visual selection bg -->
+  <color name="lotusViolet4"   value="#624c83"/>  <!-- keywords / statements -->
+  <color name="katanaGray"     value="#717C7C"/>  <!-- deprecated -->
+
+  <!-- Selection / search -->
+  <color name="lotusBlue2"     value="#b5cbd2"/>  <!-- search bg -->
+  <color name="lotusBlue3"     value="#9fb5c9"/>  <!-- unused -->
+  <color name="lotusBlue4"     value="#4d699b"/>  <!-- functions -->
+  <color name="lotusBlue5"     value="#5d57a3"/>  <!-- parameters -->
+  <color name="lotusTeal1"     value="#4e8ca2"/>  <!-- specials -->
+  <color name="lotusTeal2"     value="#6693bf"/>  <!-- bright blue -->
+  <color name="lotusTeal3"     value="#5a7785"/>
+
+  <!-- Syntax colours -->
+  <color name="lotusGreen"     value="#6f894e"/>  <!-- strings -->
+  <color name="lotusGreen2"    value="#6e915f"/>  <!-- diff add / alt string -->
+  <color name="lotusGreen3"    value="#b7d0ae"/>
+  <color name="lotusPink"      value="#b35b79"/>  <!-- numbers -->
+  <color name="lotusOrange"    value="#cc6d00"/>  <!-- constants -->
+  <color name="lotusOrange2"   value="#e98a00"/>
+  <color name="lotusYellow"    value="#77713f"/>  <!-- identifiers -->
+  <color name="lotusYellow2"   value="#836f4a"/>  <!-- operators / regex -->
+  <color name="lotusYellow3"   value="#de9800"/>
+  <color name="lotusRed"       value="#c84053"/>  <!-- preproc / diff del -->
+  <color name="lotusRed2"      value="#d7474b"/>  <!-- bright red -->
+  <color name="lotusRed3"      value="#e82424"/>  <!-- diag error -->
+  <color name="lotusAqua"      value="#597b75"/>  <!-- types -->
+  <color name="lotusAqua2"     value="#5e857a"/>
+
+  <!-- Diagnostics -->
+  <color name="samuraiRed"     value="#E82424"/>
+  <color name="roninYellow"    value="#FF9E3B"/>
+  <color name="waveAqua1"      value="#6A9589"/>
+  <color name="dragonBlue"     value="#658594"/>
+
+  <!-- ── Editor chrome ─────────────────────────────────────────────── -->
+  <style name="text"                        foreground="lotusInk1"     background="lotusWhite3"/>
+  <style name="selection"                   background="lotusViolet3"  foreground="lotusInk2"/>
+  <style name="cursor"                      foreground="lotusInk1"/>
+  <style name="current-line"                background="lotusWhite4"/>
+  <style name="current-line-number"         foreground="lotusInk2"     background="lotusWhite4"  bold="true"/>
+  <style name="line-numbers"                foreground="lotusGray2"    background="lotusWhite2"/>
+  <style name="right-margin"                foreground="lotusWhite1"   background="lotusWhite1"/>
+  <style name="draw-spaces"                 foreground="lotusViolet1"/>
+  <style name="bracket-match"               foreground="lotusOrange"   bold="true"  underline="single"/>
+  <style name="bracket-mismatch"            foreground="lotusRed"      bold="true"  underline="single"/>
+  <style name="search-match"                background="lotusBlue2"    foreground="lotusInk2"/>
+  <style name="search-shadow"               background="lotusWhite3"/>
+
+  <!-- ── Diff / version control ───────────────────────────────────── -->
+  <style name="diff:added-line"             foreground="lotusGreen2"/>
+  <style name="diff:removed-line"           foreground="lotusRed"/>
+  <style name="diff:changed-line"           foreground="lotusYellow3"/>
+  <style name="diff:special-case"           foreground="lotusAqua"/>
+  <style name="diff:location"               foreground="lotusBlue4"    italic="true"/>
+
+  <!-- ── Generic syntax (all languages) ────────────────────────────── -->
+  <style name="def:comment"                 foreground="lotusGray3"    italic="true"/>
+  <style name="def:shebang"                 foreground="lotusGray3"    bold="true"/>
+  <style name="def:doc-comment"             foreground="lotusGray3"    italic="true"/>
+  <style name="def:doc-comment-element"     foreground="lotusBlue4"    italic="true"/>
+  <style name="def:string"                  foreground="lotusGreen"/>
+  <style name="def:special-char"            foreground="lotusTeal1"/>
+  <style name="def:special-constant"        foreground="lotusOrange"/>
+  <style name="def:floating-point"          foreground="lotusPink"/>
+  <style name="def:decimal"                 foreground="lotusPink"/>
+  <style name="def:base-n-integer"          foreground="lotusPink"/>
+  <style name="def:complex"                 foreground="lotusPink"/>
+  <style name="def:number"                  foreground="lotusPink"/>
+  <style name="def:keyword"                 foreground="lotusViolet4"  bold="true"  italic="true"/>
+  <style name="def:builtin"                 foreground="lotusTeal1"/>
+  <style name="def:function"                foreground="lotusBlue4"/>
+  <style name="def:identifier"              foreground="lotusYellow"/>
+  <style name="def:type"                    foreground="lotusAqua"/>
+  <style name="def:constant"                foreground="lotusOrange"/>
+  <style name="def:boolean"                 foreground="lotusOrange"   bold="true"/>
+  <style name="def:null-value"              foreground="lotusOrange"   bold="true"/>
+  <style name="def:preprocessor"            foreground="lotusRed"/>
+  <style name="def:operator"                foreground="lotusYellow2"/>
+  <style name="def:error"                   foreground="samuraiRed"    underline="error"/>
+  <style name="def:warning"                 foreground="roninYellow"   underline="single"/>
+  <style name="def:note"                    foreground="dragonBlue"    bold="true"/>
+  <style name="def:underlined"              underline="single"/>
+  <style name="def:net-address"             foreground="lotusTeal1"    underline="single"/>
+  <style name="def:deprecated"              foreground="katanaGray"    strikethrough="true"/>
+  <style name="def:heading"                 foreground="lotusViolet4"  bold="true"/>
+  <style name="def:heading0"                foreground="lotusViolet4"  bold="true"/>
+  <style name="def:heading1"                foreground="lotusViolet4"  bold="true"/>
+  <style name="def:heading2"                foreground="lotusBlue4"    bold="true"/>
+  <style name="def:heading3"                foreground="lotusBlue4"/>
+  <style name="def:heading4"                foreground="lotusAqua"     bold="true"/>
+  <style name="def:heading5"                foreground="lotusAqua"/>
+  <style name="def:heading6"                foreground="lotusGreen"/>
+
+  <!-- ── C / C++ ───────────────────────────────────────────────────── -->
+  <style name="c:preprocessor"              foreground="lotusRed"/>
+  <style name="c:included-file"             foreground="lotusGreen"/>
+  <style name="c:common-defines"            foreground="lotusOrange"   bold="true"/>
+
+  <!-- ── Python ────────────────────────────────────────────────────── -->
+  <style name="python:string-conversion"    foreground="lotusTeal1"/>
+  <style name="python:decorator"            foreground="lotusYellow"/>
+  <style name="python:builtin-function"     foreground="lotusTeal1"/>
+  <style name="python:builtin-constant"     foreground="lotusOrange"   bold="true"/>
+  <style name="python:module-handler"       foreground="lotusViolet4"  bold="true"/>
+  <style name="python:special-variable"     foreground="lotusAqua"     italic="true"/>
+
+  <!-- ── JavaScript / TypeScript ───────────────────────────────────── -->
+  <style name="js:template-literal"         foreground="lotusGreen"/>
+  <style name="js:regex"                    foreground="lotusYellow2"/>
+
+  <!-- ── HTML / XML ────────────────────────────────────────────────── -->
+  <style name="xml:element-name"            foreground="lotusViolet4"  bold="true"/>
+  <style name="xml:attribute-name"          foreground="lotusBlue4"/>
+  <style name="xml:attribute-value"         foreground="lotusGreen"/>
+  <style name="xml:namespace"               foreground="lotusAqua"     italic="true"/>
+  <style name="xml:tag"                     foreground="lotusGray2"/>
+  <style name="xml:comment"                 foreground="lotusGray3"    italic="true"/>
+  <style name="xml:cdata-delim"             foreground="lotusGray2"    bold="true"/>
+  <style name="xml:processing-instruction"  foreground="lotusRed"/>
+  <style name="xml:doctype"                 foreground="lotusRed"      bold="true"/>
+  <style name="xml:entity"                  foreground="lotusTeal1"/>
+
+  <!-- ── CSS ───────────────────────────────────────────────────────── -->
+  <style name="css:selector-symbol"         foreground="lotusYellow2"  bold="true"/>
+  <style name="css:id-selector"             foreground="lotusYellow"   bold="true"/>
+  <style name="css:class-selector"          foreground="lotusYellow"/>
+  <style name="css:pseudo-selector"         foreground="lotusAqua"     italic="true"/>
+  <style name="css:property-name"           foreground="lotusBlue4"/>
+  <style name="css:property-value"          foreground="lotusInk1"/>
+  <style name="css:color"                   foreground="lotusOrange"/>
+  <style name="css:unit"                    foreground="lotusPink"/>
+  <style name="css:at-rule"                 foreground="lotusRed"/>
+  <style name="css:vendor-specific"         foreground="lotusGray2"    italic="true"/>
+
+  <!-- ── Shell ─────────────────────────────────────────────────────── -->
+  <style name="sh:variable"                 foreground="lotusYellow"/>
+  <style name="sh:variable-definition"      foreground="lotusBlue4"/>
+  <style name="sh:subshell"                 foreground="lotusTeal1"/>
+  <style name="sh:here-doc-bound"           foreground="lotusViolet4"  bold="true"/>
+  <style name="sh:here-doc"                 foreground="lotusGreen"/>
+
+  <!-- ── Markdown ──────────────────────────────────────────────────── -->
+  <style name="markdown:emphasis"           italic="true"/>
+  <style name="markdown:strong-emphasis"    bold="true"/>
+  <style name="markdown:header"             foreground="lotusViolet4"  bold="true"/>
+  <style name="markdown:thematic-break"     foreground="lotusGray2"/>
+  <style name="markdown:code"               foreground="lotusGreen"/>
+  <style name="markdown:code-block"         foreground="lotusGreen"/>
+  <style name="markdown:blockquote-marker"  foreground="lotusGray3"/>
+  <style name="markdown:list-marker"        foreground="lotusYellow"   bold="true"/>
+  <style name="markdown:link-text"          foreground="lotusBlue4"/>
+  <style name="markdown:label"              foreground="lotusAqua"/>
+  <style name="markdown:url"                foreground="lotusTeal1"    underline="single"/>
+  <style name="markdown:image-marker"       foreground="lotusOrange"/>
+
+  <!-- ── Rust ──────────────────────────────────────────────────────── -->
+  <style name="rust:lifetime"               foreground="lotusYellow"   italic="true"/>
+  <style name="rust:macro"                  foreground="lotusAqua"/>
+  <style name="rust:attribute"              foreground="lotusRed"/>
+  <style name="rust:scope"                  foreground="lotusAqua"/>
+
+  <!-- ── Go ────────────────────────────────────────────────────────── -->
+  <style name="go:printf"                   foreground="lotusTeal1"/>
+
+  <!-- ── Ruby ──────────────────────────────────────────────────────── -->
+  <style name="ruby:symbol"                 foreground="lotusAqua"/>
+  <style name="ruby:regex"                  foreground="lotusYellow2"/>
+  <style name="ruby:instance-variable"      foreground="lotusYellow"/>
+  <style name="ruby:class-variable"         foreground="lotusYellow"   bold="true"/>
+  <style name="ruby:global-variable"        foreground="lotusOrange2"/>
+
+  <!-- ── Java / Kotlin ─────────────────────────────────────────────── -->
+  <style name="java:declaration"            foreground="lotusAqua"     bold="true"/>
+
+  <!-- ── TOML / INI / config ───────────────────────────────────────── -->
+  <style name="toml:key"                    foreground="lotusBlue4"/>
+  <style name="toml:table"                  foreground="lotusViolet4"  bold="true"/>
+  <style name="ini:group"                   foreground="lotusViolet4"  bold="true"/>
+  <style name="ini:key"                     foreground="lotusBlue4"/>
+
+  <!-- ── Log files ─────────────────────────────────────────────────── -->
+  <style name="log-text:message"            foreground="lotusInk1"/>
+  <style name="log-text:timestamp"          foreground="lotusGray2"/>
+  <style name="log-text:warning"            foreground="roninYellow"/>
+  <style name="log-text:error"              foreground="samuraiRed"/>
+</style-scheme>
