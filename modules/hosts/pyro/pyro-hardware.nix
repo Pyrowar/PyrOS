@@ -211,18 +211,6 @@
           ];
         };
       };
-      # Additional bind mounts into ~/:
-      fileSystems = {
-        "/home/pyro/git" = {
-          device = "/mnt/Barracuda/git";
-          fsType = "none";
-          options = [
-            "bind"
-            "nofail"
-            "x-gvfs-hide"
-          ];
-        };
-      };
 
       # ------------------------------------------------------------------ #
       # Btrfs

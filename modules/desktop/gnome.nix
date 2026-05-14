@@ -15,7 +15,7 @@
 
       # Discover options: dconf watch /
       # After switching from KDE to GNOME: dconf reset -f /
-      # TODO: Maybe dconf.nix?
+      # TODO: Maybe dconf.nix? Use dconf2nix?
       programs.dconf = {
         enable = true;
         profiles.user.databases = [
@@ -34,7 +34,7 @@
                 font-hinting = "slight";
                 # Wygląd
                 # cursor-theme = "Adwaita"; # Currently Win11OS
-                # color-scheme = "prefer-dark";
+                color-scheme = "prefer-dark";
                 # icon-theme = "MoreWaita";
                 # Mysz i panel dotykowy
                 gtk-enable-primary-paste = false;
@@ -43,6 +43,7 @@
               "org/gnome/desktop/wm/preferences" = {
                 # Okna
                 button-layout = "appmenu:minimize,maximize,close";
+                # Titlebar buttons placement (left/right)
               };
               "org/gnome/settings-daemon/plugins/color" = {
                 # Ekrany

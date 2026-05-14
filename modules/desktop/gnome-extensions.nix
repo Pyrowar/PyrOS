@@ -14,15 +14,16 @@
         rewaita
         gnomeExtensions.user-themes
         gnomeExtensions.blur-my-shell
-        gnomeExtensions.open-bar
         gnomeExtensions.top-bar-organizer
         gnomeExtensions.space-bar
         gnomeExtensions.logo-menu
         gnomeExtensions.vitals
         # QoL
         gnomeExtensions.tiling-shell
-        gnomeExtensions.alphabetical-app-grid
+        gnomeExtensions.arcmenu
         gnomeExtensions.dash-to-dock
+        gnomeExtensions.dash-to-panel
+        gnomeExtensions.alphabetical-app-grid
       ];
       # Valent KDE Connect
       programs.kdeconnect = {

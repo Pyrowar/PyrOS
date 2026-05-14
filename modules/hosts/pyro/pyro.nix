@@ -221,7 +221,6 @@
           done <<EOF
           /etc/nixos                    folder-nix
           /mnt/Barracuda/pyro           folder-user-home
-          /mnt/Barracuda/git            folder-git
           /mnt/Barracuda/pyro/Dokumenty folder-documents
           /mnt/Barracuda/pyro/Gry       folder-games
           /mnt/Barracuda/pyro/Książki   folder-books
@@ -230,6 +229,7 @@
           /mnt/Barracuda/pyro/Obrazy    folder-pictures
           /mnt/Barracuda/pyro/Projekty  folder-projects
           /mnt/Barracuda/pyro/Wideo     folder-videos
+          $HOME/git                     folder-git
           $HOME/Games                   folder-games
           $HOME/Appimages               folder-appimage
           $HOME/Dokumenty               folder-documents
