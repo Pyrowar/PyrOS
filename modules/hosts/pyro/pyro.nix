@@ -17,7 +17,6 @@
       self,
       lib,
       config,
-      pkgs,
       ...
     }:
     {
@@ -125,6 +124,7 @@
         "io.gitlab.news_flash.NewsFlash"
         "com.github.johnfactotum.Foliate"
         "com.github.finefindus.eyedropper"
+        "org.gimp.GIMP"
         "app.drey.EarTag"
         "ca.edestcroix.Recordbox"
         "org.gnome.Chess"
@@ -156,10 +156,12 @@
           text = ''
             file:///home/pyro/Downloads
             file:///home/pyro/Dokumenty
-            file:///mnt/Barracuda/pyro/Notatki
+            file:///home/pyro/Dokumenty/Notatki
+            file:///home/pyro/Dokumenty/Książki
             file:///home/pyro/Obrazy
             file:///home/pyro/Wideo
             file:///home/pyro/Muzyka
+            file:///home/pyro/Gry
             file:///home/pyro/Projekty
             file:///etc/nixos NixOS
           '';
@@ -186,60 +188,52 @@
       # ---------------------------------------------------------------- #
 
       # Write XDG .directory icon files onto the Barracuda after it mounts.
-      # This makes Dolphin and other file managers show correct folder icons
-      # for the bind-mounted XDG dirs.
       # For additional Nautilus compatibility also perform gio set.
-      systemd.user.services.xdg-folder-icons = {
-        description = "Write XDG .directory icon files and set folder icons via gio";
-        wantedBy = [ "default.target" ];
-        after = [ "graphical-session.target" ];
-        wants = [ "graphical-session.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-        };
 
-        # Wait for mounts/session
-        script = ''
-          while [ ! -d /mnt/Barracuda/pyro ]; do
-            sleep 2
-          done
+      # systemd.user.services.xdg-folder-icons = {
+      #   description = "Write XDG .directory icon files and set folder icons via gio";
+      #   wantedBy = [ "default.target" ];
+      #   after = [ "graphical-session.target" ];
+      #   wants = [ "graphical-session.target" ];
+      #   serviceConfig = {
+      #     Type = "oneshot";
+      #   };
 
-          # Write .directory files for Dolphin/KDE
-          printf '[Desktop Entry]\nIcon=folder-documents\n' > /mnt/Barracuda/pyro/Dokumenty/.directory
-          printf '[Desktop Entry]\nIcon=folder-music\n'     > /mnt/Barracuda/pyro/Muzyka/.directory
-          printf '[Desktop Entry]\nIcon=folder-pictures\n'  > /mnt/Barracuda/pyro/Obrazy/.directory
-          printf '[Desktop Entry]\nIcon=folder-videos\n'    > /mnt/Barracuda/pyro/Wideo/.directory
-          printf '[Desktop Entry]\nIcon=folder-projects\n'  > /mnt/Barracuda/pyro/Projekty/.directory
+      #   # Wait for mounts/session
+      #   script = ''
+      #     while [ ! -d /mnt/Barracuda ]; do
+      #       sleep 2
+      #     done
 
-          # Set folder icons via gio for GNOME/Nautilus
-          setIcon() {
-            ${pkgs.glib}/bin/gio set "$1" metadata::custom-icon-name "$2"
-          }
+      #     # Write .directory files for Dolphin/KDE
+      #     printf '[Desktop Entry]\nIcon=folder-documents\n' > /mnt/Barracuda/@dokumenty/.directory
+      #     printf '[Desktop Entry]\nIcon=folder-music\n'     > /mnt/Barracuda/@muzyka/.directory
+      #     printf '[Desktop Entry]\nIcon=folder-pictures\n'  > /mnt/Barracuda/@obrazy/.directory
+      #     printf '[Desktop Entry]\nIcon=folder-videos\n'    > /mnt/Barracuda/@wideo/.directory
+      #     printf '[Desktop Entry]\nIcon=folder-projects\n'  > /mnt/Barracuda/@projekty/.directory
+      #     printf '[Desktop Entry]\nIcon=folder-games\n'     > /mnt/Barracuda/@gry/.directory
 
-          while read -r path icon; do
-            setIcon "$path" "$icon"
-          done <<EOF
-          /etc/nixos                    folder-nix
-          /mnt/Barracuda/pyro           folder-user-home
-          /mnt/Barracuda/pyro/Dokumenty folder-documents
-          /mnt/Barracuda/pyro/Gry       folder-games
-          /mnt/Barracuda/pyro/Książki   folder-books
-          /mnt/Barracuda/pyro/Muzyka    folder-music
-          /mnt/Barracuda/pyro/Notatki   folder-notes
-          /mnt/Barracuda/pyro/Obrazy    folder-pictures
-          /mnt/Barracuda/pyro/Projekty  folder-projects
-          /mnt/Barracuda/pyro/Wideo     folder-videos
-          $HOME/git                     folder-git
-          $HOME/Games                   folder-games
-          $HOME/Appimages               folder-appimage
-          $HOME/Dokumenty               folder-documents
-          $HOME/Obrazy                  folder-pictures
-          $HOME/Wideo                   folder-videos
-          $HOME/Muzyka                  folder-music
-          $HOME/Projekty                folder-projects
-          EOF
-        '';
-      };
+      #     # Set folder icons via gio for GNOME/Nautilus
+      #     setIcon() {
+      #       ${pkgs.glib}/bin/gio set "$1" metadata::custom-icon-name "$2"
+      #     }
+
+      #     while read -r path icon; do
+      #       setIcon "$path" "$icon"
+      #     done <<EOF
+      #     /etc/nixos                    folder-nix
+      #     $HOME/git                     folder-git
+      #     $HOME/Games                   folder-games
+      #     $HOME/Appimages               folder-appimage
+      #     $HOME/Dokumenty               folder-documents
+      #     $HOME/Obrazy                  folder-pictures
+      #     $HOME/Wideo                   folder-videos
+      #     $HOME/Muzyka                  folder-music
+      #     $HOME/Projekty                folder-projects
+      #     $HOME/Gry                     folder-games
+      #     EOF
+      #   '';
+      # };
     };
 
 }

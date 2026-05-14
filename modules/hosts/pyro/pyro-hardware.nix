@@ -75,7 +75,7 @@
       ];
 
       # ------------------------------------------------------------------ #
-      # Filesystems
+      # NVMe
       # ------------------------------------------------------------------ #
 
       fileSystems."/" = {
@@ -88,6 +88,15 @@
         ];
       };
 
+      fileSystems."/boot" = {
+        device = "/dev/disk/by-uuid/0B0A-4B71";
+        fsType = "vfat";
+        options = [
+          "fmask=0077"
+          "dmask=0077"
+        ];
+      };
+
       fileSystems."/home" = {
         device = "/dev/disk/by-uuid/361bab6a-413b-47cf-a822-af4f74f438a1";
         fsType = "btrfs";
@@ -96,6 +105,16 @@
           "compress=zstd"
           "noatime"
           "x-gvfs-trash"
+        ];
+      };
+
+      fileSystems."/home/.snapshots" = {
+        device = "/dev/disk/by-uuid/361bab6a-413b-47cf-a822-af4f74f438a1";
+        fsType = "btrfs";
+        options = [
+          "subvol=@home_snapshots"
+          "compress=zstd"
+          "noatime"
         ];
       };
 
@@ -119,16 +138,6 @@
         ];
       };
 
-      fileSystems."/home/.snapshots" = {
-        device = "/dev/disk/by-uuid/361bab6a-413b-47cf-a822-af4f74f438a1";
-        fsType = "btrfs";
-        options = [
-          "subvol=@home_snapshots"
-          "compress=zstd"
-          "noatime"
-        ];
-      };
-
       fileSystems."/home/pyro/Games" = {
         device = "/dev/disk/by-uuid/361bab6a-413b-47cf-a822-af4f74f438a1";
         fsType = "btrfs";
@@ -141,12 +150,27 @@
         ];
       };
 
-      fileSystems."/boot" = {
-        device = "/dev/disk/by-uuid/0B0A-4B71";
-        fsType = "vfat";
+      fileSystems."/home/pyro/Appimages" = {
+        device = "/dev/disk/by-uuid/361bab6a-413b-47cf-a822-af4f74f438a1";
+        fsType = "btrfs";
         options = [
-          "fmask=0077"
-          "dmask=0077"
+          "subvol=@appimages"
+          "compress=zstd"
+          "noatime"
+          "x-gvfs-trash"
+          "x-gvfs-hide"
+        ];
+      };
+
+      fileSystems."/home/pyro/git" = {
+        device = "/dev/disk/by-uuid/361bab6a-413b-47cf-a822-af4f74f438a1";
+        fsType = "btrfs";
+        options = [
+          "subvol=@git"
+          "compress=zstd"
+          "noatime"
+          "x-gvfs-trash"
+          "x-gvfs-hide"
         ];
       };
 
@@ -160,56 +184,104 @@
         options = [
           "defaults"
           "nofail"
+          "compress=zstd"
+          "noatime"
           "x-gvfs-show"
         ];
       };
-      # automount and bind-mount XDG user dirs from the drive into ~/:
-      fileSystems = {
-        "/home/pyro/Dokumenty" = {
-          device = "/mnt/Barracuda/pyro/Dokumenty";
-          fsType = "none";
-          options = [
-            "bind"
-            "nofail"
-            "x-gvfs-hide"
-          ];
-        };
-        "/home/pyro/Muzyka" = {
-          device = "/mnt/Barracuda/pyro/Muzyka";
-          fsType = "none";
-          options = [
-            "bind"
-            "nofail"
-            "x-gvfs-hide"
-          ];
-        };
-        "/home/pyro/Obrazy" = {
-          device = "/mnt/Barracuda/pyro/Obrazy";
-          fsType = "none";
-          options = [
-            "bind"
-            "nofail"
-            "x-gvfs-hide"
-          ];
-        };
-        "/home/pyro/Wideo" = {
-          device = "/mnt/Barracuda/pyro/Wideo";
-          fsType = "none";
-          options = [
-            "bind"
-            "nofail"
-            "x-gvfs-hide"
-          ];
-        };
-        "/home/pyro/Projekty" = {
-          device = "/mnt/Barracuda/pyro/Projekty";
-          fsType = "none";
-          options = [
-            "bind"
-            "nofail"
-            "x-gvfs-hide"
-          ];
-        };
+      # mount barracuda @subvolumes to /home:
+      fileSystems."/home/pyro/Dokumenty" = {
+        device = "/dev/disk/by-uuid/69d4fc22-af65-4100-a4d4-60e3afe8cd8e";
+        fsType = "btrfs";
+        options = [
+          "subvol=@dokumenty"
+          "compress=zstd"
+          "noatime"
+          "nofail"
+          "x-gvfs-trash"
+          "x-gvfs-hide"
+        ];
+      };
+
+      fileSystems."/home/pyro/Muzyka" = {
+        device = "/dev/disk/by-uuid/69d4fc22-af65-4100-a4d4-60e3afe8cd8e";
+        fsType = "btrfs";
+        options = [
+          "subvol=@muzyka"
+          "compress=zstd"
+          "noatime"
+          "nofail"
+          "x-gvfs-trash"
+          "x-gvfs-hide"
+        ];
+      };
+
+      fileSystems."/home/pyro/Obrazy" = {
+        device = "/dev/disk/by-uuid/69d4fc22-af65-4100-a4d4-60e3afe8cd8e";
+        fsType = "btrfs";
+        options = [
+          "subvol=@obrazy"
+          "compress=zstd"
+          "noatime"
+          "nofail"
+          "x-gvfs-trash"
+          "x-gvfs-hide"
+        ];
+      };
+
+      fileSystems."/home/pyro/Wideo" = {
+        device = "/dev/disk/by-uuid/69d4fc22-af65-4100-a4d4-60e3afe8cd8e";
+        fsType = "btrfs";
+        options = [
+          "subvol=@wideo"
+          "compress=zstd"
+          "noatime"
+          "nofail"
+          "x-gvfs-trash"
+          "x-gvfs-hide"
+        ];
+      };
+
+      fileSystems."/home/pyro/Projekty" = {
+        device = "/dev/disk/by-uuid/69d4fc22-af65-4100-a4d4-60e3afe8cd8e";
+        fsType = "btrfs";
+        options = [
+          "subvol=@projekty"
+          "compress=zstd"
+          "noatime"
+          "nofail"
+          "x-gvfs-trash"
+          "x-gvfs-hide"
+        ];
+      };
+
+      fileSystems."/home/pyro/Gry" = {
+        device = "/dev/disk/by-uuid/69d4fc22-af65-4100-a4d4-60e3afe8cd8e";
+        fsType = "btrfs";
+        options = [
+          "subvol=@gry"
+          "compress=zstd"
+          "noatime"
+          "nofail"
+          "x-gvfs-trash"
+          "x-gvfs-hide"
+        ];
+      };
+
+      # ------------------------------------------------------------------ #
+      # Western Digital
+      # ------------------------------------------------------------------ #
+
+      fileSystems."/mnt/WDigital" = {
+        device = "/dev/disk/by-uuid/08049f35-0831-4847-ba6e-3f0663161181";
+        fsType = "btrfs";
+        options = [
+          "defaults"
+          "nofail"
+          "compress=zstd"
+          "noatime"
+          "x-gvfs-show"
+        ];
       };
 
       # ------------------------------------------------------------------ #
