@@ -23,6 +23,7 @@
       environment.systemPackages = with pkgs; [
         micro
         fzf
+        pv
         unrar
         tree
         compsize

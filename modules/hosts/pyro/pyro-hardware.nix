@@ -186,6 +186,7 @@
           "nofail"
           "compress=zstd"
           "noatime"
+          "x-gvfs-trash"
           "x-gvfs-show"
         ];
       };
@@ -280,6 +281,7 @@
           "nofail"
           "compress=zstd"
           "noatime"
+          "x-gvfs-trash"
           "x-gvfs-show"
         ];
       };
