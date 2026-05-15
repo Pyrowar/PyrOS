@@ -1,10 +1,10 @@
 {
-  flake.nixosModules.vivaldi =
+  flake.nixosModules.gimp =
     { ... }:
     {
       services.flatpak.packages = [
         {
-          appId = "com.vivaldi.Vivaldi";
+          appId = "org.gimp.GIMP";
           origin = "flathub";
         }
       ];

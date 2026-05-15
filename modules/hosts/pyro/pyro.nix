@@ -64,6 +64,7 @@
         core
         hjem
         sops-nix
+        nix-flatpak
 
         # hardware
         nvidia
@@ -80,14 +81,15 @@
         razer
         portals
         appimage
-        flatpak
 
         # packages - modules
         cli
         devtools
         nixtools
-        vivaldi
         fonts
+        vivaldi
+        gimp
+        zettlr
         gaming
         obs
         onlyoffice
@@ -118,13 +120,11 @@
         "be.alexandervanhee.gradia"
         "org.gnome.World.Iotas"
         # Cool Libadwaita
-        # "io.github.swordpuffin.rewaita" # Theming
         "com.github.neithern.g4music" # Gapless
         "org.nickvision.tubeconverter" # Parabolic
         "io.gitlab.news_flash.NewsFlash"
         "com.github.johnfactotum.Foliate"
         "com.github.finefindus.eyedropper"
-        "org.gimp.GIMP"
         "app.drey.EarTag"
         "ca.edestcroix.Recordbox"
         "org.gnome.Chess"
@@ -134,7 +134,6 @@
         "io.github.bhack.mini-eq"
         "org.upscayl.Upscayl"
         "no.mifi.losslesscut"
-        "com.zettlr.Zettlr"
       ];
 
       # standalone packages
@@ -149,6 +148,22 @@
 
       hjem.users.${config.system.user} = {
         directory = "/home/${config.system.user}";
+
+        # Set XDG user dirs
+        files.".config/user-dirs.dirs" = {
+          clobber = false;
+          text = ''
+            XDG_DESKTOP_DIR="$HOME/Desktop"
+            XDG_DOWNLOAD_DIR="$HOME/Downloads"
+            XDG_TEMPLATES_DIR="$HOME/Templates"
+            XDG_PUBLICSHARE_DIR="$HOME/Public"
+            XDG_DOCUMENTS_DIR="$HOME/Dokumenty"
+            XDG_PICTURES_DIR="$HOME/Obrazy"
+            XDG_VIDEOS_DIR="$HOME/Wideo"
+            XDG_MUSIC_DIR="$HOME/Muzyka"
+            XDG_PROJECTS_DIR="$HOME/Projekty"
+          '';
+        };
 
         # Add Nautilus bookmarks
         files.".config/gtk-3.0/bookmarks" = {
@@ -166,74 +181,9 @@
             file:///etc/nixos NixOS
           '';
         };
-
-        files.".config/user-dirs.dirs" = {
-          clobber = false;
-          text = ''
-            XDG_DESKTOP_DIR="$HOME/Desktop"
-            XDG_DOWNLOAD_DIR="$HOME/Downloads"
-            XDG_TEMPLATES_DIR="$HOME/Templates"
-            XDG_PUBLICSHARE_DIR="$HOME/Public"
-            XDG_DOCUMENTS_DIR="$HOME/Dokumenty"
-            XDG_PICTURES_DIR="$HOME/Obrazy"
-            XDG_VIDEOS_DIR="$HOME/Wideo"
-            XDG_MUSIC_DIR="$HOME/Muzyka"
-            XDG_PROJECTS_DIR="$HOME/Projekty"
-          '';
-        };
+        
       };
 
-      # ---------------------------------------------------------------- #
-      # Systemd
-      # ---------------------------------------------------------------- #
-
-      # Write XDG .directory icon files onto the Barracuda after it mounts.
-      # For additional Nautilus compatibility also perform gio set.
-
-      # systemd.user.services.xdg-folder-icons = {
-      #   description = "Write XDG .directory icon files and set folder icons via gio";
-      #   wantedBy = [ "default.target" ];
-      #   after = [ "graphical-session.target" ];
-      #   wants = [ "graphical-session.target" ];
-      #   serviceConfig = {
-      #     Type = "oneshot";
-      #   };
-
-      #   # Wait for mounts/session
-      #   script = ''
-      #     while [ ! -d /mnt/Barracuda ]; do
-      #       sleep 2
-      #     done
-
-      #     # Write .directory files for Dolphin/KDE
-      #     printf '[Desktop Entry]\nIcon=folder-documents\n' > /mnt/Barracuda/@dokumenty/.directory
-      #     printf '[Desktop Entry]\nIcon=folder-music\n'     > /mnt/Barracuda/@muzyka/.directory
-      #     printf '[Desktop Entry]\nIcon=folder-pictures\n'  > /mnt/Barracuda/@obrazy/.directory
-      #     printf '[Desktop Entry]\nIcon=folder-videos\n'    > /mnt/Barracuda/@wideo/.directory
-      #     printf '[Desktop Entry]\nIcon=folder-projects\n'  > /mnt/Barracuda/@projekty/.directory
-      #     printf '[Desktop Entry]\nIcon=folder-games\n'     > /mnt/Barracuda/@gry/.directory
-
-      #     # Set folder icons via gio for GNOME/Nautilus
-      #     setIcon() {
-      #       ${pkgs.glib}/bin/gio set "$1" metadata::custom-icon-name "$2"
-      #     }
-
-      #     while read -r path icon; do
-      #       setIcon "$path" "$icon"
-      #     done <<EOF
-      #     /etc/nixos                    folder-nix
-      #     $HOME/git                     folder-git
-      #     $HOME/Games                   folder-games
-      #     $HOME/Appimages               folder-appimage
-      #     $HOME/Dokumenty               folder-documents
-      #     $HOME/Obrazy                  folder-pictures
-      #     $HOME/Wideo                   folder-videos
-      #     $HOME/Muzyka                  folder-music
-      #     $HOME/Projekty                folder-projects
-      #     $HOME/Gry                     folder-games
-      #     EOF
-      #   '';
-      # };
     };
 
 }

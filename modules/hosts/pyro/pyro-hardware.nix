@@ -190,7 +190,7 @@
           "x-gvfs-show"
         ];
       };
-      # mount barracuda @subvolumes to /home:
+      # Mount Barracuda @subvolumes to /home:
       fileSystems."/home/pyro/Dokumenty" = {
         device = "/dev/disk/by-uuid/69d4fc22-af65-4100-a4d4-60e3afe8cd8e";
         fsType = "btrfs";

@@ -1,10 +1,10 @@
 {
-  flake.nixosModules.vivaldi =
+  flake.nixosModules.zettlr =
     { ... }:
     {
       services.flatpak.packages = [
         {
-          appId = "com.vivaldi.Vivaldi";
+          appId = "com.zettlr.Zettlr";
           origin = "flathub";
         }
       ];

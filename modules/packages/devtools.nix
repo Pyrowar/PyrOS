@@ -25,7 +25,7 @@
         package-version-server
         marksman
         ghostty
-        zed-editor
+        zed-editor # or zed-editor-fhs
       ];
     };
 }

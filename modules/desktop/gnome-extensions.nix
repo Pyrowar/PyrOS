@@ -15,15 +15,14 @@
         gnomeExtensions.user-themes
         gnomeExtensions.blur-my-shell
         gnomeExtensions.top-bar-organizer
-        gnomeExtensions.space-bar
         gnomeExtensions.logo-menu
         gnomeExtensions.vitals
         # QoL
         gnomeExtensions.tiling-shell
-        gnomeExtensions.arcmenu
-        gnomeExtensions.dash-to-dock
-        gnomeExtensions.dash-to-panel
         gnomeExtensions.alphabetical-app-grid
+        # Windows-like
+        gnomeExtensions.arcmenu
+        gnomeExtensions.dash-to-panel
       ];
       # Valent KDE Connect
       programs.kdeconnect = {

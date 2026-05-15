@@ -2,7 +2,12 @@
   flake.nixosModules.onlyoffice =
     { pkgs, config, ... }:
     {
-      environment.systemPackages = with pkgs; [ onlyoffice-desktopeditors ];
+      services.flatpak.packages = [
+        {
+          appId = "org.onlyoffice.desktopeditors";
+          origin = "flathub";
+        }
+      ];
 
       hjem.users.${config.system.user} = {
         files.".local/share/fonts/corefonts" = {

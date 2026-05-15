@@ -7,7 +7,7 @@
     url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
-  flake.nixosModules.flatpak =
+  flake.nixosModules.nix-flatpak =
     { ... }:
     {
       imports = [ inputs.nix-flatpak.nixosModules.nix-flatpak ];

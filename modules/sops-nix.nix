@@ -5,12 +5,10 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  flake.nixosModules.sops-nix-external = inputs.sops-nix.nixosModules.default;
-
   flake.nixosModules.sops-nix =
-    { self, pkgs, ... }:
+    { pkgs, ... }:
     {
-      imports = [ self.nixosModules.sops-nix-external ];
+      imports = [ inputs.sops-nix.nixosModules.default ];
       environment.systemPackages = with pkgs; [
         sops
         age
