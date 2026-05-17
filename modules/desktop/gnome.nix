@@ -1,7 +1,6 @@
 {
   flake.nixosModules.gnome =
     {
-      lib,
       config,
       pkgs,
       ...
@@ -12,71 +11,6 @@
       services.gnome.games.enable = false;
       # dconf-editor, devhelp, d-spy, gnome-builder, sysprof
       services.gnome.core-developer-tools.enable = false;
-
-      # Discover options: dconf watch /
-      # After switching from KDE to GNOME: dconf reset -f /
-      # TODO: Maybe dconf.nix? Use dconf2nix?
-      programs.dconf = {
-        enable = true;
-        profiles.user.databases = [
-          {
-            settings = {
-              # VRR
-              "org/gnome/mutter" = {
-                experimental-features = [ "variable-refresh-rate" ];
-              };
-              "org/gnome/desktop/interface" = {
-                # Czcionki
-                font-name = "Adwaita Sans 11";
-                document-font-name = "Adwaita Sans 11";
-                monospace-font-name = "Adwaita Mono 11";
-                font-antialiasing = "rgba"; # subpixel
-                font-hinting = "slight";
-                # Wygląd
-                # cursor-theme = "Adwaita"; # Currently Win11OS
-                color-scheme = "prefer-dark";
-                # icon-theme = "MoreWaita";
-                # Mysz i panel dotykowy
-                gtk-enable-primary-paste = false;
-                # Programy startowe
-              };
-              "org/gnome/desktop/wm/preferences" = {
-                # Okna
-                button-layout = "appmenu:minimize,maximize,close";
-                # Titlebar buttons placement (left/right)
-              };
-              "org/gnome/settings-daemon/plugins/color" = {
-                # Ekrany
-                night-light-enabled = true;
-                night-light-temperature = lib.gvariant.mkUint32 3158;
-              };
-              "org/gnome/desktop/input-sources" = {
-                sources = "[('xkb', 'pl')]";
-              };
-
-              "org/gnome/settings-daemon/plugins/media-keys" = {
-                custom-keybindings = [
-                  "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
-                ];
-              };
-              "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-                name = "Gradia Screenshot";
-                command = "flatpak run be.alexandervanhee.gradia --screenshot=INTERACTIVE";
-                binding = "<Ctrl>Print";
-              };
-              # disable beggars
-              "org/gnome/settings-daemon/plugins/housekeeping" = {
-                donation-reminder-enabled = false;
-              };
-              # disable lockscreen notifications
-              "org/gnome/desktop/notifications" = {
-                show-in-lock-screen = false;
-              };
-
-            };
-          }
-        ];
-      };
 
       qt = {
         enable = true;
@@ -89,7 +23,6 @@
       };
 
       environment.systemPackages = with pkgs; [
-        dconf-editor
         gnome-tweaks
         gnome-extension-manager
         libsecret # for Vivaldi

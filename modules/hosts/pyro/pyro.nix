@@ -72,9 +72,11 @@
         # desktop
         gnome
         gnome-extensions
+        dconf
 
         # services
         audio
+        simple-mic-eq
         bluetooth
         networking
         lact
@@ -119,6 +121,7 @@
         "com.github.PintaProject.Pinta"
         "be.alexandervanhee.gradia"
         "org.gnome.World.Iotas"
+        "org.pipewire.Helvum"
         # Cool Libadwaita
         "com.github.neithern.g4music" # Gapless
         "org.nickvision.tubeconverter" # Parabolic
@@ -127,9 +130,10 @@
         "com.github.finefindus.eyedropper"
         "app.drey.EarTag"
         "ca.edestcroix.Recordbox"
-        "org.gnome.Chess"
         "io.github.ronniedroid.concessio"
         "io.speedofsound.SpeedOfSound"
+        # Games
+        "org.gnome.Chess"
         # Others
         "io.github.bhack.mini-eq"
         "org.upscayl.Upscayl"
@@ -181,7 +185,7 @@
             file:///etc/nixos NixOS
           '';
         };
-        
+
       };
 
     };

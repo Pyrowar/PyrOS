@@ -2,11 +2,6 @@
   flake.nixosModules.audio =
     { ... }:
     {
-      # TODO: pipewire equalizer, remove EasyEffects
-      # services.pipewire.systemWide = true;
-      # systemd.services.wireplumber.serviceConfig.SupplementaryGroups = [ "pipewire" ];
-      # users.users.${config.system.user}.extraGroups = [ "pipewire" ];
-
       services.pulseaudio.enable = false;
       services.pipewire = {
         enable = true;
