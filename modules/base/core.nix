@@ -67,7 +67,8 @@
         # After committing changes to the bootloader, run:
         #   sudo nixos-rebuild boot --flake /etc/nixos --install-bootloader
         # ------------------------------------------------------------------ #
-
+        
+        boot.loader.systemd-boot.enable = false;
         boot.loader.efi.canTouchEfiVariables = true;
         boot.loader.limine = {
           enable = true;

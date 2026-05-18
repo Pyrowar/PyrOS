@@ -1,4 +1,5 @@
-# TODO: dconf2nix
+# TODO: maybe dconf2nix
+# TODO: dconf locale and input sources should follow system locale
 {
   # Discover options: dconf watch /
   # After switching from KDE to GNOME: dconf reset -f /
@@ -10,6 +11,9 @@
         profiles.user.databases = [
           {
             settings = {
+              "system/locale" = {
+                region = "pl_PL.UTF-8";
+              };
               "org/gnome/mutter" = {
                 experimental-features = [ "variable-refresh-rate" ];
               };

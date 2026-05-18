@@ -2,14 +2,14 @@
   flake.nixosModules.networking =
     { config, lib, ... }:
     {
-      options.system.wifi.enable = lib.mkEnableOption "wifi";
+      options.system.wifi.sops = lib.mkEnableOption "wifi uses sops passwd";
 
       config = {
         users.users.${config.system.user}.extraGroups = [ "networkmanager" ];
         networking.nftables.enable = true;
         networking.networkmanager = {
           enable = true;
-          ensureProfiles = lib.mkIf config.system.wifi.enable {
+          ensureProfiles = lib.mkIf config.system.wifi.sops {
             environmentFiles = [ config.sops.secrets.wifi_passwords.path ];
             profiles = {
               "Kamadan" = {

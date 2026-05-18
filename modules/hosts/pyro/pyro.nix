@@ -24,7 +24,7 @@
       system.user = "pyro";
       system.description = "Kajetan Ziółkowski";
       system.maintenance = "manual";
-      system.wifi.enable = false;
+      system.wifi.sops = false; # enable: pulls wifi passwords from sops
       locale.preset = "pl";
       locale.timeZone = "Europe/Warsaw";
       hardware.nvidia.driver = "beta";
@@ -54,7 +54,7 @@
           generateKey = true;
         };
 
-        secrets.wifi_passwords = lib.mkIf config.system.wifi.enable {
+        secrets.wifi_passwords = lib.mkIf config.system.wifi.sops {
           format = "dotenv";
         };
       };
@@ -76,7 +76,7 @@
 
         # services
         audio
-        simple-mic-eq
+        mic-filter-chain
         bluetooth
         networking
         lact
@@ -110,6 +110,54 @@
         lsfg = false;
       };
 
+      # standalone packages
+      # you can specify package versions with:
+      # pkgs.stable.somePackage
+      # pkgs.unstable.somePackage
+      # environment.systemPackages = with pkgs; [];
+
+      # ------------------------------------------------------------------ #
+      # Services
+      # ------------------------------------------------------------------ #
+
+      services.micFilterChain = {
+        enable = true;
+        # TODO: fix lib.head cfg.devices takes in only the first device on the list
+        # add hot-plug switching, else stick to rebuild switching
+        # Default Volume for bluez device (Mini-EQ?) Will it change over time?
+        # Right now: bluez_output.E8_EE_CC_69_19_BE.1
+        devices = [
+          "alsa_input.pci-0000_2b_00.4.analog-stereo"
+        ];
+      };
+
+      # Preconfigured Device Volumes
+      # To find exact node names for devices use
+      # wpctl status or pw-top
+      services.pipewire.wireplumber.extraConfig."99-default-volumes" = {
+        "wireplumber.node.rules" = [
+          {
+            # Natec (Starship/Matisse HD Audio Controller)
+            matches = [ { "node.name" = "alsa_input.pci-0000_2b_00.4.analog-stereo"; } ];
+            actions = {
+              update-props = {
+                "node.volume" = 0.3;
+              };
+            };
+          }
+          {
+            # Microphone Filter Chain
+            matches = [ { "node.name" = "effect_output.mic_processed"; } ];
+            actions = {
+              update-props = {
+                "node.volume" = 1.0;
+              };
+            };
+          }
+
+        ];
+      };
+
       # standalone flatpaks
       # files are stored in ~/.var/app
       services.flatpak.packages = [
@@ -139,12 +187,6 @@
         "org.upscayl.Upscayl"
         "no.mifi.losslesscut"
       ];
-
-      # standalone packages
-      # you can specify package versions with:
-      # pkgs.stable.somePackage
-      # pkgs.unstable.somePackage
-      # environment.systemPackages = with pkgs; [];
 
       # ------------------------------------------------------------------ #
       # Hjem
