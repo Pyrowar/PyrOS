@@ -10,12 +10,10 @@
         gnomeExtensions.appindicator
         gnomeExtensions.bluetooth-battery-meter
         # Aesthetic
-        rewaita
         gnomeExtensions.user-themes
         gnomeExtensions.blur-my-shell
         gnomeExtensions.logo-menu
         gnomeExtensions.vitals
-        # gnomeExtensions.top-bar-organizer
         # QoL
         gnomeExtensions.tiling-shell
         gnomeExtensions.alphabetical-app-grid

@@ -15,6 +15,7 @@
   flake.nixosModules.pyro =
     {
       self,
+      pkgs,
       lib,
       config,
       ...
@@ -27,7 +28,8 @@
       system.wifi.sops = false; # enable: pulls wifi passwords from sops
       locale.preset = "pl";
       locale.timeZone = "Europe/Warsaw";
-      hardware.nvidia.driver = "beta";
+      boot.kernelPackages = pkgs.linuxPackages_latest;
+      hardware.nvidia.driver = "production";
       hardware.nvidia.cuda = true;
 
       programs.git = {
@@ -120,41 +122,13 @@
       # Services
       # ------------------------------------------------------------------ #
 
+      # Discover devices with either:
+      # wpctl status or pw-top
       services.micFilterChain = {
         enable = true;
-        # TODO: fix lib.head cfg.devices takes in only the first device on the list
-        # add hot-plug switching, else stick to rebuild switching
-        # Default Volume for bluez device (Mini-EQ?) Will it change over time?
-        # Right now: bluez_output.E8_EE_CC_69_19_BE.1
         devices = [
-          "alsa_input.pci-0000_2b_00.4.analog-stereo"
-        ];
-      };
-
-      # Preconfigured Device Volumes
-      # To find exact node names for devices use
-      # wpctl status or pw-top
-      services.pipewire.wireplumber.extraConfig."99-default-volumes" = {
-        "wireplumber.node.rules" = [
-          {
-            # Natec (Starship/Matisse HD Audio Controller)
-            matches = [ { "node.name" = "alsa_input.pci-0000_2b_00.4.analog-stereo"; } ];
-            actions = {
-              update-props = {
-                "node.volume" = 0.3;
-              };
-            };
-          }
-          {
-            # Microphone Filter Chain
-            matches = [ { "node.name" = "effect_output.mic_processed"; } ];
-            actions = {
-              update-props = {
-                "node.volume" = 1.0;
-              };
-            };
-          }
-
+          "alsa_input.pci-0000_2b_00.4.analog-stereo" # priority 1000
+          "alsa_input.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.mono-fallback" # priority 990
         ];
       };
 
@@ -164,28 +138,36 @@
         # Flatpak management
         "com.github.tchx84.Flatseal"
         "io.github.flattool.Warehouse"
+        # Audio
+        "org.pipewire.Helvum"
+        "io.github.bhack.mini-eq"
         # Core apps
+        "ca.desrt.dconf-editor"
         "io.github.diegopvlk.Cine"
         "com.github.PintaProject.Pinta"
         "be.alexandervanhee.gradia"
         "org.gnome.World.Iotas"
-        "org.pipewire.Helvum"
+        "io.gitlab.news_flash.NewsFlash"
+        "de.haeckerfelix.Fragments"
+        "com.github.johnfactotum.Foliate"
         # Cool Libadwaita
         "com.github.neithern.g4music" # Gapless
         "org.nickvision.tubeconverter" # Parabolic
-        "io.gitlab.news_flash.NewsFlash"
-        "com.github.johnfactotum.Foliate"
-        "com.github.finefindus.eyedropper"
-        "app.drey.EarTag"
         "ca.edestcroix.Recordbox"
-        "io.github.ronniedroid.concessio"
         "io.speedofsound.SpeedOfSound"
+        "re.sonny.Eloquent"
+        "app.drey.Dialect"
+        "com.github.finefindus.eyedropper"
+        "io.github.ronniedroid.concessio"
+        "app.drey.EarTag"
+        "info.febvre.Komikku"
         # Games
         "org.gnome.Chess"
         # Others
-        "io.github.bhack.mini-eq"
         "org.upscayl.Upscayl"
         "no.mifi.losslesscut"
+        # Theming
+        # "io.github.swordpuffin.rewaita"
       ];
 
       # ------------------------------------------------------------------ #

@@ -10,8 +10,13 @@
       ];
 
       services.flatpak.overrides.settings."com.vivaldi.Vivaldi" = {
-        "Environment" =
-          "GSETTINGS_SCHEMA_DIR=/run/current-system/sw/share/gsettings-schemas/glib-2.0/schemas";
+        "Context" = [
+          "filesystems=/etc/nixos/assets/themes/vivaldi:ro" # omit :ro to default to :rw
+        ];
+        "Environment" = [
+          "GSETTINGS_SCHEMA_DIR=/run/current-system/sw/share/gsettings-schemas/glib-2.0/schemas"
+        ];
+
       };
 
     };

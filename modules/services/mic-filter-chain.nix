@@ -1,3 +1,4 @@
+# TODO: Control default device volumes through ALSA with hotplugging, maybe systemd service?
 {
   flake.nixosModules.mic-filter-chain =
     {
@@ -39,12 +40,18 @@
 
         environment.systemPackages = [ pkgs.rnnoise-plugin ];
 
-        services.pipewire.extraLadspaPackages = [ pkgs.rnnoise-plugin ];
+        services.pipewire.extraLadspaPackages = [
+          pkgs.rnnoise-plugin
+          pkgs.lsp-plugins
+        ];
 
         services.pipewire.extraConfig.pipewire."99-mic-filter-chain" = {
           "context.modules" = [
             {
               name = "libpipewire-module-filter-chain";
+              # Don't take down entire pipewire on fail
+              # To restart service do: systemctl --user restart pipewire
+              flags = [ "nofail" ];
               args = {
                 "node.description" = "Processed Microphone";
                 "media.name" = "Processed Microphone";
@@ -57,6 +64,21 @@
                       label = "noise_suppressor_mono";
                       control = {
                         "VAD Threshold (%)" = 50;
+                      };
+                    }
+                    {
+                      type = "ladspa";
+                      name = "gate";
+                      plugin = "lsp-plugins-ladspa";
+                      # URI identification convention that points to the right plugin
+                      label = "http://lsp-plug.in/plugins/ladspa/gate_mono";
+                      control = {
+                        "Attack (ms)" = 5.0;
+                        "Release (ms)" = 250.0;
+                        "Curve threshold (G)" = 0.01; # approx -40 dB
+                        "Hold time (ms)" = 50.0;
+                        "Reduction (G)" = 0.0; # full silence when gated
+                        "Makeup gain (G)" = 1.0;
                       };
                     }
                     {
@@ -112,6 +134,10 @@
                   links = [
                     {
                       output = "rnnoise:Output";
+                      input = "gate:Input";
+                    }
+                    {
+                      output = "gate:Output";
                       input = "hp:In";
                     }
                     {
@@ -136,7 +162,7 @@
                 };
                 "capture.props" = {
                   "node.name" = "effect_input.mic_processed";
-                  "node.target" = lib.head cfg.devices;
+                  "node.passive" = true;
                   "audio.channels" = 1;
                   "audio.position" = [ "MONO" ];
                 };
@@ -151,13 +177,26 @@
           ];
         };
 
-        services.pipewire.wireplumber.extraConfig."99-default-mic" = {
+        # Assign descending priorities to listed devices
+        services.pipewire.wireplumber.extraConfig."99-mic-priorities" = {
+          "wireplumber.node.rules" = lib.imap0 (i: device: {
+            matches = [ { "node.name" = device; } ];
+            actions = {
+              update-props = {
+                "priority.session" = 1000 - (i * 10);
+              };
+            };
+          }) cfg.devices;
+        };
+
+        # Suppress BT mics from ever becoming default
+        services.pipewire.wireplumber.extraConfig."99-suppress-bt-mic" = {
           "wireplumber.node.rules" = [
             {
-              matches = [ { "node.name" = "effect_output.mic_processed"; } ];
+              matches = [ { "node.name" = "~bluez_input.*"; } ];
               actions = {
                 update-props = {
-                  "priority.session" = 1000;
+                  "priority.session" = 0;
                 };
               };
             }
