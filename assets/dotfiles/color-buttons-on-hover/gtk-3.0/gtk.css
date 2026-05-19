@@ -1,0 +1,15 @@
+/* Fallback semantic colors if not defined by theme */
+@define-color error_color #e01b24;
+@define-color warning_color #e5a50a;
+@define-color success_color #2ec27e;
+
+/* Window control button hover effects */
+headerbar button.titlebutton.close:hover {
+  background-color: @error_color;
+}
+headerbar button.titlebutton.minimize:hover {
+  background-color: @warning_color;
+}
+headerbar button.titlebutton.maximize:hover {
+  background-color: @success_color;
+}
