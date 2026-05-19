@@ -154,7 +154,6 @@
         "com.github.neithern.g4music" # Gapless
         "org.nickvision.tubeconverter" # Parabolic
         "ca.edestcroix.Recordbox"
-        "io.speedofsound.SpeedOfSound"
         "re.sonny.Eloquent"
         "app.drey.Dialect"
         "com.github.finefindus.eyedropper"
