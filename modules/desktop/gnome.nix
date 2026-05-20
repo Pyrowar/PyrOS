@@ -1,3 +1,5 @@
+# TODO: hjem -> assets/themes/gnome-text-editor
+# Maybe dotfiles too?
 {
   flake.nixosModules.gnome =
     {
@@ -9,7 +11,6 @@
       services.displayManager.gdm.enable = true;
       services.desktopManager.gnome.enable = true;
       services.gnome.games.enable = false;
-      # dconf-editor, devhelp, d-spy, gnome-builder, sysprof
       services.gnome.core-developer-tools.enable = false;
 
       qt = {
@@ -26,6 +27,7 @@
         gnome-tweaks
         gnome-extension-manager
         libsecret # for Vivaldi
+        libjxl # for wallpapers
         resources
       ];
 
@@ -46,6 +48,10 @@
         gnome-maps
 
       ];
+
+      # environment.sessionVariables = {
+      #   XDG_DATA_DIRS = [ "$HOME/.local/share" ];
+      # };
 
       hjem.users.${config.system.user} = {
         # Create file templates with hjem

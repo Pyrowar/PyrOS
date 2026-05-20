@@ -1,5 +1,6 @@
 # TODO: maybe dconf2nix
 # TODO: dconf locale and input sources should follow system locale
+# TODO: hjem -> assets/dconf
 {
   # Discover options: dconf watch /
   # After switching from KDE to GNOME: dconf reset -f /

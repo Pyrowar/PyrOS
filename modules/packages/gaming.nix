@@ -1,4 +1,4 @@
-{ ... }:
+# TODO: hjem -> assets/themes/mangohud/MangoHud.conf
 {
   flake.nixosModules.gaming =
     {

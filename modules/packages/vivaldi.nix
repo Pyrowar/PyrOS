@@ -1,3 +1,4 @@
+# TODO: hjem -> assets/themes/vivaldi/styles.css
 {
   flake.nixosModules.vivaldi =
     { ... }:

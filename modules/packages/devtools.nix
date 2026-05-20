@@ -1,3 +1,4 @@
+# TODO: hjem -> assets/themes/zed/Greentan.json
 {
   flake.nixosModules.devtools =
     { pkgs, ... }:
@@ -10,11 +11,6 @@
           default = [ "ghostty" ];
         };
 
-        # Preserve terminfo under sudo
-        # security.sudo.extraConfig = ''
-        #   Defaults env_keep += "TERMINFO"
-        # '';
-
       };
       environment.systemPackages = with pkgs; [
         statix
@@ -25,7 +21,7 @@
         package-version-server
         marksman
         ghostty
-        zed-editor # or zed-editor-fhs
+        zed-editor
       ];
     };
 }
