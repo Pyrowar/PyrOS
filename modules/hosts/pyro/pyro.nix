@@ -165,8 +165,6 @@
         # Others
         "org.upscayl.Upscayl"
         "no.mifi.losslesscut"
-        # Theming
-        # "io.github.swordpuffin.rewaita"
       ];
 
       # ------------------------------------------------------------------ #

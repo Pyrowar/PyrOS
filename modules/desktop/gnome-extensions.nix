@@ -17,9 +17,6 @@
         # QoL
         gnomeExtensions.tiling-shell
         gnomeExtensions.alphabetical-app-grid
-        # Windows-like
-        # gnomeExtensions.arcmenu
-        # gnomeExtensions.dash-to-panel
       ];
       # Valent KDE Connect
       programs.kdeconnect = {
