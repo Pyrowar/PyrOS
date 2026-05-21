@@ -99,18 +99,13 @@
         onlyoffice
         signal
       ];
-
-      # packages - modules - options
-      gaming = {
-        steam = true;
-        faugus = true;
-        recorder = true;
-        heroic = true;
-        mangohud = true;
-        gamescope = false;
-        minecraft = false;
-        lsfg = false;
-      };
+      
+      # Override defaults
+      # gaming.steam.protontricks = false;
+      # gaming.gamescope.enable = true;
+      # gaming.gamescope.capSysNice = false;
+      # gaming.minecraft.enable = true;
+      # gaming.lsfg.enable = true;
 
       # standalone packages
       # you can specify package versions with:
@@ -162,6 +157,9 @@
         "info.febvre.Komikku"
         # Games
         "org.gnome.Chess"
+        # Themes
+        "org.gnome.design.IconLibrary"
+        "nl.emphisia.icon"
         # Others
         "org.upscayl.Upscayl"
         "no.mifi.losslesscut"

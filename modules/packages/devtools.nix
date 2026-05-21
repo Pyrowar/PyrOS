@@ -1,4 +1,4 @@
-# TODO: hjem -> assets/themes/zed/Greentan.json
+# TODO: hjem -> assets/dotfiles/zed/Greentan.json
 {
   flake.nixosModules.devtools =
     { pkgs, ... }:

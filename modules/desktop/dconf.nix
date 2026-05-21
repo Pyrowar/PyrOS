@@ -1,19 +1,33 @@
-# TODO: maybe dconf2nix
-# TODO: dconf locale and input sources should follow system locale
-# TODO: hjem -> assets/dconf
+# TODO: dconf2nix
 {
   # Discover options: dconf watch /
   # After switching from KDE to GNOME: dconf reset -f /
   flake.nixosModules.dconf =
-    { lib, ... }:
+    { config, lib, ... }:
     {
       programs.dconf = {
         enable = true;
         profiles.user.databases = [
           {
             settings = {
+              # dconf locale and xkb follows locale.preset
               "system/locale" = {
-                region = "pl_PL.UTF-8";
+                region =
+                  if config.locale.preset == "pl" then
+                    "pl_PL.UTF-8"
+                  else if config.locale.preset == "en" then
+                    "en_GB.UTF-8"
+                  else
+                    throw "Unknown locale.preset: ${config.locale.preset}";
+              };
+              "org/gnome/desktop/input-sources" = {
+                sources =
+                  if config.locale.preset == "pl" then
+                    "[('xkb', 'pl')]"
+                  else if config.locale.preset == "en" then
+                    "[('xkb', 'us')]"
+                  else
+                    throw "Unknown locale.preset: ${config.locale.preset}";
               };
               "org/gnome/mutter" = {
                 experimental-features = [ "variable-refresh-rate" ];
@@ -35,9 +49,6 @@
               "org/gnome/settings-daemon/plugins/color" = {
                 night-light-enabled = true;
                 night-light-temperature = lib.gvariant.mkUint32 3158;
-              };
-              "org/gnome/desktop/input-sources" = {
-                sources = "[('xkb', 'pl')]";
               };
 
               "org/gnome/settings-daemon/plugins/media-keys" = {

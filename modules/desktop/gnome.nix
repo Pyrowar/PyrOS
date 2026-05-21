@@ -1,5 +1,4 @@
 # TODO: hjem -> assets/themes/gnome-text-editor
-# Maybe dotfiles too?
 {
   flake.nixosModules.gnome =
     {
