@@ -1,5 +1,9 @@
 { self, ... }:
 {
+  # ------------------------------------------------------------------ #
+  # Channels
+  # ------------------------------------------------------------------ #
+
   flake.nixosConfigurations.snowdrift = self.lib.mkHost {
     module = self.nixosModules.pyro;
     hostname = "snowdrift";
@@ -21,7 +25,10 @@
       ...
     }:
     {
-      # NixOS options
+      # ------------------------------------------------------------------ #
+      # Options
+      # ------------------------------------------------------------------ #
+
       system.user = "pyro";
       system.description = "Kajetan Ziółkowski";
       system.maintenance = "manual";
@@ -31,6 +38,10 @@
       boot.kernelPackages = pkgs.linuxPackages_latest;
       hardware.nvidia.driver = "production";
       hardware.nvidia.cuda = true;
+
+      # ------------------------------------------------------------------ #
+      # Git
+      # ------------------------------------------------------------------ #
 
       programs.git = {
         enable = true;
@@ -44,15 +55,16 @@
         };
       };
 
+      # ------------------------------------------------------------------ #
+      # Sops-nix
+      # ------------------------------------------------------------------ #
+
       sops = {
         defaultSopsFile = ./secrets.yaml;
         defaultSopsFormat = "yaml";
 
         age = {
-          # Use your existing SSH key to derive the age key automatically
           sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-          # Or point to an explicit age key file:
-          # keyFile = "/var/lib/sops-nix/key.txt";
           generateKey = true;
         };
 
@@ -61,116 +73,144 @@
         };
       };
 
+      # ------------------------------------------------------------------ #
+      # Modules
+      # ------------------------------------------------------------------ #
+
       imports = with self.nixosModules; [
-        # base
+
+        # ------------------------------------------------------------------ #
+        # Base
+        # ------------------------------------------------------------------ #
+
         core
         hjem
         sops-nix
         nix-flatpak
 
-        # hardware
+        # ------------------------------------------------------------------ #
+        # Hardware
+        # ------------------------------------------------------------------ #
+
         nvidia
 
-        # desktop
+        # ------------------------------------------------------------------ #
+        # Desktop
+        # ------------------------------------------------------------------ #
+
         gnome
         gnome-dconf
         gnome-dotfiles
         gnome-extensions
         gnome-backgrounds
 
-        # services
-        audio
-        mic-filter-chain
-        bluetooth
-        networking
-        lact
-        razer
-        portals
-        appimage
+        # ------------------------------------------------------------------ #
+        # Services
+        # ------------------------------------------------------------------ #
 
-        # nixpkgs
+        appimage
+        audio
+        bluetooth
+        lact
+        mic-filter-chain
+        networking
+        portals
+        razer
+
+        # ------------------------------------------------------------------ #
+        # Nixpkgs
+        # ------------------------------------------------------------------ #
+
+        # blender
         cli
         devtools
-        nixtools
+        # firefox
         fonts
         gaming
-        obs
-        # blender
         # krita
+        nixtools
+        obs
         # wine
-        # firefox
-        
+
         # ------------------------------------------------------------------ #
         # Flatpaks
         # ------------------------------------------------------------------ #
         # files are stored in ~/.var/app
-        # check permissions with: flatpak info --show-permissions reverse.domain.notation
-        # or just the overrides: flatpak override --user --show reverse.domain.notation
-        
-        # managing system
-        flatseal
-        warehouse
+        # check permissions with:
+        # flatpak info --show-permissions reverse.domain.notation
+        # or just the overrides:
+        # flatpak override --user --show reverse.domain.notation
+
+        # === system === #
         dconf-editor
+        flatseal
         helvum
         mini-eq
+        warehouse
 
-        # themes
-        icon-library
+        # === themes === #
         iconic
+        icon-library
 
-        # 3rd party
-        vivaldi
+        # === 3rd party === #
         gimp
-        onlyoffice
-        zettlr
-        signal
         losslesscut
-        upscayl
+        onlyoffice
+        signal
         # uno-calc
+        upscayl
+        vivaldi
+        zettlr
 
-        # gnome circle
-        iotas
+        # === gnome circle === #
         cine
-        gradia
-        pinta
+        concessio
+        dialect
+        eartag
+        eloquent
+        eyedropper
         foliate
         fragments
-        eartag
         gnome-chess
-        newsflash
-        switcheroo
+        gradia
+        iotas
         komikku
-        dialect
-        eloquent
-        concessio
-        eyedropper
-        
-        # libadwaita
+        newsflash
+        pinta
+        switcheroo
+
+        # === libadwaita === #
         gapless
         parabolic
         recordbox
 
       ];
 
-      # Override defaults
+      # ------------------------------------------------------------------ #
+      # Overrides
+      # ------------------------------------------------------------------ #
+
       # gaming.steam.protontricks = false;
       # gaming.gamescope.enable = true;
       # gaming.gamescope.capSysNice = false;
       # gaming.minecraft.enable = true;
       # gaming.lsfg.enable = true;
 
-      # standalone packages
+      # ------------------------------------------------------------------ #
+      # Standalone packages
+      # ------------------------------------------------------------------ #
       # you can specify package versions with:
       # pkgs.stable.somePackage
       # pkgs.unstable.somePackage
+
       # environment.systemPackages = with pkgs; [];
 
       # ------------------------------------------------------------------ #
-      # Services
+      # Mic Filter Chain
       # ------------------------------------------------------------------ #
-
       # Discover devices with either:
       # wpctl status or pw-top
+
       services.micFilterChain = {
         enable = true;
         devices = [
