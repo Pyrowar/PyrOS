@@ -1,8 +1,15 @@
-# TODO: hjem -> assets/dotfiles/zed/Greentan.json
 {
   flake.nixosModules.devtools =
-    { pkgs, ... }:
+    { config, pkgs, ... }:
     {
+      # Import Zed theme.
+      hjem.users.${config.system.user} = {
+        files.".config/zed/themes/Greentan.json" = {
+          clobber = false;
+          source = ../../assets/dotfiles/zed/Greentan.json;
+        };
+      };
+
       programs.tmux.enable = true;
       xdg.terminal-exec = {
         enable = true;
@@ -12,6 +19,7 @@
         };
 
       };
+      
       environment.systemPackages = with pkgs; [
         statix
         nil
@@ -23,5 +31,6 @@
         ghostty
         zed-editor
       ];
+
     };
 }

@@ -1,4 +1,3 @@
-# TODO: hjem -> assets/themes/gnome-text-editor
 {
   flake.nixosModules.gnome =
     {
@@ -47,10 +46,6 @@
         gnome-maps
 
       ];
-
-      # environment.sessionVariables = {
-      #   XDG_DATA_DIRS = [ "$HOME/.local/share" ];
-      # };
 
       hjem.users.${config.system.user} = {
         # Create file templates with hjem

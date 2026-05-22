@@ -8,6 +8,6 @@
           origin = "flathub";
         }
       ];
+      
     };
-
 }

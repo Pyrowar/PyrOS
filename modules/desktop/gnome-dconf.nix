@@ -2,7 +2,7 @@
 {
   # Discover options: dconf watch /
   # After switching from KDE to GNOME: dconf reset -f /
-  flake.nixosModules.dconf =
+  flake.nixosModules.gnome-dconf =
     { config, lib, ... }:
     {
       programs.dconf = {
@@ -10,7 +10,7 @@
         profiles.user.databases = [
           {
             settings = {
-              # dconf locale and xkb follows locale.preset
+              # Dconf locale and xkb follows locale.preset
               "system/locale" = {
                 region =
                   if config.locale.preset == "pl" then
@@ -61,12 +61,47 @@
                 command = "flatpak run be.alexandervanhee.gradia --screenshot=INTERACTIVE";
                 binding = "<Ctrl>Print";
               };
-              # disable beggars
+              # Disable beggars
               "org/gnome/settings-daemon/plugins/housekeeping" = {
                 donation-reminder-enabled = false;
               };
               "org/gnome/desktop/notifications" = {
                 show-in-lock-screen = false;
+              };
+
+              # ------------------------------------------------------------------ #
+              # Extensions
+              # ------------------------------------------------------------------ #
+
+              # Tiling Shell
+              "org/gnome/shell/extensions/tilingshell" = {
+                # Import layouts
+                layouts-json = builtins.readFile ../../assets/dconf/tilingshell/tilingshell-layouts.json;
+                # Dconf load options that match .txt located in ../../assets/dconf/tilingshell/tilingshell-settings.txt
+                edge-tiling-mode = "default";
+                enable-autotiling = true;
+                enable-snap-assistant-windows-suggestions = false;
+                enable-tiling-system-windows-suggestions = true;
+                enable-window-border = true;
+                inner-gaps = lib.gvariant.mkUint32 10;
+                outer-gaps = lib.gvariant.mkUint32 8;
+                selected-layouts = [
+                  [
+                    "504672"
+                    "504672"
+                  ]
+                  [
+                    "504672"
+                    "504672"
+                  ]
+                ];
+                show-indicator = false;
+                snap-assist-sync-layout = false;
+                snap-assistant-threshold = lib.gvariant.mkInt32 25;
+                top-edge-maximize = false;
+                window-border-color = "rgb(93,119,133)";
+                window-border-width = lib.gvariant.mkUint32 3;
+                window-use-custom-border-color = false;
               };
 
             };

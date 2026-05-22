@@ -8,7 +8,14 @@
           origin = "flathub";
         }
       ];
-      # Expose home user files (read-only) to Signal. Hopefully fixes drag-and-drop issues.
-      services.flatpak.overrides.settings."org.signal.Signal".Context = "filesystems=home:ro";
+      # Hopefully fixes drag-and-drop issues.
+      services.flatpak.overrides."org.signal.Signal" = {
+        Context = {
+          filesystems = [ "home:ro" ];
+
+        };
+
+      };
+
     };
 }

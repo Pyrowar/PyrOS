@@ -1,4 +1,3 @@
-# TODO: hjem -> assets/dotfiles/mangohud/MangoHud.conf
 {
   flake.nixosModules.gaming =
     {
@@ -78,6 +77,16 @@
               lsfg-vk-ui
             ])
           ];
+
+        # Import MangoHud theme
+        hjem.users.${config.system.user} = lib.mkIf config.gaming.mangohud {
+          files.".config/MangoHud/MangoHud.conf" = {
+            clobber = false;
+            source = ../../assets/dotfiles/mangohud/MangoHud.conf;
+          };
+        };
+
       };
+
     };
 }

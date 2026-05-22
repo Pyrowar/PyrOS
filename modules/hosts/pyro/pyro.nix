@@ -73,8 +73,10 @@
 
         # desktop
         gnome
+        gnome-dconf
+        gnome-dotfiles
         gnome-extensions
-        dconf
+        gnome-backgrounds
 
         # services
         audio
@@ -86,16 +88,18 @@
         portals
         appimage
 
-        # packages - modules
+        # nixpkgs
         cli
         devtools
         nixtools
         fonts
+        gaming
+        obs
+
+        # flatpaks
         vivaldi
         gimp
         zettlr
-        gaming
-        obs
         onlyoffice
         signal
       ];
@@ -129,6 +133,8 @@
 
       # standalone flatpaks
       # files are stored in ~/.var/app
+      # check permissions with: flatpak info --show-permissions reverse.domain.notation
+      # or just the overrides: flatpak override --user --show com.vivaldi.Vivaldi
       services.flatpak.packages = [
         # Flatpak management
         "com.github.tchx84.Flatseal"
@@ -148,7 +154,6 @@
         # Cool Libadwaita
         "com.github.neithern.g4music" # Gapless
         "org.nickvision.tubeconverter" # Parabolic
-        "io.github.mmarco94.tambourine"
         "ca.edestcroix.Recordbox"
         "re.sonny.Eloquent"
         "app.drey.Dialect"

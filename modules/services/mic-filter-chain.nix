@@ -1,4 +1,3 @@
-# TODO: Control default device volumes through ALSA with hotplugging, maybe systemd service?
 {
   flake.nixosModules.mic-filter-chain =
     {
