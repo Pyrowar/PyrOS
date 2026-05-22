@@ -95,13 +95,61 @@
         fonts
         gaming
         obs
+        # blender
+        # krita
+        # wine
+        # firefox
+        
+        # ------------------------------------------------------------------ #
+        # Flatpaks
+        # ------------------------------------------------------------------ #
+        # files are stored in ~/.var/app
+        # check permissions with: flatpak info --show-permissions reverse.domain.notation
+        # or just the overrides: flatpak override --user --show reverse.domain.notation
+        
+        # managing system
+        flatseal
+        warehouse
+        dconf-editor
+        helvum
+        mini-eq
 
-        # flatpaks
+        # themes
+        icon-library
+        iconic
+
+        # 3rd party
         vivaldi
         gimp
-        zettlr
         onlyoffice
+        zettlr
         signal
+        losslesscut
+        upscayl
+        # uno-calc
+
+        # gnome circle
+        iotas
+        cine
+        gradia
+        pinta
+        foliate
+        fragments
+        eartag
+        gnome-chess
+        newsflash
+        switcheroo
+        komikku
+        dialect
+        eloquent
+        concessio
+        eyedropper
+        
+        # libadwaita
+        gapless
+        parabolic
+        recordbox
+
       ];
 
       # Override defaults
@@ -130,46 +178,6 @@
           "alsa_input.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.mono-fallback" # priority 990
         ];
       };
-
-      # standalone flatpaks
-      # files are stored in ~/.var/app
-      # check permissions with: flatpak info --show-permissions reverse.domain.notation
-      # or just the overrides: flatpak override --user --show com.vivaldi.Vivaldi
-      services.flatpak.packages = [
-        # Flatpak management
-        "com.github.tchx84.Flatseal"
-        "io.github.flattool.Warehouse"
-        # Audio
-        "org.pipewire.Helvum"
-        "io.github.bhack.mini-eq"
-        # Core apps
-        "ca.desrt.dconf-editor"
-        "io.github.diegopvlk.Cine"
-        "com.github.PintaProject.Pinta"
-        "be.alexandervanhee.gradia"
-        "org.gnome.World.Iotas"
-        "io.gitlab.news_flash.NewsFlash"
-        "de.haeckerfelix.Fragments"
-        "com.github.johnfactotum.Foliate"
-        # Cool Libadwaita
-        "com.github.neithern.g4music" # Gapless
-        "org.nickvision.tubeconverter" # Parabolic
-        "ca.edestcroix.Recordbox"
-        "re.sonny.Eloquent"
-        "app.drey.Dialect"
-        "com.github.finefindus.eyedropper"
-        "io.github.ronniedroid.concessio"
-        "app.drey.EarTag"
-        "info.febvre.Komikku"
-        # Games
-        "org.gnome.Chess"
-        # Themes
-        "org.gnome.design.IconLibrary"
-        "nl.emphisia.icon"
-        # Others
-        "org.upscayl.Upscayl"
-        "no.mifi.losslesscut"
-      ];
 
       # ------------------------------------------------------------------ #
       # Hjem

@@ -1,0 +1,13 @@
+{
+  flake.nixosModules.helvum =
+    { ... }:
+    {
+      services.flatpak.packages = [
+        {
+          appId = "org.pipewire.Helvum";
+          origin = "flathub";
+        }
+      ];
+
+    };
+}
