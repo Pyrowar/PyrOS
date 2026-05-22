@@ -138,6 +138,19 @@
         ];
       };
 
+      # Steam is a subvolume at ~/.local/share/
+      fileSystems."/home/pyro/.local/share/Steam" = {
+        device = "/dev/disk/by-uuid/361bab6a-413b-47cf-a822-af4f74f438a1";
+        fsType = "btrfs";
+        options = [
+          "subvol=@home/pyro/.local/share/Steam"
+          "compress=zstd"
+          "noatime"
+          "x-gvfs-trash"
+          "x-gvfs-hide"
+        ];
+      };
+
       fileSystems."/home/pyro/Games" = {
         device = "/dev/disk/by-uuid/361bab6a-413b-47cf-a822-af4f74f438a1";
         fsType = "btrfs";
@@ -295,14 +308,14 @@
       services.snapper = {
         snapshotInterval = "hourly";
         cleanupInterval = "1d";
-        
+
         configs.home = {
           SUBVOLUME = "/home";
           FSTYPE = "btrfs";
-          
+
           TIMELINE_CREATE = true;
           TIMELINE_CLEANUP = true;
-          
+
           TIMELINE_LIMIT_HOURLY = "8";
           TIMELINE_LIMIT_DAILY = "6";
           TIMELINE_LIMIT_WEEKLY = "4";
@@ -312,10 +325,10 @@
         configs.dokumenty = {
           SUBVOLUME = "/mnt/Barracuda/@dokumenty";
           FSTYPE = "btrfs";
-          
+
           TIMELINE_CREATE = true;
           TIMELINE_CLEANUP = true;
-          
+
           TIMELINE_LIMIT_HOURLY = "8";
           TIMELINE_LIMIT_DAILY = "6";
           TIMELINE_LIMIT_WEEKLY = "4";

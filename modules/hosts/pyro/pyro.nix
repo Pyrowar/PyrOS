@@ -99,7 +99,7 @@
         onlyoffice
         signal
       ];
-      
+
       # Override defaults
       # gaming.steam.protontricks = false;
       # gaming.gamescope.enable = true;
@@ -148,6 +148,7 @@
         # Cool Libadwaita
         "com.github.neithern.g4music" # Gapless
         "org.nickvision.tubeconverter" # Parabolic
+        "io.github.mmarco94.tambourine"
         "ca.edestcroix.Recordbox"
         "re.sonny.Eloquent"
         "app.drey.Dialect"

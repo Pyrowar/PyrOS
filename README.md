@@ -108,6 +108,4 @@ sudo rm /nix/var/nix/gcroots/flatpak-state.json
 
 ### Fixing GSConnect/Valent
 #### "This location could not be displayed":
-```
-append "/storage/emulated/0/" or "/sdcard" to the sftp path.
-````
+append `/storage/emulated/0/` or `/sdcard` to the sftp path.
