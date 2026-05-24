@@ -8,9 +8,8 @@
         gnomeExtensions.valent
         gnomeExtensions.caffeine
         gnomeExtensions.appindicator
-        gnomeExtensions.bluetooth-battery-meter
-        # mini-eq-controls is in version 6
         # gnomeExtensions.mini-eq-controls
+        gnomeExtensions.bluetooth-battery-meter
         # Aesthetic
         gnomeExtensions.user-themes
         gnomeExtensions.blur-my-shell
@@ -19,6 +18,7 @@
         # QoL
         gnomeExtensions.tiling-shell
         gnomeExtensions.alphabetical-app-grid
+        # gnomeExtensions.top-bar-organizer
       ];
 
       # Valent patch for GNOME 50

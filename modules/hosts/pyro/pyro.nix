@@ -38,6 +38,7 @@
       boot.kernelPackages = pkgs.linuxPackages_latest;
       hardware.nvidia.driver = "production";
       hardware.nvidia.cuda = true;
+      services.ntp.enable = true; # default: systemd-timesyncd
 
       # ------------------------------------------------------------------ #
       # Git
@@ -212,7 +213,7 @@
       # pkgs.stable.somePackage
       # pkgs.unstable.somePackage
 
-      # environment.systemPackages = with pkgs; [ ];
+      # environment.systemPackages = with pkgs; [ lug-helper ];
       # services.flatpak.packages = [ ];
 
       # ------------------------------------------------------------------ #

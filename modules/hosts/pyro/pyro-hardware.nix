@@ -62,14 +62,14 @@
 
       swapDevices = [
         {
-          device = "/dev/disk/by-uuid/b8010eec-7bf9-4964-a1bc-5d56f2f5386e"; # device UUID: sudo blkid
+          device = "/dev/disk/by-uuid/14547bd0-4f7f-498e-b8e6-30141f942d2e";
           options = [ "discard" ]; # equivalent to swapon --discard
         }
       ];
 
       boot.kernelParams = [
-        "zswap.enabled=1" # enable zswap compressed swap cache
-        "zswap.compressor=lz4" # compression algorithm
+        "zswap.enabled=1"
+        "zswap.compressor=lz4"
         "zswap.max_pool_percent=25" # cap zswap at 25% of RAM
         "zswap.shrinker_enabled=1" # proactively shrink pool under memory pressure
       ];

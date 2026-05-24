@@ -2,7 +2,7 @@
   flake.nixosModules.devtools =
     { config, pkgs, ... }:
     {
-      # Import Zed theme.
+      # Import Zed theme
       hjem.users.${config.system.user} = {
         files.".config/zed/themes/Greentan.json" = {
           clobber = false;

@@ -17,5 +17,13 @@
       };
       environment.systemPackages = with pkgs; [ ffmpeg ];
 
+      # Import OBS config
+      hjem.users.${config.system.user} = {
+        files.".config/obs-studio/basic" = {
+          clobber = false;
+          source = ../../assets/dotfiles/obs-studio/basic;
+        };
+      };
+
     };
 }

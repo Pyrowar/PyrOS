@@ -30,7 +30,7 @@
         # sudo nix-channel --remove nixos nixos-hardware
         # we also remove ~/.nix-defexpr and /root/.nix-defexpr
         nix.channel.enable = false;
-        
+
         nix.settings = {
           experimental-features = [
             "nix-command"
@@ -87,6 +87,9 @@
 
         powerManagement.enable = true;
         security.rtkit.enable = true;
+
+        # Ptrace syscalls - EAC
+        boot.kernel.sysctl."kernel.yama.ptrace_scope" = 1; # 1 - default, 0 - permissive
 
         boot.initrd.systemd.enable = true;
         boot.initrd.kernelModules = [ "lz4" ];
