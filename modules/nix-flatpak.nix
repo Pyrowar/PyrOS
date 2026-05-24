@@ -6,7 +6,7 @@
   flake-file.inputs.nix-flatpak = {
     url = "github:gmodena/nix-flatpak/?ref=latest";
   };
-
+  # flake.nixosModules.nix-flatpak = inputs.nix-flatpak.nixosModules.nix-flatpak;
   flake.nixosModules.nix-flatpak =
     { ... }:
     {

@@ -1,6 +1,5 @@
-{ ... }:
 {
-  flake.nixosModules.core =
+  flake.nixosModules.locale =
     { config, lib, ... }:
     let
       presets = {

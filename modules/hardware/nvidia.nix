@@ -48,13 +48,18 @@
 
         # Binary cache so CUDA packages don't have to be compiled locally
         nix.settings = lib.mkIf config.hardware.nvidia.cuda {
-          substituters = [ "https://cache.nixos-cuda.org" ];
+          substituters = [ "https://cuda-maintainers.cachix.org" ];
           trusted-public-keys = [
-            "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+            "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
           ];
+          # curl -I outputs 404:
+          # substituters = [ "https://cache.nixos-cuda.org" ];
+          # trusted-public-keys = [
+          #   "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+          # ];
         };
 
-        # Disable shader cache cleanup — lets the cache grow unbounded rather
+        # Disable shader cache cleanup - lets the cache grow unbounded rather
         # than hitting the default size cap and evicting entries.
         # To clear manually: rm -rf ~/.cache/nvidia/GLCache
         environment.sessionVariables = lib.mkIf config.hardware.nvidia.cuda {

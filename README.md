@@ -30,13 +30,6 @@ nh clean all
 nixos-help
 ```
 
-### Checking for updates
-
-#### Nvidia drivers
-```sh
-nix eval --raw nixpkgs#linuxPackages.nvidiaPackages.production.version
-```
-
 ---
 
 ## Sops

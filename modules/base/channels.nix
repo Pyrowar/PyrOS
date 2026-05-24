@@ -15,7 +15,6 @@
 # Where hostname is the name of the default channel.
 # ------------------------------------------------------------------ #
 {
-
   flake-file.inputs.nixpkgs = {
     url = lib.mkDefault "github:NixOS/nixpkgs/nixos-unstable";
   };

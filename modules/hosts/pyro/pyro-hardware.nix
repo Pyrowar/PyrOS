@@ -62,7 +62,7 @@
 
       swapDevices = [
         {
-          device = "/dev/disk/by-uuid/2bcd4beb-e129-4b9f-921a-8d8187f6c408"; # device UUID: sudo blkid
+          device = "/dev/disk/by-uuid/b8010eec-7bf9-4964-a1bc-5d56f2f5386e"; # device UUID: sudo blkid
           options = [ "discard" ]; # equivalent to swapon --discard
         }
       ];

@@ -84,9 +84,18 @@
         # ------------------------------------------------------------------ #
 
         core
+        locale
+
+        # ------------------------------------------------------------------ #
+        # Flakes
+        # ------------------------------------------------------------------ #
+
         hjem
         sops-nix
+        app-manager # manager for appimages
         nix-flatpak
+        nix-index-database
+        nix-citizen # Star Citizen
 
         # ------------------------------------------------------------------ #
         # Hardware
@@ -203,7 +212,8 @@
       # pkgs.stable.somePackage
       # pkgs.unstable.somePackage
 
-      # environment.systemPackages = with pkgs; [];
+      # environment.systemPackages = with pkgs; [ ];
+      # services.flatpak.packages = [ ];
 
       # ------------------------------------------------------------------ #
       # Mic Filter Chain

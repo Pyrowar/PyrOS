@@ -1,4 +1,3 @@
-{ ... }:
 {
   flake.nixosModules.core =
     { config, lib, ... }:
@@ -31,10 +30,17 @@
         # sudo nix-channel --remove nixos nixos-hardware
         # we also remove ~/.nix-defexpr and /root/.nix-defexpr
         nix.channel.enable = false;
-        nix.settings.experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
+        
+        nix.settings = {
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
+          # Prevent running out of resource on heavy rebuilds
+          # Made for AMD 5 5600 (12) @4.47 GHz
+          max-jobs = 2;
+          cores = 6; # or 4
+        };
 
         nix.gc = lib.mkIf (config.system.maintenance == "automatic") {
           automatic = true;
@@ -67,7 +73,7 @@
         # After committing changes to the bootloader, run:
         #   sudo nixos-rebuild boot --flake /etc/nixos --install-bootloader
         # ------------------------------------------------------------------ #
-        
+
         boot.loader.systemd-boot.enable = false;
         boot.loader.efi.canTouchEfiVariables = true;
         boot.loader.limine = {
@@ -92,5 +98,4 @@
         system.stateVersion = "25.11"; # Did you read the comment?
       };
     };
-
 }

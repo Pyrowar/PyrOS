@@ -6,14 +6,21 @@
 
       config = {
         users.users.${config.system.user}.extraGroups = [ "networkmanager" ];
-        networking.firewall = {
+        networking.nftables.enable = true;
+        networking.firewall = rec {
           enable = true;
           # allowedTCPPorts = [ ];
           # allowedUDPPorts = [ ];
-          # allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
-          # allowedUDPPortRanges = allowedTCPPortRanges;
+          
+          # KDE Connect
+          allowedTCPPortRanges = [
+            {
+              from = 1714;
+              to = 1764;
+            }
+          ];
+          allowedUDPPortRanges = allowedTCPPortRanges;
         };
-        networking.nftables.enable = true;
 
         networking.networkmanager = {
           enable = true;

@@ -20,6 +20,10 @@
                   else
                     throw "Unknown locale.preset: ${config.locale.preset}";
               };
+              # Bring back logout to GNOME 50
+              "org/gnome/shell" = {
+                always-show-log-out = true;
+              };
               "org/gnome/desktop/input-sources" = {
                 sources =
                   if config.locale.preset == "pl" then
