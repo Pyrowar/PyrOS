@@ -60,52 +60,52 @@
       # Zswap
       # ------------------------------------------------------------------ #
 
-      # boot.kernelParams = [
-      #   "zswap.enabled=1"
-      #   "zswap.zpool=zsmalloc"
-      #   "zswap.compressor=zstd"
-      #   "zswap.max_pool_percent=20"
-      # ];
+      boot.kernelParams = [
+        "zswap.enabled=1"
+        "zswap.zpool=zsmalloc"
+        "zswap.compressor=zstd"
+        "zswap.max_pool_percent=20"
+      ];
 
-      # boot.kernel.sysctl = {
-      #   "vm.swappiness" = 10; # prefer reclaiming page cache over RAM, default: 60
-      # };
+      boot.kernel.sysctl = {
+        "vm.swappiness" = 10; # prefer reclaiming page cache over RAM, default: 60
+      };
 
-      # swapDevices = [
-      #   {
-      #     device = "/dev/disk/by-uuid/";
-      #     options = [ "discard" ];
-      #   }
-      # ];
+      swapDevices = [
+        {
+          device = "/dev/disk/by-uuid/fb1aba1a-dbe4-470c-a907-e45d29e86818";
+          options = [ "discard" ];
+        }
+      ];
 
       # ------------------------------------------------------------------ #
       # Zram
       # ------------------------------------------------------------------ #
 
-      boot.kernelParams = [
-        "zswap.enabled=0"
-        "systemd.swap=0"
-      ];
+      # boot.kernelParams = [
+      #   "zswap.enabled=0"
+      #   "systemd.swap=0"
+      # ];
 
-      boot.kernel.sysctl = {
-        "vm.swappiness" = 180; # Aggressive - swap to ZRAM before RAM fills up
-        "vm.watermark_boost_factor" = 0;
-        "vm.watermark_scale_factor" = 125;
-        "vm.page-cluster" = 0;
-      };
+      # boot.kernel.sysctl = {
+      #   "vm.swappiness" = 180; # Aggressive - swap to ZRAM before RAM fills up
+      #   "vm.watermark_boost_factor" = 0;
+      #   "vm.watermark_scale_factor" = 125;
+      #   "vm.page-cluster" = 0;
+      # };
 
-      zramSwap = {
-        enable = true;
-        algorithm = "zstd";
-        memoryPercent = 50; # default
-      };
+      # zramSwap = {
+      #   enable = true;
+      #   algorithm = "zstd";
+      #   memoryPercent = 50; # default
+      # };
 
-      services.earlyoom = {
-        enable = true;
-        freeMemThreshold = 5;
-        freeSwapThreshold = 5;
-        enableNotifications = true;
-      };
+      # services.earlyoom = {
+      #   enable = true;
+      #   freeMemThreshold = 5;
+      #   freeSwapThreshold = 5;
+      #   enableNotifications = true;
+      # };
 
       # ------------------------------------------------------------------ #
       # NVMe

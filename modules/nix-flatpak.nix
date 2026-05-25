@@ -19,10 +19,6 @@
             name = "flathub";
             location = "https://dl.flathub.org/repo/flathub.flatpakrepo";
           }
-          {
-            name = "RSILauncher";
-            location = "https://mactan-sc.github.io/rsilauncher/RSILauncher.flatpakrepo";
-          }
         ];
       };
     };

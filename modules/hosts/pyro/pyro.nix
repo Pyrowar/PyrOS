@@ -96,7 +96,7 @@
         app-manager
         nix-flatpak
         nix-index-database
-        nix-citizen
+        # nix-citizen
 
         # ------------------------------------------------------------------ #
         # Hardware
@@ -125,7 +125,7 @@
         mic-filter-chain
         networking
         portals
-        razer
+        # razer # BUG: broken with newest kernel
 
         # ------------------------------------------------------------------ #
         # Nixpkgs
@@ -205,6 +205,12 @@
       # gaming.gamescope.capSysNice = false;
       # gaming.minecraft.enable = true;
       # gaming.lsfg.enable = true;
+
+      # Star Citizen
+      boot.kernel.sysctl = {
+        "vm.max_map_count" = 1048576;
+        "fs.file-max" = 524288;
+      };
 
       # ------------------------------------------------------------------ #
       # Standalone packages
