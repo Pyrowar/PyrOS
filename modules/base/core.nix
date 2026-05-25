@@ -88,11 +88,8 @@
         powerManagement.enable = true;
         security.rtkit.enable = true;
 
-        # Ptrace syscalls - EAC
-        boot.kernel.sysctl."kernel.yama.ptrace_scope" = 1; # 1 - default, 0 - permissive
-
         boot.initrd.systemd.enable = true;
-        boot.initrd.kernelModules = [ "lz4" ];
+        boot.initrd.kernelModules = [ "lz4" "zsmalloc" ];
 
         # ------------------------------------------------------------------ #
         # DO NOT CHANGE!

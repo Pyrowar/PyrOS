@@ -93,10 +93,10 @@
 
         hjem
         sops-nix
-        app-manager # manager for appimages
+        app-manager
         nix-flatpak
         nix-index-database
-        nix-citizen # Star Citizen
+        nix-citizen
 
         # ------------------------------------------------------------------ #
         # Hardware
@@ -213,7 +213,7 @@
       # pkgs.stable.somePackage
       # pkgs.unstable.somePackage
 
-      # environment.systemPackages = with pkgs; [ lug-helper ];
+      # environment.systemPackages = with pkgs; [ ];
       # services.flatpak.packages = [ ];
 
       # ------------------------------------------------------------------ #

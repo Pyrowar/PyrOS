@@ -57,22 +57,55 @@
       };
 
       # ------------------------------------------------------------------ #
-      # Swap device
+      # Zswap
       # ------------------------------------------------------------------ #
 
-      swapDevices = [
-        {
-          device = "/dev/disk/by-uuid/14547bd0-4f7f-498e-b8e6-30141f942d2e";
-          options = [ "discard" ]; # equivalent to swapon --discard
-        }
-      ];
+      # boot.kernelParams = [
+      #   "zswap.enabled=1"
+      #   "zswap.zpool=zsmalloc"
+      #   "zswap.compressor=zstd"
+      #   "zswap.max_pool_percent=20"
+      # ];
+
+      # boot.kernel.sysctl = {
+      #   "vm.swappiness" = 10; # prefer reclaiming page cache over RAM, default: 60
+      # };
+
+      # swapDevices = [
+      #   {
+      #     device = "/dev/disk/by-uuid/";
+      #     options = [ "discard" ];
+      #   }
+      # ];
+
+      # ------------------------------------------------------------------ #
+      # Zram
+      # ------------------------------------------------------------------ #
 
       boot.kernelParams = [
-        "zswap.enabled=1"
-        "zswap.compressor=lz4"
-        "zswap.max_pool_percent=25" # cap zswap at 25% of RAM
-        "zswap.shrinker_enabled=1" # proactively shrink pool under memory pressure
+        "zswap.enabled=0"
+        "systemd.swap=0"
       ];
+
+      boot.kernel.sysctl = {
+        "vm.swappiness" = 180; # Aggressive - swap to ZRAM before RAM fills up
+        "vm.watermark_boost_factor" = 0;
+        "vm.watermark_scale_factor" = 125;
+        "vm.page-cluster" = 0;
+      };
+
+      zramSwap = {
+        enable = true;
+        algorithm = "zstd";
+        memoryPercent = 50; # default
+      };
+
+      services.earlyoom = {
+        enable = true;
+        freeMemThreshold = 5;
+        freeSwapThreshold = 5;
+        enableNotifications = true;
+      };
 
       # ------------------------------------------------------------------ #
       # NVMe
@@ -306,7 +339,7 @@
       # Snapshots dir needs special permissions:
       # sudo chmod 700 /home/.snapshots
       services.snapper = {
-        snapshotInterval = "hourly";
+        snapshotInterval = "daily"; # default: hourly
         cleanupInterval = "1d";
 
         configs.home = {
@@ -316,11 +349,11 @@
           TIMELINE_CREATE = true;
           TIMELINE_CLEANUP = true;
 
-          TIMELINE_LIMIT_HOURLY = "8";
-          TIMELINE_LIMIT_DAILY = "6";
+          TIMELINE_LIMIT_HOURLY = "0"; # for hourly: 3
+          TIMELINE_LIMIT_DAILY = "7";
           TIMELINE_LIMIT_WEEKLY = "4";
-          TIMELINE_LIMIT_MONTHLY = "2";
-          TIMELINE_LIMIT_YEARLY = "1";
+          TIMELINE_LIMIT_MONTHLY = "3";
+          TIMELINE_LIMIT_YEARLY = "0";
         };
         configs.dokumenty = {
           SUBVOLUME = "/mnt/Barracuda/@dokumenty";
@@ -329,10 +362,10 @@
           TIMELINE_CREATE = true;
           TIMELINE_CLEANUP = true;
 
-          TIMELINE_LIMIT_HOURLY = "8";
-          TIMELINE_LIMIT_DAILY = "6";
+          TIMELINE_LIMIT_HOURLY = "0"; # for hourly: 3
+          TIMELINE_LIMIT_DAILY = "7";
           TIMELINE_LIMIT_WEEKLY = "4";
-          TIMELINE_LIMIT_MONTHLY = "2";
+          TIMELINE_LIMIT_MONTHLY = "3";
           TIMELINE_LIMIT_YEARLY = "1";
         };
       };

@@ -28,19 +28,12 @@
 
       programs.rsi-launcher = {
         enable = true;
-        # umu.enable = true;
-
-        # preCommands = ''
-        #   export DXVK_HUD=compiler;
-        #   export MANGO_HUD=1;
-        # '';
-
+        setLimits = true;
         # This option is enabled by default
         # Configures your system to meet some of the requirements to run star-citizen
         # Set `vm.max_map_count` default to `16777216` (sysctl(8))
         # Set `fs.file-max` default to `524288` (sysctl(8))
         # Also sets `security.pam.loginLimits` to increase hard (limits.conf(5))
-        setLimits = true;
       };
     };
 }
