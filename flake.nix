@@ -18,12 +18,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     import-tree.url = "github:vic/import-tree";
-    nix-citizen = {
-      url = "github:LovingMelody/nix-citizen";
-      inputs.nix-gaming.follows = "nix-gaming";
-    };
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-    nix-gaming.url = "github:fufexan/nix-gaming";
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
