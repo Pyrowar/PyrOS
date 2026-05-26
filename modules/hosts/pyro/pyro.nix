@@ -96,7 +96,7 @@
         app-manager
         nix-flatpak
         nix-index-database
-        nix-citizen
+        # nix-citizen
 
         # ------------------------------------------------------------------ #
         # Hardware
@@ -190,7 +190,7 @@
         switcheroo
 
         # === libadwaita === #
-        # gapless
+        gapless
         parabolic
         recordbox
 
